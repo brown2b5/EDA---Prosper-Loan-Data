@@ -17,6 +17,13 @@ library(dplyr)
 ```
 I refer users to the documentation on [R](https://cran.r-project.org/manuals.html), [ggplot2](http://ggplot2.tidyverse.org/reference/), [dplyr](https://dplyr.tidyverse.org/) and [knitr](https://yihui.name/knitr/demo/manual/) for help understanding and using any of the commands I have in the R markdown file to generate plots, transform/summarize the data and put the R markdown document into HTML format.
 
+# How to make contributions
+I am certainly open to contributions from others as this project moves forward.  To contribute, first clone the repository onto your local machine by running the following command in git:
+```
+git clone https://github.com/brown2b5/EDA---Prosper-Loan-Data
+```
+After making changes to the project, submit a pull request and we will discuss the possibility of merging the changes to the master branch.
+
 
 ####                       **References**
 Reference 1: https://www.prosper.com/home/about
