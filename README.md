@@ -4,5 +4,7 @@ Prosper is a peer-to-peer lending marketplace in the United States which provide
 
 ####                       **References**
 Reference 1: https://www.prosper.com/home/about
+
 Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
+
 Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkGmLQBk-Yx3z0XDEtI/edit#gid=0
