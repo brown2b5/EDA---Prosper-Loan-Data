@@ -24,6 +24,35 @@ git clone https://github.com/brown2b5/EDA---Prosper-Loan-Data
 ```
 After making changes to the project, submit a pull request and we will discuss the possibility of merging the changes to the master branch.
 
+# License and copyright
+
+### R
+Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+                       59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Licensed under the Free Software Foundation's [GNU General Public License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/master/R%20License.txt).
+
+### RStudio
+© Copyright 2018 RStudio
+
+Licensed under the [RStudio End User License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/master/RStudio%20License.pdf).
+
+### ggplot2
+© Copyright 2018 Hadley Wickham; RStudio
+
+Licensed under the Free Software Foundation's [GNU General Public License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/master/ggplot2%20License.txt).
+
+### knitr
+
+© Yihui Xie 2005 - 2018
+
+Licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/master/knitr%20License.txt).
+
+### dplyr
+
+Copyright © 2013-2015 RStudio and others
+
+Licensed under [The MIT License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/84b067728d43b0f6aacc9f12aa1d598cee047f87/dplyr%20License.txt).
 
 ####                       **References**
 Reference 1: https://www.prosper.com/home/about
