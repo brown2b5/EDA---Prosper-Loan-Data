@@ -54,7 +54,7 @@ Copyright © 2013-2015 RStudio and others
 
 Licensed under [The MIT License](https://github.com/brown2b5/EDA---Prosper-Loan-Data/blob/84b067728d43b0f6aacc9f12aa1d598cee047f87/dplyr%20License.txt).
 
-####                       **References**
+#                       **References**
 Reference 1: https://www.prosper.com/home/about
 
 Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
