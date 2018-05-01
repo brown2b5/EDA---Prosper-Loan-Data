@@ -6,28 +6,28 @@ Prosper Loan Exploratory Data Analysis by Brandon Brown
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
-# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 4), knitr to put the R markdown document into an HTML document (Reference 5) and dplyr to mutate and transform the data (Reference 6).  
+# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 4), knitr to put the R markdown document into an HTML document (Reference 5) and dplyr to mutate and transform the data (Reference 6).  I had to add a repos section to get the knitting of the html file to complete (Reference 7).  
 
-install.packages("ggplot2", dependencies = T) 
-install.packages("knitr", dependencies = T)
-install.packages("dplyr", dependencies = T)
+install.packages("ggplot2", dependencies = T, repos = "http://cran.us.r-project.org") 
+install.packages("knitr", dependencies = T, repos = "http://cran.us.r-project.org")
+install.packages("dplyr", dependencies = T, repos = "http://cran.us.r-project.org")
 
-# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 7)
+# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 8)
 
-# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 8).
+# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 9).
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
 
-# Get and set working directory (Reference 9)
-# NOTE: For users wishing to contribute, I have left what is inside the parenthesis blank.  You will need to add the path that you have cloned the project to inside the parenthesis in setwd.
+# Get and set working directory (Reference 10)
+# NOTE: For users wishing to contribute, I have left what is inside the parentheses blank.  You will need to add the path that you have cloned the project to inside the parentheses in setwd.
 getwd()
 setwd("")
 ```
 
 ```{r echo=FALSE, Load_the_Data}
-# Load the Data (Reference 10)
+# Load the Data (Reference 11)
 
 prosper_df <- read.csv('prosperLoanData.csv')
 ```
@@ -47,10 +47,12 @@ prosper_df <- read.csv('prosperLoanData.csv')
 
 > Reference 6: https://dplyr.tidyverse.org/
 
-> Reference 7: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+> Reference 7: https://stackoverflow.com/questions/29189663/trying-to-publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
 
-> Reference 8: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+> Reference 8: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
 
-> Reference 9: http://rfunction.com/archives/1001
+> Reference 9: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
 
-> Reference 10: http://rprogramming.net/read-csv-in-r/
+> Reference 10: http://rfunction.com/archives/1001
+
+> Reference 11: http://rprogramming.net/read-csv-in-r/
