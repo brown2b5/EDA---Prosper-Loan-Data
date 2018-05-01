@@ -32,7 +32,7 @@ setwd("")
 prosper_df <- read.csv('prosperLoanData.csv')
 ```
 
-# Univariate Analyses
+# Univariate Analysis
 
 > First, I will perform some univariate analyses, plotting bar charts and histograms of various variables of interest to get an idea about how each variable is related to measures such as the number of borrowers who default and the number who successfuly pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
 
