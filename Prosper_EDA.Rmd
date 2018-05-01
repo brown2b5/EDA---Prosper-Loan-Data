@@ -24,7 +24,7 @@ library(knitr)
 library(dplyr)
 
 # Get and set working directory (Reference 7)
-# NOTE: For users wishing to contribute, I have left what is inside the parentheses blank.  You will need to add the path that you have cloned the project to inside the parentheses in setwd.
+# NOTE: For users wishing to contribute, you will need to set the path to that you have cloned the project to inside the parentheses in setwd.
 getwd()
 setwd("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/Term 2/Exploratory Data Analysis/EDA - Prosper Loan Data")
 ```
