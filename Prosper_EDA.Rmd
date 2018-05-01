@@ -6,28 +6,31 @@ Prosper Loan Exploratory Data Analysis by Brandon Brown
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
-# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 4), knitr to put the R markdown document into an HTML document (Reference 5) and dplyr to mutate and transform the data (Reference 6).  I had to add a repos section to get the knitting of the html file to complete (Reference 7).  
+# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html file to complete (Reference 4).  
+
+# NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and paragraphs outside the R chuncks.  I did this so that references for code inside the R chuncks wouldn't be visible in a knitted HTML file if users want to knit together the file. 
+
 
 install.packages("ggplot2", dependencies = T, repos = "http://cran.us.r-project.org") 
 install.packages("knitr", dependencies = T, repos = "http://cran.us.r-project.org")
 install.packages("dplyr", dependencies = T, repos = "http://cran.us.r-project.org")
 
-# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 8)
+# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 5)
 
-# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 9).
+# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 6).
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
 
-# Get and set working directory (Reference 10)
+# Get and set working directory (Reference 7)
 # NOTE: For users wishing to contribute, I have left what is inside the parentheses blank.  You will need to add the path that you have cloned the project to inside the parentheses in setwd.
 getwd()
 setwd("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/Term 2/Exploratory Data Analysis/EDA - Prosper Loan Data")
 ```
 
 ```{r echo=FALSE, Load_the_Data}
-# Load the Data (Reference 11)
+# Load the Data (Reference 8)
 
 prosper_df <- read.csv('prosperLoanData.csv')
 ```
@@ -39,13 +42,39 @@ First, I will perform some univariate analyses, plotting bar charts and histogra
 ```{r echo=FALSE, Univariate_Plots}
 # First, I need to see the dimensions and structure of the data as is.
 
-# Obtain the dimensions of the dataframe as is (Reference 12).
+# Obtain the dimensions of the dataframe as is (Reference 9).
 dim(prosper_df)
 
-# Obtain the structure of the dataframe as is (Reference 13).
+# Obtain the structure of the dataframe as is (Reference 10).
 str(prosper_df)
 ```
 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
+# Resources - code
+
+# Reference 1: http://ggplot2.org/
+
+# Reference 2: https://yihui.name/knitr/
+
+# Reference 3: https://dplyr.tidyverse.org/
+
+# Reference 4: https://stackoverflow.com/questions/29189663/trying-to-publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
+
+# Reference 5: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+
+# Reference 6: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+
+# Reference 7: http://rfunction.com/archives/1001
+
+# Reference 8: http://rprogramming.net/read-csv-in-r/
+
+# Reference 9: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
+
+# Reference 10: https://www.rdocumentation.org/packages/utils/versions/3.4.3/topics/str
+
+# NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and meant to be visible (outside the R chuncks).
+```
 
 # Resources
 
@@ -54,23 +83,3 @@ Reference 1: https://www.prosper.com/home/about
 Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
 
 Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkGmLQBk-Yx3z0XDEtI/edit#gid=0
-
-Reference 4: http://ggplot2.org/
-
-Reference 5: https://yihui.name/knitr/
-
-Reference 6: https://dplyr.tidyverse.org/
-
-Reference 7: https://stackoverflow.com/questions/29189663/trying-to-publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
-
-Reference 8: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
-
-Reference 9: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
-
-Reference 10: http://rfunction.com/archives/1001
-
-Reference 11: http://rprogramming.net/read-csv-in-r/
-
-Reference 12: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
-
-Reference 13: https://www.rdocumentation.org/packages/utils/versions/3.4.3/topics/str
