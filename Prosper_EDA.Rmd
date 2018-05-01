@@ -1,32 +1,53 @@
 Prosper Loan Exploratory Data Analysis by Brandon Brown
 ========================================================
 
-> Prosper is a peer-to-peer lending marketplace in the United States which provides a platform for borrowers and lenders (Reference 1). Borrowers can apply for a fixed-rate, fixed-term loan of between $2,000 and $35,000 and individuals/institutions can invest in loans which generate attractive returns (Reference 1). Data is available on Prosper loans (Reference 2). This data includes interest rates, borrower employment status, borrower income, loan amount, borrower credit history and many other variables (Reference 3). The purpose of this project is to explore the data to determine which conditions might be associated with whether a borrower will be successful in paying back the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete their loan payments.
+> Prosper is a peer-to-peer lending marketplace in the United States which 
+provides a platform for borrowers and lenders (Reference 1). Borrowers can 
+apply for a fixed-rate, fixed-term loan of between $2,000 and $35,000 and individuals/institutions can invest in loans which generate attractive returns (Reference 1). Data is available on Prosper loans (Reference 2). This data 
+includes interest rates, borrower employment status, borrower income, loan 
+amount, borrower credit history and many other variables (Reference 3). The 
+purpose of this project is to explore the data to determine which conditions 
+might be associated with whether a borrower will be successful in paying back 
+the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete 
+their loan payments.
 
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
-# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html file to complete (Reference 4).  
+# Loading all of the packages I will use in this project. I will be using 
+# ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html 
+# file to complete (Reference 4).  
 
-# NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and paragraphs outside the R chuncks.  I did this so that references for code inside the R chuncks wouldn't be visible in a knitted HTML file if users want to knit together the file (because the R chuncks themselves won't be visible). 
+# NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources 
+# sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and 
+# paragraphs outside the R chuncks.  I did this so that references for code 
+# inside the R chuncks wouldn't be visible in a knitted HTML file if users 
+# want to knit together the file (because the R chuncks themselves won't be visible). 
 
 
-install.packages("ggplot2", dependencies = T, repos = "http://cran.us.r-project.org") 
-install.packages("knitr", dependencies = T, repos = "http://cran.us.r-project.org")
-install.packages("dplyr", dependencies = T, repos = "http://cran.us.r-project.org")
+install.packages("ggplot2", dependencies = T, 
+                 repos = "http://cran.us.r-project.org") 
+install.packages("knitr", dependencies = T, 
+                 repos = "http://cran.us.r-project.org")
+install.packages("dplyr", dependencies = T, 
+                 repos = "http://cran.us.r-project.org")
 
-# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 5)
+# I set echo, message and warning to all be false so that I wouldn't see the 
+# code in the HTML document or any warning messages (Reference 5)
 
-# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 6).
+# Load the libraries using the library function.  Note that you can use ? in 
+# front of any command I use to see what the command does.  This tells what the command does (Reference 6).
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
 
 # Get and set working directory (Reference 7)
-# NOTE: For users wishing to contribute, you will need to set the path to that you have cloned the project to inside the parentheses in setwd.
+# NOTE: For users wishing to contribute, you will need to set the path to that 
+# you have cloned the project to inside the parentheses in setwd.
 getwd()
-setwd("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/Term 2/Exploratory Data Analysis/EDA - Prosper Loan Data")
+setwd("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/Term 2
+      /Exploratory Data Analysis/EDA - Prosper Loan Data")
 ```
 
 ```{r echo=FALSE, Load_the_Data}
@@ -37,7 +58,10 @@ prosper_df <- read.csv('prosperLoanData.csv')
 
 # Univariate Analysis
 
-First, I will perform some univariate analyses, plotting bar charts and histograms of various variables of interest to get an idea about how each variable is related to measures such as the number of borrowers who default and the number who successfuly pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
+First, I will perform some univariate analyses, plotting bar charts and 
+histograms of various variables of interest to get an idea about how each 
+variable is related to measures such as the number of borrowers who default and 
+the number who successfuly pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
 
 ```{r echo=FALSE, Univariate_Plots}
 # First, I need to see the dimensions and structure of the data as is. This way
@@ -60,11 +84,13 @@ str(prosper_df)
 
 # Reference 3: https://dplyr.tidyverse.org/
 
-# Reference 4: https://stackoverflow.com/questions/29189663/trying-to-publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
+# Reference 4: https://stackoverflow.com/questions/29189663/trying-to-
+# publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
 
 # Reference 5: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
 
-# Reference 6: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+# Reference 6: https://stackoverflow.com/questions/5595512/what-is-the-
+# difference-between-require-and-library
 
 # Reference 7: http://rfunction.com/archives/1001
 
@@ -72,9 +98,12 @@ str(prosper_df)
 
 # Reference 9: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
 
-# Reference 10: https://www.rdocumentation.org/packages/utils/versions/3.4.3/topics/str
+# Reference 10: https://www.rdocumentation.org/packages/utils/versions/3.4.3/
+# topics/str
 
-# NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and meant to be visible (outside the R chuncks).
+# NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
+# file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
+# meant to be visible (outside the R chuncks).
 ```
 
 # Resources
@@ -83,4 +112,5 @@ Reference 1: https://www.prosper.com/home/about
 
 Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
 
-Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkGmLQBk-Yx3z0XDEtI/edit#gid=0
+Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkG
+mLQBk-Yx3z0XDEtI/edit#gid=0
