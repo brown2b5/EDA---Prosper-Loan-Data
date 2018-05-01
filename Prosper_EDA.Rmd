@@ -46,12 +46,15 @@ library(dplyr)
 # NOTE: For users wishing to contribute, you will need to set the path to that 
 # you have cloned the project to inside the parentheses in setwd.
 getwd()
-setwd("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/Term 2
-      /Exploratory Data Analysis/EDA - Prosper Loan Data")
+
+# I used the paste function because my file name was too long and I needed
+# to shorten it to below 80 characters (Reference 8).
+setwd(paste("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/",
+            "Term 2/Exploratory Data Analysis/Project 2", sep = ""))
 ```
 
 ```{r echo=FALSE, Load_the_Data}
-# Load the Data (Reference 8)
+# Load the Data (Reference 9)
 
 prosper_df <- read.csv('prosperLoanData.csv')
 ```
@@ -67,10 +70,10 @@ the number who successfuly pay back their loans.  Once we have the univariate pl
 # First, I need to see the dimensions and structure of the data as is. This way
 # I can get an idea at any transformations I need to perform on the data.
 
-# Obtain the dimensions of the dataframe as is (Reference 9).
+# Obtain the dimensions of the dataframe as is (Reference 10).
 dim(prosper_df)
 
-# Obtain the structure of the dataframe as is (Reference 10).
+# Obtain the structure of the dataframe as is (Reference 11).
 str(prosper_df)
 ```
 
@@ -94,11 +97,14 @@ str(prosper_df)
 
 # Reference 7: http://rfunction.com/archives/1001
 
-# Reference 8: http://rprogramming.net/read-csv-in-r/
+# Reference 8: https://stackoverflow.com/questions/6329962/split-code-over-
+# multiple-lines-in-an-r-script
 
-# Reference 9: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
+# Reference 9: http://rprogramming.net/read-csv-in-r/
 
-# Reference 10: https://www.rdocumentation.org/packages/utils/versions/3.4.3/
+# Reference 10: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
+
+# Reference 11: https://www.rdocumentation.org/packages/utils/versions/3.4.3/
 # topics/str
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
