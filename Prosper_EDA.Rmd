@@ -19,6 +19,11 @@ install.packages("dplyr", dependencies = T)
 library(ggplot2)
 library(knitr)
 library(dplyr)
+
+# Get and set working directory (Reference 9)
+# NOTE: For users wishing to contribute, I have left what is inside the parenthesis blank.  You will need to add the path that you have cloned the project to inside the parenthesis in setwd.
+getwd()
+setwd("")
 ```
 
 
@@ -39,3 +44,5 @@ library(dplyr)
 > Reference 7: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
 
 > Reference 8: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+
+> Reference 9: http://rfunction.com/archives/1001
