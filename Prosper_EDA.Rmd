@@ -26,6 +26,12 @@ getwd()
 setwd("")
 ```
 
+```{r echo=FALSE, Load_the_Data}
+# Load the Data (Reference 10)
+
+prosper_df <- read.csv('prosperLoanData.csv')
+```
+
 
 # Resources
 
@@ -46,3 +52,5 @@ setwd("")
 > Reference 8: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
 
 > Reference 9: http://rfunction.com/archives/1001
+
+> Reference 10: http://rprogramming.net/read-csv-in-r/
