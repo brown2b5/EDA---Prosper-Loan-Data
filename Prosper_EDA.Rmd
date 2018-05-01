@@ -11,8 +11,6 @@ might be associated with whether a borrower will be successful in paying back
 the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete 
 their loan payments.
 
-
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Loading all of the packages I will use in this project. I will be using 
 # ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html 
@@ -76,7 +74,6 @@ dim(prosper_df)
 # Obtain the structure of the dataframe as is (Reference 11).
 str(prosper_df)
 ```
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
