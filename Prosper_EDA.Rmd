@@ -8,7 +8,7 @@ Prosper Loan Exploratory Data Analysis by Brandon Brown
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html file to complete (Reference 4).  
 
-# NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and paragraphs outside the R chuncks.  I did this so that references for code inside the R chuncks wouldn't be visible in a knitted HTML file if users want to knit together the file. 
+# NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and paragraphs outside the R chuncks.  I did this so that references for code inside the R chuncks wouldn't be visible in a knitted HTML file if users want to knit together the file (because the R chuncks themselves won't be visible). 
 
 
 install.packages("ggplot2", dependencies = T, repos = "http://cran.us.r-project.org") 
