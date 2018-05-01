@@ -4,6 +4,24 @@ Prosper Loan Exploratory Data Analysis by Brandon Brown
 > Prosper is a peer-to-peer lending marketplace in the United States which provides a platform for borrowers and lenders (Reference 1). Borrowers can apply for a fixed-rate, fixed-term loan of between $2,000 and $35,000 and individuals/institutions can invest in loans which generate attractive returns (Reference 1). Data is available on Prosper loans (Reference 2). This data includes interest rates, borrower employment status, borrower income, loan amount, borrower credit history and many other variables (Reference 3). The purpose of this project is to explore the data to determine which conditions might be associated with whether a borrower will be successful in paying back the original loan amount and interest. I expect to see which borrower incomes, employment status, credit history and other variables are most associated with those who default on their loans and who successfully complete their loan payments.
 
 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
+# Loading all of the packages I will use in this project. I will be using ggplot2 to construct plots (Reference 4), knitr to put the R markdown document into an HTML document (Reference 5) and dplyr to mutate and transform the data (Reference 6).  
+
+install.packages("ggplot2", dependencies = T) 
+install.packages("knitr", dependencies = T)
+install.packages("dplyr", dependencies = T)
+
+# I set echo, message and warning to all be false so that I wouldn't see the code in the HTML document or any warning messages (Reference 7)
+
+# Load the libraries using the library function.  Note that you can use ? in front of any command I use to see what the command does.  This tells what the command does (Reference 8).
+
+library(ggplot2)
+library(knitr)
+library(dplyr)
+```
+
+
 # Resources
 
 > Reference 1: https://www.prosper.com/home/about
@@ -11,3 +29,13 @@ Prosper Loan Exploratory Data Analysis by Brandon Brown
 > Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
 
 > Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkGmLQBk-Yx3z0XDEtI/edit#gid=0
+
+> Reference 4: http://ggplot2.org/
+
+> Reference 5: https://yihui.name/knitr/
+
+> Reference 6: https://dplyr.tidyverse.org/
+
+> Reference 7: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+
+> Reference 8: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
