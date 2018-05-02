@@ -123,6 +123,11 @@ prosp_sub <- rename(prosp_sub, loan_status = LoanStatus,
        is_homeowner = IsBorrowerHomeowner)
 ```
 
+```{r, echo=FALSE, loan_status_graph}
+
+ggplot(prosp_sub, aes(loan_status)) + 
+  geom_bar()
+```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
