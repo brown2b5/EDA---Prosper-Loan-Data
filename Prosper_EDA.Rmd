@@ -95,7 +95,33 @@ as well.
 
   In summary the independent variables for this project are loan status and 
 number of days the current loan is delinquent.  The dependent variables are employment status, credit score range lower, debt to income ratio, prosper 
-score, prosper rating, borrower APR and is borrower a homeowner.  Note that for prosper score and prosper rating I will need to subset the data frame to only include dates post July 2009.  
+score, prosper rating, borrower APR and is borrower a homeowner.  Note that for prosper score and prosper rating I will need to subset the data frame to only include dates post July 2009. 
+
+```{r echo=FALSE, subset_dataframe}
+
+# Subset the dataframe to only include the variables I described above
+
+# Create a vector of strings representing the variable names from the prosper
+# dataframe I wish to keep (Reference 12).
+selected_variables <- c('LoanStatus', 'EmploymentStatus', 'BorrowerAPR',
+                        'CreditScoreRangeLower', 'DebtToIncomeRatio',
+                        'ProsperScore','ProsperRating..Alpha.',
+                        'LoanCurrentDaysDelinquent', 'IsBorrowerHomeowner')
+
+
+# Create new dataframe with only the variables I wish to keep (Reference 13).
+prosp_sub <- subset(prosper_df, select = selected_variables)
+
+# Rename the variables (Reference 14)
+
+prosp_sub <- rename(prosp_sub, loan_status = LoanStatus, 
+       employment_status = EmploymentStatus, borrower_apr = BorrowerAPR,
+       credit_score_range_lower = CreditScoreRangeLower,
+       debt_to_income_ratio = DebtToIncomeRatio, prosper_score = ProsperScore,
+       prosper_rating = ProsperRating..Alpha., 
+       days_delinquent = LoanCurrentDaysDelinquent, 
+       is_homeowner = IsBorrowerHomeowner)
+```
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
@@ -126,6 +152,15 @@ score, prosper rating, borrower APR and is borrower a homeowner.  Note that for 
 
 # Reference 11: https://www.rdocumentation.org/packages/utils/versions/3.4.3/
 # topics/str
+
+# Reference 12: https://stackoverflow.com/questions/11488820/why-use-c-to-
+# define-vector
+
+# Reference 13: https://www.rdocumentation.org/packages/base/versions/3.5.0/
+# topics/subset
+
+# Reference 14: http://www.sthda.com/english/wiki/renaming-data-frame-columns-
+# in-r
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
