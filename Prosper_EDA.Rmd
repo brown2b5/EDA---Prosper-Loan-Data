@@ -115,5 +115,4 @@ Reference 1: https://www.prosper.com/home/about
 
 Reference 2: https://www.kaggle.com/jschnessl/prosperloans/feed
 
-Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkG
-mLQBk-Yx3z0XDEtI/edit#gid=0
+Reference 3: https://docs.google.com/spreadsheets/d/1gDyi_L4UvIrLTEC6Wri5nbaMmkGmLQBk-Yx3z0XDEtI/edit#gid=0
