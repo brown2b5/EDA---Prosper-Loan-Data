@@ -125,8 +125,49 @@ prosp_sub <- rename(prosp_sub, loan_status = LoanStatus,
 
 ```{r, echo=FALSE, loan_status_graph}
 
-ggplot(prosp_sub, aes(loan_status)) + 
-  geom_bar()
+# Plotting a bar graph of loan_status; proportions for each category
+
+# After plotting an initial version of the bar graph for loan_status, I 
+# realized that there were several variables of Past Due.  I will now combine 
+# all these variables into one variable (combine any Past Due amounts to simply 
+# be past due). Since I mainly only care about statuses of Defaulted and
+# Completed.
+
+# Create a variable which contains all the possible Past Due categories.  
+# They will be lumped into one category called "Past Due" (Reference 12)
+
+past_due <- c('Past Due (>120 days)', 'Past Due (1-15 days)', 
+              'Past Due (16-30 days)', 'Past Due (31-60 days)', 
+              'Past Due (61-90 days)', 'Past Due (91-120 days)')
+
+# First I need to add a factor level to the factor variable loan_status 
+# (Reference 15).
+
+prosp_sub$loan_status <- factor(prosp_sub$loan_status, 
+                    levels = c(levels(prosp_sub$loan_status), "Past Due"))
+
+# Now for all categories contained in past_due, set them to 'Past Due'
+# (Reference 16)
+
+prosp_sub[prosp_sub$loan_status %in% past_due, 1] <- c('Past Due')
+
+# I'm now goint to lump "FinalPaymentInProgress" with Completed since loans
+# in this status are basically complete.
+
+# Create variable called complete with all categories that will be made
+# to be "Complete" (Reference 12)
+complete <- c('Completed', 'FinalPaymentInProgress')
+
+# Now for all categories contained in complete, set them to 'Completed'
+# (Reference 16)
+prosp_sub[prosp_sub$loan_status %in% complete, 1] <- c('Completed')
+
+# Now get rid of the factors that I don't use. 
+# (Reference 15).
+
+prosp_sub$loan_status <- factor(prosp_sub$loan_status, 
+                    levels = c("Completed", "Current", "Past Due", 
+                               "Defaulted", "Chargedoff", "Cancelled"))
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
@@ -166,6 +207,12 @@ ggplot(prosp_sub, aes(loan_status)) +
 
 # Reference 14: http://www.sthda.com/english/wiki/renaming-data-frame-columns-
 # in-r
+
+# Reference 15: https://stats.idre.ucla.edu/r/modules/factor-variables/
+
+# Reference 16: https://stackoverflow.com/questions/32845303/using-logical-
+# operators-with-characters
+
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
