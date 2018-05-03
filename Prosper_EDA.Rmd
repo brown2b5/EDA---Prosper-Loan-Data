@@ -180,6 +180,19 @@ ggplot(prosp_sub, aes(loan_status)) +
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
 ```
 
+From this plot, the category with the highest proportion of borrowers is clearly
+the Current loans.  I lumped all the Past Due categories into one Past Due 
+category since I only really care about Completed, Defaulted and Chargedoff
+loans.  I also lumped the FinalPaymentInProgress category into the Completed
+category since these loans are for all intents and purposes finished.  I did
+some research and Chargedoff loans are Defaulted loans for which there is no
+expectation of re-payment by the lenders (Reference 9).  Because of this, I
+am equally as interested in Chargedoff loans as I am those in Default.  
+Completed loans clearly have a better proportion than the combination of
+Defaulted and Chargedoff loans (around 0.37 versus around 0.15).  It will be
+interesting to see how these proportions match up with those of employment
+status, credit score and the other variables.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
@@ -251,3 +264,5 @@ Reference 6: https://www.investopedia.com/terms/d/delinquent.asp
 Reference 7: https://www.prosper.com/Downloads/Legal/Prosper_Prospectus_2018-04-30.pdf
 
 Reference 8: https://www.investopedia.com/terms/a/apr.asp
+
+Reference 9: https://help.lendingclub.com/hc/en-us/articles/216127747-What-is-the-difference-between-a-loan-that-is-in-default-and-a-loan-that-has-been-charged-off-
