@@ -207,6 +207,9 @@ summary(prosp_sub$employment_status)
 
 ```
 
+From the data available we can conclude that the information given isn't very helpful at possibly predicting whether a borrower will be successful in paying back their loans.  This is primarily because the categories are vague.  The highest proportion of borrowers fit into the "Employment" category.  This 
+category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decided to examine this data further in the bivariate and multivariate portions 
+of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious relationship but there isn't (for an obvious relationship to exist, the proportions of one category would need to equal that of the Completed and Default/ChargedOff categories).
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
