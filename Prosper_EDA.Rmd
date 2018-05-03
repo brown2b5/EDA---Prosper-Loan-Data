@@ -163,11 +163,21 @@ complete <- c('Completed', 'FinalPaymentInProgress')
 prosp_sub[prosp_sub$loan_status %in% complete, 1] <- c('Completed')
 
 # Now get rid of the factors that I don't use. 
-# (Reference 15).
+# (Reference 15). Note that I ordered the levels from best case scenario
+# (Completed) to worst case scenario (ChargedOff).  Loans that are 
+# cancelled aren't really good or bad.
 
 prosp_sub$loan_status <- factor(prosp_sub$loan_status, 
                     levels = c("Completed", "Current", "Past Due", 
                                "Defaulted", "Chargedoff", "Cancelled"))
+
+# Get counts for each category
+
+summary(prosp_sub$loan_status)
+
+# Create the bar graph of proportion of borrowers (References 17 and 18)
+ggplot(prosp_sub, aes(loan_status)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
@@ -212,6 +222,11 @@ prosp_sub$loan_status <- factor(prosp_sub$loan_status,
 
 # Reference 16: https://stackoverflow.com/questions/32845303/using-logical-
 # operators-with-characters
+
+# Reference 17: https://stackoverflow.com/questions/36604127/creating-a-bar-
+# plot-with-proportions-on-ggplot
+
+# Reference 18: http://ggplot2.tidyverse.org/reference/geom_bar.html
 
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
