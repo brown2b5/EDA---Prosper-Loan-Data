@@ -192,11 +192,18 @@ see how these proportions match up with those of employment status, credit score
 
 ```{r, echo=FALSE, employment_status_graph}
 
-# Plotting a bar graph of the proportion of borrowers for each category available in the employment status variable.
+# After graphing the initial version of the bar graph, I realize I need to 
+# rotate the axis labels to be able to keep them from running into each other.
+# (Reference 19).  I also graph the proportions as I did with loan status.
+
 
 ggplot(prosp_sub, aes(employment_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
   ylab('Proportion of Borrowers')
+
+# Get counts for each category
+summary(prosp_sub$employment_status)
 
 ```
 
@@ -248,6 +255,9 @@ ggplot(prosp_sub, aes(employment_status)) +
 # plot-with-proportions-on-ggplot
 
 # Reference 18: http://ggplot2.tidyverse.org/reference/geom_bar.html
+
+# Reference 19: http://tallman-world.tumblr.com/post/89964965867/rhow-to-
+# rotate-axis-labels-in-ggplot2
 
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
