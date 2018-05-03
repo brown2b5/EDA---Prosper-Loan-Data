@@ -211,6 +211,38 @@ From the data available we can conclude that the information given isn't very he
 category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decided to examine this data further in the bivariate and multivariate portions 
 of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious relationship but there isn't (for an obvious relationship to exist, the proportions of one category would need to equal that of the Completed and Default/ChargedOff categories).
 
+```{r, echo=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
+# This chunck generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
+# on the data and adjusting the binwidth.  I then graph all three of them on
+# one grid.
+
+
+# Plot the initial distribution of lower ranges of credit scores (Reference 20)
+
+
+q1 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
+             geom_histogram() 
+
+# Plot histogram while zooming in to the range of most of the data. I pick a max of 880 because this value is the maximum given in the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+
+q2 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
+        geom_histogram() + coord_cartesian(xlim = c(375,880))
+
+# Plot histogram while zooming in to the range of most of the data and picking a better binwidth (Reference 20)
+
+q3 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
+       geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(375,880))
+
+# Read in grid extra to plot all these histograms on the same graph (Reference 22)
+library(gridExtra)
+
+grid.arrange(q1, q2, q3, ncol = 1)
+
+# Get summary of the low range of credit score
+
+summary(prosp_sub$credit_score_range_lower)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
@@ -261,6 +293,13 @@ of the analysis, I might get rid of the borrowers fitting in the Other and non-l
 
 # Reference 19: http://tallman-world.tumblr.com/post/89964965867/rhow-to-
 # rotate-axis-labels-in-ggplot2
+
+# Reference 20: http://ggplot2.tidyverse.org/reference/geom_histogram.html
+
+# Reference 21: http://ggplot2.tidyverse.org/reference/coord_cartesian.html
+
+# Reference 22: https://www.rdocumentation.org/packages/gridExtra/versions
+# /2.3/topics/arrangeGrob
 
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
