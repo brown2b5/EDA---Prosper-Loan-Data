@@ -187,11 +187,8 @@ loans.  I also lumped the FinalPaymentInProgress category into the Completed
 category since these loans are for all intents and purposes finished.  I did
 some research and Chargedoff loans are Defaulted loans for which there is no
 expectation of re-payment by the lenders (Reference 9).  Because of this, I
-am equally as interested in Chargedoff loans as I am those in Default.  
-Completed loans clearly have a better proportion than the combination of
-Defaulted and Chargedoff loans (around 0.37 versus around 0.15).  It will be
-interesting to see how these proportions match up with those of employment
-status, credit score and the other variables.
+am equally as interested in Chargedoff loans as I am those in Default. Completed loans clearly have a better proportion than the combination of Defaulted and Chargedoff loans (around 0.37 versus around 0.15).  It will be interesting to 
+see how these proportions match up with those of employment status, credit score and the other variables.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
