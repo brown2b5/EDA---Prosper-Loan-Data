@@ -327,6 +327,13 @@ simply don't have the ability to take out loans because their income is low
 and because of this, they are the ones who will be less successful at paying
 back loans. 
 
+```{r, echo=FALSE, debt_to_income_ratio}
+
+# See the first 6 rows of data for those with debt to income ratio greater than
+# 5 (Reference 23)
+head(subset(prosp_sub, debt_to_income_ratio >= 5))
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
