@@ -261,6 +261,22 @@ drop off are in each of the loan status categories.  I may look at how this
 variable changes with each loan status category using a faceted group of box 
 plots in a bi-variate analysis.
 
+```{r, echo=FALSE, credit_score_range_lower}
+
+# See the first 6 rows of data for those with lower range of credit score of
+# 0 (Reference 21)
+head(subset(prosp_sub, credit_score_range_lower == 0))
+
+```
+
+Looking at the first 6 rows of data for those with a lower credit score range
+of 0, I actually think the data is good and that is truly the lower range on
+the credit score.  The employment status and debt to income ratio is unknown
+for the first six rows of data, so these rows are probably cases where very 
+little information is known about the borrowers so the risk for investors
+will be high.  The APR seems to be high for the first 6 rows of data so that
+would make sense for borrowers with bad credit scores.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
@@ -318,6 +334,9 @@ plots in a bi-variate analysis.
 
 # Reference 22: https://www.rdocumentation.org/packages/gridExtra/versions
 # /2.3/topics/arrangeGrob
+
+# Reference 23: https://stackoverflow.com/questions/2667673/select-first-4
+# -rows-of-a-data-frame-in-r
 
 
 # NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
