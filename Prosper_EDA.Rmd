@@ -243,6 +243,23 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(prosp_sub$credit_score_range_lower)
 ```
 
+From the three plots of the histograms, each more finely tuned than the next, 
+I notice a few things.  The first is that there are some borrowers with a credit
+score of zero.  I am going to see what the rest of the variables looks like
+for some of these borrowers to see if I should discard them or if I should
+keep them (if it was simply an error in entering the data).  The next is that
+the data is pretty close to being normal.  From the summary given, the mean
+is only 5.6 away from the median out of a range of 40 for the IQR.  Since
+the mean is greater than the median however, it is skewed to the right.  I 
+don't think it's enough to warrant performing a transformation on the data
+however.  The middle plot was bi-modal but changing the binwidth caused this
+to dissapear from the data.  In terms of lower range of credit score predicting
+the ability of a borrower to pay back their loans, there is a fairly steep
+drop off from around 640 to 625 in the number of borrowers.  I would
+be interested to see what percentage of the borrowers to the left of the 
+drop off are in each of the loan status categories.  I may look at this with
+a faceted group of box plots in the bi-variate analysis.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
