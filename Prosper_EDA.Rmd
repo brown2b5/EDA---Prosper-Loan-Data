@@ -311,6 +311,22 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(prosp_sub$debt_to_income_ratio)
 ```
 
+A few things stand out about these graphs.  The first is that there appears 
+that there might be outliers close to a ratio of 10.  Again, I will check these
+out in the next R chunck to see if I should drop the data.  The second is 
+that like the credit score graph, the data is skewed to the right.  This 
+initially surprised me but it didn't after thinking on it some more.  I was
+initially thinking that the higher a borrower's debt to income ratio is, the 
+less able they will be to pay back their loans.  But it actually may be that
+borrowers with higher incomes are able to take on much more debt and still
+be successful at paying back the loans (my guess is that there is a lot
+of overlap between the two graphs).  A significant portion of the debt
+for those with higher debt to income ratios is probably student loan debt.  
+It could very well be that borrowers with low debt to income ratios
+simply don't have the ability to take out loans because their income is low
+and because of this, they are the ones who will be less successful at paying
+back loans. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
