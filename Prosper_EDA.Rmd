@@ -278,6 +278,39 @@ little information is known about the borrowers so the risk for investors
 will be high.  The APR seems to be high for the first 6 rows of data so that
 would make sense for borrowers with bad credit scores.
 
+```{r, echo=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
+# This chunck generates three versions of the histogram of debt to income ratio.  I initially generate a basic histogram but then adjust it, zooming in 
+# on the data and adjusting the binwidth.  I then graph all three of them on
+# one grid.
+
+
+# Plot the initial distribution of lower ranges of debt to income ratios (Reference 20)
+
+
+q1 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
+             geom_histogram() 
+
+# Plot histogram while zooming in to the range of most of the data. I pick a max of 1 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+
+q2 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
+        geom_histogram(binwidth = 0.1) + coord_cartesian(xlim = c(0,1))
+
+# Plot histogram while zooming in to the range of most of the data and picking a better binwidth (Reference 20)
+
+q3 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
+       geom_histogram(binwidth = 0.005) + coord_cartesian(xlim = c(0,1))
+
+# Read in grid extra to plot all these histograms on the same graph 
+# (Reference 22)
+library(gridExtra)
+
+grid.arrange(q1, q2, q3, ncol = 1)
+
+# Get summary of the debt to income ratio
+
+summary(prosp_sub$debt_to_income_ratio)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
