@@ -233,7 +233,8 @@ q2 <- ggplot(prosp_sub, aes(credit_score_range_lower)) +
 q3 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
        geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(375,880))
 
-# Read in grid extra to plot all these histograms on the same graph (Reference 22)
+# Read in grid extra to plot all these histograms on the same graph 
+# (Reference 22)
 library(gridExtra)
 
 grid.arrange(q1, q2, q3, ncol = 1)
