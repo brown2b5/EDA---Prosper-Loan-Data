@@ -284,7 +284,7 @@ would make sense for borrowers with bad credit scores.
 # one grid.
 
 
-# Plot the initial distribution of lower ranges of debt to income ratios (Reference 20)
+# Plot the initial distribution of debt to income ratios (Reference 20)
 
 
 q1 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
