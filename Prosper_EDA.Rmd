@@ -334,6 +334,13 @@ back loans.
 head(subset(prosp_sub, debt_to_income_ratio >= 5))
 ```
 
+After looking at the first few rows for borrowers with a debt to income ratio
+greater than 5, I now think that this data should be left.  One of the reasons
+borrowers may have an extremely high debt to income ratio is because they have
+either lost their jobs but have fairly good credit scores or because they are
+simply between jobs.  This would cause an extremely low income which would
+explain the high debt to income ratios.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
