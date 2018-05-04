@@ -252,9 +252,9 @@ keep them (if it was simply an error in entering the data).  The next is that
 the data is pretty close to being normal.  From the summary given, the mean
 is only 5.6 away from the median out of a range of 40 for the IQR.  Since
 the mean is greater than the median however, it is skewed to the right.  I 
-don't think it's enough to warrant performing a transformation on the data
+don't think it's enough to warrant performing a transformation on the data,
 however.  The middle plot was bi-modal but changing the binwidth caused this
-to dissapear from the data.  In terms of lower range of credit score predicting
+to disappear from the data.  In terms of lower range of credit score predicting
 the ability of a borrower to pay back their loans, there is a fairly steep
 drop off from around 640 to 625 in the number of borrowers.  I would
 be interested to see what percentage of the borrowers to the left of the 
