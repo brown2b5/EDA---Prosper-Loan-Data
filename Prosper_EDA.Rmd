@@ -301,9 +301,7 @@ q2 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) +
 q3 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
        geom_histogram(binwidth = 0.005) + coord_cartesian(xlim = c(0,1))
 
-# Read in grid extra to plot all these histograms on the same graph 
-# (Reference 22)
-library(gridExtra)
+# Plot all these histograms on the same graph (Reference 22)
 
 grid.arrange(q1, q2, q3, ncol = 1)
 
