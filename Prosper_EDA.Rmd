@@ -452,6 +452,19 @@ isn't going to be viewed in the same way as that of the first.  This
 variable is a secondary independent variable to that of loan status so I'm not
 as concerned at gaining insights into what may predict these numbers.
 
+```{r, echo=FALSE, is_homeowner}
+# Plotting bar graph of proportions of borrowers that are and are not homeowners
+# (References 15 and 16)
+
+ggplot(prosp_sub, aes(is_homeowner)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + 
+  ylab('Proportion of Borrowers')
+
+# Get counts for each category
+
+summary(prosp_sub$is_homeowner)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
