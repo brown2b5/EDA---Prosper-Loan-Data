@@ -370,6 +370,30 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(prosp_sub$borrower_apr)
 ```
 
+The first thing to notice about this graph is that from the summary and the 
+first two plots, the data appears to be skewed to the right.  This is confusing
+to me because I was assumming that borrowers with good credit scores would
+have lower APR's.  I was assuming that this graph would be skewed to the
+left and be a reflection of the credit score and debt to income ratio
+histograms.  A few things could be responsible for this result.  The first
+is that there may not be a nice relationship between good credit score and 
+borrower apr.  Perhaps a borrower has a good credit score but they have lost
+their job which makes them a risky investment.  Or at the other end of the 
+spectrum, perhaps a borrower has bad credit but has landed a good job such that
+prosper assigns a lower than expected interest rate.  And it is not even certain
+that there is a nice relationship between credit score and debt to income ratio
+as I guessed earlier.  I will have to graph these variables against each other
+to determine a discernible relationship.  Another observation pointing to 
+the possibility that there may not be a nice relationship between borrower
+apr and credit score/debt to income ratio is that the mode on the borrower
+apr is significantly different from the mean and median.  From the third plot
+with a fine binwidth, the mode appears to be around 0.36 while the median and
+mean is around 0.21.  One final observation is that there are borrowers with
+apr's greater than 0.4.  I'm going to assume that these data points are
+accurate and are not outliers which have been incorrectly entered since
+I accepted the data I thought were outliers for debt to income ratio and
+credit score.  
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
