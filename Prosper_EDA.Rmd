@@ -17,10 +17,10 @@ their loan payments.
 # file to complete (Reference 4).  
 
 # NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources 
-# sections.  The first is inside of an R chunck and is only for code inside R chuncks.  The second is outside the R chunck and is only for analyses and 
-# paragraphs outside the R chuncks.  I did this so that references for code 
-# inside the R chuncks wouldn't be visible in a knitted HTML file if users 
-# want to knit together the file (because the R chuncks themselves won't be visible). 
+# sections.  The first is inside of an R chunk and is only for code inside R chunks.  The second is outside the R chunk and is only for analyses and 
+# paragraphs outside the R chunks.  I did this so that references for code 
+# inside the R chunks wouldn't be visible in a knitted HTML file if users 
+# want to knit together the file (because the R chunks themselves won't be visible). 
 
 
 install.packages("ggplot2", dependencies = T, 
@@ -213,7 +213,7 @@ category is very vague.  It doesn't indicate whether the borrower is a Full-time
 of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious relationship but there isn't (for an obvious relationship to exist, the proportions of one category would need to equal that of the Completed and Default/ChargedOff categories).
 
 ```{r, echo=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
-# This chunck generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
+# This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
 
@@ -280,7 +280,7 @@ will be high.  The APR seems to be high for the first 6 rows of data so that
 would make sense for borrowers with bad credit scores.
 
 ```{r, echo=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
-# This chunck generates three versions of the histogram of debt to income ratio.  I initially generate a basic histogram but then adjust it, zooming in 
+# This chunk generates three versions of the histogram of debt to income ratio.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
 
@@ -312,7 +312,7 @@ summary(prosp_sub$debt_to_income_ratio)
 
 A few things stand out about these graphs.  The first is that there appears 
 that there might be outliers close to a ratio of 10.  Again, I will check these
-out in the next R chunck to see if I should drop the data.  The second is 
+out in the next R chunk to see if I should drop the data.  The second is 
 that like the credit score graph, the data is skewed to the right.  This 
 initially surprised me but it didn't after thinking on it some more.  I was
 initially thinking that the higher a borrower's debt to income ratio is, the 
@@ -340,7 +340,7 @@ simply between jobs.  This would cause an extremely low income which would
 explain the high debt to income ratios.
 
 ```{r, echo=FALSE, fig.height = 8, fig.width = 8, borrower_apr}
-# This chunck generates three versions of the histogram of borrower apr.  I initially generate a basic histogram but then adjust it, zooming in 
+# This chunk generates three versions of the histogram of borrower apr.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
 
@@ -456,9 +456,9 @@ credit score.
 # -rows-of-a-data-frame-in-r
 
 
-# NOTE: This is the Resources list only for the code chuncks.  I am placing this list inside of this chunck so that they do not appear when knitting the HTML 
+# NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
-# meant to be visible (outside the R chuncks).
+# meant to be visible (outside the R chunks).
 ```
 
 # Resources
