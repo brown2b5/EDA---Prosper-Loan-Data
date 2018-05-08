@@ -394,6 +394,43 @@ accurate and are not outliers which have been incorrectly entered since
 I accepted the data I thought were outliers for debt to income ratio and
 credit score.  
 
+```{r, echo=FALSE, fig.height = 8, fig.width = 8, days_delinquent}
+# This chunk generates three versions of the histogram of days delinquent.  I initially generate a basic histogram but then adjust it, zooming in 
+# on the data and adjusting the binwidth.  I then graph all three of them on
+# one grid.  Note that I only considered borrowers for which there was actually
+# a days delinquent value (non-zero) and for which the loan had not been put in
+# defaulted or charged off status.
+
+# Create condition that the number of days delinquent must be greater than 0 
+# and that the loan status must not be defaulted or charged off.
+condition <- ((prosp_sub$days_delinquent > 0) & 
+                (prosp_sub$loan_status != 'Defaulted') & 
+                (prosp_sub$loan_status != 'Chargedoff'))
+
+# Plot the initial distribution of days delinquent (Reference 20)
+
+q1 <- ggplot(subset(prosp_sub, condition), aes(days_delinquent)) + 
+             geom_histogram() 
+
+# Plot histogram while zooming in to the range of most of the data. I pick a max of 129 since this was the maximum number of days based on the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+
+q2 <- ggplot(subset(prosp_sub, condition), aes(days_delinquent)) + 
+        geom_histogram() + coord_cartesian(xlim = c(0,129))
+
+# Plot histogram while zooming in to the data and picking a better binwidth (Reference 20)
+
+q3 <- ggplot(subset(prosp_sub, condition), aes(days_delinquent)) + 
+       geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(0,129))
+
+# Plot all these histograms on the same graph (Reference 22)
+
+grid.arrange(q1, q2, q3, ncol = 1)
+
+# Get summary of the days_delinquent variable under the laid out conditions.
+
+summary(subset(prosp_sub, condition)$days_delinquent)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
