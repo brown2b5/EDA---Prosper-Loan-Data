@@ -454,7 +454,7 @@ as concerned at gaining insights into what may predict these numbers.
 
 ```{r, echo=FALSE, is_homeowner}
 # Plotting bar graph of proportions of borrowers that are and are not homeowners
-# (References 15 and 16)
+# (References 17 and 18)
 
 ggplot(prosp_sub, aes(is_homeowner)) + 
   geom_bar(aes(y=..count../sum(..count..))) + 
