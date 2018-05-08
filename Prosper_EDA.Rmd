@@ -431,6 +431,27 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(subset(prosp_sub, condition)$days_delinquent)
 ```
 
+For the days_delinquent variable, I only considered loans that had not been
+charged off or defaulted since they are in a separate category and will have
+large values.  I also only considered cases for which there was a non-zero value
+for days_delinquent.  Had I considered all the borrowers, a disproportionally 
+large number of them would have been zero days' delinquent and I wouldn't be 
+able to gain any insights on borrowers who hadn't yet defaulted or been charged
+off on their loans who also are delinquent in paying their loans.  From these
+distributions, the data is definitely skewed to the right with the median 
+at 27 days.  Most of the cases are below 50 days.  It's hard to know which
+variables may predict the number of days' delinquent since thus far I have
+considered all the data and not subsetted the data as I did in this R chunk.
+It may also be good in the future to consider the ratio of days' delinquent to
+number of days since the loan originated.  This might be a better indicator
+of the relative success of borrowers paying back their loans.  A borrower
+may be 30 days' delinquent but only 2 months into paying back the loans while 
+another borrower may be 30 days' delinquent but be halfway through paying the 
+back the loans (a matter of years).  The delinquency for the second borrower
+isn't going to be viewed in the same way as that of the first.  This 
+variable is a secondary independent variable to that of loan status so I'm not
+as concerned at gaining insights into what may predict these numbers.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
