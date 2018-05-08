@@ -191,6 +191,7 @@ am equally as interested in Chargedoff loans as I am those in Default. Completed
 see how these proportions match up with those of employment status, credit score and the other variables.
 
 ```{r, echo=FALSE, employment_status_graph}
+# Plotting bar graph of proportions of borrowers with each employment status
 
 # After graphing the initial version of the bar graph, I realize I need to 
 # rotate the axis labels to be able to keep them from running into each other.
