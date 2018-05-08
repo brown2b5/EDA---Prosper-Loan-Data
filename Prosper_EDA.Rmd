@@ -339,6 +339,37 @@ either lost their jobs but have fairly good credit scores or because they are
 simply between jobs.  This would cause an extremely low income which would
 explain the high debt to income ratios.
 
+```{r, echo=FALSE, fig.height = 8, fig.width = 8, borrower_apr}
+# This chunck generates three versions of the histogram of borrower apr.  I initially generate a basic histogram but then adjust it, zooming in 
+# on the data and adjusting the binwidth.  I then graph all three of them on
+# one grid.
+
+
+# Plot the initial distribution of borrower apr (Reference 20)
+
+
+q1 <- ggplot(prosp_sub, aes(borrower_apr)) + 
+             geom_histogram() 
+
+# Plot histogram while zooming in to the range of most of the data. I pick a max of 0.4 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+
+q2 <- ggplot(prosp_sub, aes(borrower_apr)) + 
+        geom_histogram() + coord_cartesian(xlim = c(0,0.4))
+
+# Plot histogram while zooming in to the range of most of the data and picking a better binwidth (Reference 20)
+
+q3 <- ggplot(prosp_sub, aes(borrower_apr)) + 
+       geom_histogram(binwidth = 0.0005) + coord_cartesian(xlim = c(0,0.4))
+
+# Plot all these histograms on the same graph (Reference 22)
+
+grid.arrange(q1, q2, q3, ncol = 1)
+
+# Get summary of the borrower_apr
+
+summary(prosp_sub$borrower_apr)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
