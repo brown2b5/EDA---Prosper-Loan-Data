@@ -538,6 +538,19 @@ prosp_2009$prosper_score <- factor(prosp_2009$prosper_score,
                     levels = c("1-3", "4", "5", "6", "7", "8", "9-11")) 
 ```
 
+```{r, echo=FALSE, prosper_score_graph}
+# This R chunk creates a bar graph of proportions of each borrowers
+# with the prosper score levels I created in the previous R chunk
+
+# Get counts for each category
+
+summary(prosp_2009$prosper_score)
+
+# Create the bar graph of proportion of borrowers (References 17 and 18)
+ggplot(prosp_2009, aes(prosper_score)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
