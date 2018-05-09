@@ -604,7 +604,7 @@ best_combo <- (prosp_2009$prosper_score == "9-11" &
 worst_combo <- (prosp_2009$prosper_score == "1-3" & 
                   prosp_2009$prosper_rating == "HR")
 
-# Create the bar graph of proportion of borrowers for best possible combination (References 15 and 16)
+# Create the bar graph of proportion of borrowers for best possible combination (References 17 and 18)
 
 q1 <- ggplot(subset(prosp_2009, best_combo), aes(loan_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
@@ -614,6 +614,14 @@ q2 <- ggplot(subset(prosp_2009, worst_combo), aes(loan_status)) +
 
 grid.arrange(q1, q2, ncol = 1)
 ```
+
+The first plot in the visual directly above is the loan status for the best 
+possible combination of prosper rating and score (AA and 9-11) while the second plot is the loan status for the worst possible combination of prosper rating and score (HR and 1-3). Clearly there is a higher precedance of loans being past 
+due, defaulted and charged off for the worst combination than the best 
+combination.  There is also a higher percentage of loans which are completed in 
+the best combination versus the worst combination.  This would seem to point to 
+a relationship between these three variables.  I will be examining this further 
+in the bi-variate and multi-variate portion of my analysis.  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
