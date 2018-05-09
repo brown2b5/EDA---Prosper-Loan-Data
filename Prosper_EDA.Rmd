@@ -623,6 +623,41 @@ the best combination versus the worst combination.  This would seem to point to
 a relationship between these three variables.  I will be examining this further 
 in the bi-variate and multi-variate portion of my analysis.  
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE,  days_delinquent_comparison}
+# Plotting two histograms of days_delinquent; one for the best possible 
+# combination of prosper rating and prosper score (AA, 9-11).  The other for the 
+# worst possible combination (HR, 1-3).  This is to see if there may be a 
+# relationship between these three variables.
+
+# Set conditions. Again, I limit things to cases where the days_delinquent
+# is greater than 0 and the loan status is not defaulted or charged off.
+best_combo <- (prosp_2009$prosper_score == "9-11" & 
+                 prosp_2009$prosper_rating == "AA" & 
+                 prosp_2009$days_delinquent > 0 &
+                 prosp_2009$loan_status != "Defaulted" &
+                 prosp_2009$loan_status != "Chargedoff")
+worst_combo <- (prosp_2009$prosper_score == "1-3" & 
+                 prosp_2009$prosper_rating == "HR"& 
+                 prosp_2009$days_delinquent > 0 &
+                 prosp_2009$loan_status != "Defaulted" &
+                 prosp_2009$loan_status != "Chargedoff")
+
+# Create the histogram of proportion of borrowers for best and worst possible
+# combinations.  I pick a max of 125 since all the data is below this number (References 20 and 21).  I used coord_cartesian so that I wouldn't shave off any data.
+
+q1 <- ggplot(subset(prosp_2009, best_combo), aes(days_delinquent)) + 
+        geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(0,125))
+
+q2 <- ggplot(subset(prosp_2009, worst_combo), aes(days_delinquent)) + 
+        geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(0,125))
+
+# Plot the charts on a grid (Reference 22)
+
+grid.arrange(q1, q2, ncol = 1)
+summary(subset(prosp_2009, best_combo)$days_delinquent)
+summary(subset(prosp_2009, worst_combo)$days_delinquent)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
