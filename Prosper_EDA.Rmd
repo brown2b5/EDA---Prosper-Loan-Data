@@ -482,11 +482,6 @@ loan status over each of these conditions to see which condition has a higher le
 # which originated after July 2009 (References 13 and 24).
 
 prosp_2009 <- subset(prosp_sub, !is.na(prosper_score))
-
-# Upon checking the values for prosper score and prosper rating, I did get rid
-# of the NA values.
-table(prosp_2009$prosper_score)
-table(prosp_2009$prosper_rating)
 ```
 
 ```{r, echo=FALSE, prosp_2009_combine}
