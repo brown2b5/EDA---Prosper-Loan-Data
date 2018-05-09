@@ -583,6 +583,15 @@ ggplot(prosp_2009, aes(prosper_rating)) +
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
 ```
 
+From the above bar chart, it appears that the prosper rating with the highest
+proportion of borrowers is that with a rating of C.  As with the prosper scores,
+this is reasonable since this is the average prosper rating.  Most borrowers
+will not have excellent or bad credit but have average credit.  The two ratings
+with the lowest and second lowest proportion of borrowers are the AA and HR
+ratings, respectively.  As I mentioned with the prosper score, I will need to
+use R's bi-variate graphing capabilities to determine the relationship between
+prosper score and loan status. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
