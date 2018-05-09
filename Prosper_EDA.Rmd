@@ -51,7 +51,7 @@ setwd(paste("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/",
             "Term 2/Exploratory Data Analysis/Project 2", sep = ""))
 ```
 
-```{r echo=FALSE, Load_the_Data}
+```{r echo=FALSE, message=FALSE, warning=FALSE, Load_the_Data}
 # Load the Data (Reference 9)
 
 prosper_df <- read.csv('prosperLoanData.csv')
@@ -64,7 +64,7 @@ histograms of various variables of interest to get an idea about how each
 variable is related to measures such as the number of borrowers who default and 
 the number who successfully pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
 
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, message=FALSE, warning=FALSE, Univariate_Plots}
 # First, I need to see the dimensions and structure of the data as is. This way
 # I can get an idea at any transformations I need to perform on the data.
 
@@ -76,15 +76,19 @@ str(prosper_df)
 ```
 
   Since there are 81 variables, it is impossible to examine the relationships between all of them.  So I will pick a subset of the variables.  My main 
-question is how variables of interest relate to the ability or inability of a borrower to pay back the loan amount plus interest.  Because of this, the most important variable I will be looking at is Loan Status.  This is a categorical variable with categories such as Completed, Defaulted, and Past Due for varying number of days among others.  It would make sense that a person's employment status will affect their ability to pay back the loans so I will also look at 
+question is how variables of interest relate to the ability or inability of a borrower to pay back the loan amount plus interest.  Because of this, the most important variable I will be looking at is Loan Status.  This is a categorical variable with categories such as Completed, Defaulted, and Past Due for varying number of days among others.  It would make sense that a person's employment 
+status will affect their ability to pay back the loans so I will also look at 
 this variable.  A borrower's credit score is a statistical method to determine 
 the likelihood that they will pay back a loan in a specified amount of time (Reference 4), so I will look at that variable and see how it is related to loan status (specifically the lower range of a person's credit score at the time the listing was created).  It would be expected that a borrower with a low debt to income ratio would have an easier time paying back loans, so this variable will 
 be considered in this analysis.  
   
   Two variables which are only for listings post July 2009 are Prosper Score and Prosper Rating.  A Prosper Score is a number from 1 to 11 determined by Prosper which represents the probability of a loan going "bad" where bad is defined as 
-the loan going 60 or more days past due within 12 months of the loan origination (1 is the highest risk score and 11 is the lowest risk) (Reference 5).  I will 
+the loan going 60 or more days past due within 12 months of the loan origination 
+(1 is the highest risk score and 11 is the lowest risk) (Reference 5).  I will 
 see how this variable is related to loan status and also to another variable, 
-the number of days the loan is delinquent (number of days a payment is past due) (Reference 6).  A Prosper Rating is a grade assigned to a loan to determine the estimated annual loss to potential investors (AA to HR with AA having the lowest estimated loss and HR having the highest) (Reference 7).  It would be expected that in general, loans with the best rating (AA) would have the fewest number of borrowers who default on the loan.  One important point to keep in mind during this project is that a Prosper Rating may not be accurate because it is based on 
+the number of days the loan is delinquent (number of days a payment is past due) (Reference 6).  A Prosper Rating is a grade assigned to a loan to determine the estimated annual loss to potential investors (AA to HR with AA having the lowest estimated loss and HR having the highest) (Reference 7).  It would be expected 
+that in general, loans with the best rating (AA) would have the fewest number of borrowers who default on the loan.  One important point to keep in mind during 
+this project is that a Prosper Rating may not be accurate because it is based on 
 a borrower's credit report which may contain inaccurate information (Reference 
 7). Another variable that will be examined is whether or not a borrower is a 
 home owner.  If a borrower is a home owner, I would expect they will have higher credit worthiness and be less susceptible to going into default.  Finally, I 
@@ -97,7 +101,7 @@ as well.
 number of days the current loan is delinquent.  The dependent variables are employment status, credit score range lower, debt to income ratio, prosper 
 score, prosper rating, borrower APR and is borrower a homeowner.  Note that for prosper score and prosper rating I will need to subset the data frame to only include loans which actually have a score and rating (those post July 2009). 
 
-```{r echo=FALSE, subset_dataframe}
+```{r echo=FALSE, message=FALSE, warning=FALSE, subset_dataframe}
 
 # Subset the dataframe to only include the variables I described above
 
@@ -123,7 +127,7 @@ prosp_sub <- rename(prosp_sub, loan_status = LoanStatus,
        is_homeowner = IsBorrowerHomeowner)
 ```
 
-```{r, echo=FALSE, loan_status_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, loan_status_graph}
 
 # Plotting a bar graph of loan_status; proportions for each category
 
@@ -186,11 +190,11 @@ category since I only really care about Completed, Defaulted and Chargedoff
 loans.  I also lumped the FinalPaymentInProgress category into the Completed
 category since these loans are for all intents and purposes finished.  I did
 some research and Chargedoff loans are Defaulted loans for which there is no
-expectation of re-payment by the lenders (Reference 9).  Because of this, I
-am equally as interested in Chargedoff loans as I am those in Default. Completed loans clearly have a better proportion than the combination of Defaulted and Chargedoff loans (around 0.37 versus around 0.15).  It will be interesting to 
+expectation of re-payment by the lenders (Reference 9).  Because of this, I am equally as interested in Chargedoff loans as I am those in Default. Completed 
+loans clearly have a better proportion than the combination of Defaulted and Chargedoff loans (around 0.37 versus around 0.15).  It will be interesting to 
 see how these proportions match up with those of employment status, credit score and the other variables.
 
-```{r, echo=FALSE, employment_status_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, employment_status_graph}
 # Plotting bar graph of proportions of borrowers with each employment status
 
 # After graphing the initial version of the bar graph, I realize I need to 
@@ -208,11 +212,16 @@ summary(prosp_sub$employment_status)
 
 ```
 
-From the data available we can conclude that the information given isn't very helpful at possibly predicting whether a borrower will be successful in paying back their loans.  This is primarily because the categories are vague.  The highest proportion of borrowers fit into the "Employment" category.  This 
-category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions 
-of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious relationship but there isn't (for an obvious relationship to exist, the proportions of one category would need to equal that of the Completed and Default/ChargedOff categories).
+From the data available we can conclude that the information given isn't very helpful at possibly predicting whether a borrower will be successful in paying 
+back their loans.  This is primarily because the categories are vague.  The 
+highest proportion of borrowers fit into the "Employment" category.  This 
+category is very vague.  It doesn't indicate whether the borrower is a Full-time 
+or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions 
+of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious relationship but there isn't (for an obvious relationship 
+to exist, the proportions of one category would need to equal that of the 
+Completed and Default/ChargedOff categories).
 
-```{r, echo=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
+```{r, echo=FALSE,  message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
 # This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
@@ -224,7 +233,8 @@ of the analysis, I might get rid of the borrowers fitting in the Other and non-l
 q1 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
              geom_histogram() 
 
-# Plot histogram while zooming in to the range of most of the data. I pick a max of 880 because this value is the maximum given in the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+# Plot histogram while zooming in to the range of most of the data. I pick a max 
+# of 880 because this value is the maximum given in the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
 q2 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
         geom_histogram() + coord_cartesian(xlim = c(375,880))
@@ -257,13 +267,15 @@ don't think it's enough to warrant performing a transformation on the data,
 however.  The middle plot was bi-modal but changing the binwidth caused this
 to disappear from the data. Another thing I noticed after changing the binwidth 
 is that there appears to be only integer values of credit score in increments of 20. There do not appear to be values that aren't whole or that fall between 
-values of 600, 620, 640 and so on (note that I confirmed this using the table command but didn't include it in the final code). In terms of lower range of credit score predicting the ability of a borrower to pay back their loans, there is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
+values of 600, 620, 640 and so on (note that I confirmed this using the table command but didn't include it in the final code). In terms of lower range of 
+credit score predicting the ability of a borrower to pay back their loans, there 
+is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
 I would be interested to see what percentage of the borrowers to the left of the 
 drop off are in each of the loan status categories.  I may look at how this 
 variable changes with each loan status category using a faceted group of box 
 plots in a bi-variate analysis.
 
-```{r, echo=FALSE, credit_score_range_lower0}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, credit_score_range_lower0}
 
 # See the first 6 rows of data for those with lower range of credit score of
 # 0 (Reference 21)
@@ -271,16 +283,13 @@ head(subset(prosp_sub, credit_score_range_lower == 0))
 
 ```
 
-Looking at the first 6 rows of data for those with a lower credit score range
-of 0, I actually think the data is good and that is truly the lower range on
-the credit score.  The employment status and debt to income ratio is unknown
-for the first six rows of data, so these rows are probably cases where very 
-little information is known about the borrowers so the risk for investors
-will be high.  The APR seems to be high for the first 6 rows of data so that
-would make sense for borrowers with bad credit scores.
+Looking at the first 6 rows of data for those with a lower credit score range of 
+0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense 
+for borrowers with bad credit scores.
 
-```{r, echo=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
-# This chunk generates three versions of the histogram of debt to income ratio.  I initially generate a basic histogram but then adjust it, zooming in 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
+# This chunk generates three versions of the histogram of debt to income ratio.  
+# I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
 
@@ -291,7 +300,8 @@ would make sense for borrowers with bad credit scores.
 q1 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
              geom_histogram() 
 
-# Plot histogram while zooming in to the range of most of the data. I pick a max of 1 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+# Plot histogram while zooming in to the range of most of the data. I pick a max 
+# of 1 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
 q2 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
         geom_histogram(binwidth = 0.1) + coord_cartesian(xlim = c(0,1))
@@ -310,22 +320,17 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(prosp_sub$debt_to_income_ratio)
 ```
 
-A few things stand out about these graphs.  The first is that there appears 
-that there might be outliers close to a ratio of 10.  Again, I will check these
-out in the next R chunk to see if I should drop the data.  The second is 
-that like the credit score graph, the data is skewed to the right.  This 
-initially surprised me but it didn't after thinking on it some more.  I was
-initially thinking that the higher a borrower's debt to income ratio is, the 
-less able they will be to pay back their loans.  But it actually may be that
-borrowers with higher incomes are able to take on much more debt and still
-be successful at paying back the loans (my guess is that there is a lot
-of overlap between the two graphs).  A significant portion of the debt
-for those with higher debt to income ratios is probably student loan debt.  It could very well be that borrowers with low debt to income ratios
-simply don't have the ability to take out loans because their income is low
-and because of this, they are the ones who will be less successful at paying
-back loans. 
+A few things stand out about these graphs.  The first is that there appears that there might be outliers close to a ratio of 10.  Again, I will check these out 
+in the next R chunk to see if I should drop the data.  The second is that like 
+the credit score graph, the data is skewed to the right.  This initially 
+surprised me but it didn't after thinking on it some more.  I was initially thinking that the higher a borrower's debt to income ratio is, the less able 
+they will be to pay back their loans.  But it actually may be that borrowers 
+with higher incomes are able to take on much more debt and still be successful 
+at paying back the loans (my guess is that there is a lot of overlap between the two graphs).  A significant portion of the debt for those with higher debt to income ratios is probably student loan debt.  It could very well be that 
+borrowers with low debt to income ratios simply don't have the ability to take 
+out loans because their income is low and because of this, they are the ones who will be less successful at paying back loans. 
 
-```{r, echo=FALSE, debt_to_income_ratio5}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, debt_to_income_ratio5}
 
 # See the first 6 rows of data for those with debt to income ratio greater than
 # 5 (Reference 23)
@@ -339,7 +344,7 @@ either lost their jobs but have fairly good credit scores or because they are
 simply between jobs.  This would cause an extremely low income which would
 explain the high debt to income ratios.
 
-```{r, echo=FALSE, fig.height = 8, fig.width = 8, borrower_apr}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, borrower_apr}
 # This chunk generates three versions of the histogram of borrower apr.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.
@@ -351,7 +356,8 @@ explain the high debt to income ratios.
 q1 <- ggplot(prosp_sub, aes(borrower_apr)) + 
              geom_histogram() 
 
-# Plot histogram while zooming in to the range of most of the data. I pick a max of 0.4 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+# Plot histogram while zooming in to the range of most of the data. I pick a 
+# max of 0.4 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
 q2 <- ggplot(prosp_sub, aes(borrower_apr)) + 
         geom_histogram() + coord_cartesian(xlim = c(0,0.4))
@@ -372,29 +378,22 @@ summary(prosp_sub$borrower_apr)
 
 The first thing to notice about this graph is that from the summary and the 
 first two plots, the data appears to be skewed to the right.  This is confusing
-to me because I was assumming that borrowers with good credit scores would
-have lower APR's.  I was assuming that this graph would be skewed to the
-left and be a reflection of the credit score and debt to income ratio
-histograms.  A few things could be responsible for this result.  The first
-is that there may not be a nice relationship between good credit score and 
-borrower apr.  Perhaps a borrower has a good credit score but they have lost
-their job which makes them a risky investment.  Or at the other end of the 
-spectrum, perhaps a borrower has bad credit but has landed a good job such that
-prosper assigns a lower than expected interest rate.  And it is not even certain
-that there is a nice relationship between credit score and debt to income ratio
-as I guessed earlier.  I will have to graph these variables against each other
-to determine a discernible relationship.  Another observation pointing to 
-the possibility that there may not be a nice relationship between borrower
-apr and credit score/debt to income ratio is that the mode on the borrower
-apr is significantly different from the mean and median.  From the third plot
-with a fine binwidth, the mode appears to be around 0.36 while the median and
-mean is around 0.21.  One final observation is that there are borrowers with
-apr's greater than 0.4.  I'm going to assume that these data points are
-accurate and are not outliers which have been incorrectly entered since
-I accepted the data I thought were outliers for debt to income ratio and
-credit score.  
+to me because I was assumming that borrowers with good credit scores would have
+lower APR's.  I was assuming that this graph would be skewed to the left and be 
+a reflection of the credit score and debt to income ratio histograms.  A few 
+things could be responsible for this result.  The first is that there may not be 
+a nice relationship between good credit score and borrower apr.  Perhaps a 
+borrower has a good credit score but they have lost their job which makes them a risky investment.  Or at the other end of the spectrum, perhaps a borrower has 
+bad credit but has landed a good job such that prosper assigns a lower than 
+expected interest rate.  And it is not even certain that there is a nice relationship between credit score and debt to income ratio as I guessed earlier.  
+I will have to graph these variables against each other to determine a 
+discernible relationship.  Another observation pointing to the possibility that there may not be a nice relationship between borrower apr and credit score/debt 
+to income ratio is that the mode on the borrower apr is significantly different from the mean and median.  From the third plot with a fine binwidth, the mode appears to be around 0.36 while the median and mean is around 0.21.  One final observation is that there are borrowers with apr's greater than 0.4.  I'm going 
+to assume that these data points are accurate and are not outliers which have 
+been incorrectly entered since I accepted the data I thought were outliers for 
+debt to income ratio and credit score.  
 
-```{r, echo=FALSE, fig.height = 8, fig.width = 8, days_delinquent}
+```{r, echo=FALSE, message=FALSE, warning=FALSE,fig.height = 8, fig.width = 8, days_delinquent}
 # This chunk generates three versions of the histogram of days delinquent.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
 # one grid.  Note that I only considered borrowers for which there was actually
@@ -412,7 +411,8 @@ condition <- ((prosp_sub$days_delinquent > 0) &
 q1 <- ggplot(subset(prosp_sub, condition), aes(days_delinquent)) + 
              geom_histogram() 
 
-# Plot histogram while zooming in to the range of most of the data. I pick a max of 129 since this was the maximum number of days based on the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
+# Plot histogram while zooming in to the range of most of the data. I pick a max 
+# of 129 since this was the maximum number of days based on the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
 q2 <- ggplot(subset(prosp_sub, condition), aes(days_delinquent)) + 
         geom_histogram() + coord_cartesian(xlim = c(0,129))
@@ -438,21 +438,19 @@ for days_delinquent.  Had I considered all the borrowers, a disproportionally
 large number of them would have been zero days' delinquent and I wouldn't be 
 able to gain any insights on borrowers who hadn't yet defaulted or been charged
 off on their loans who also are delinquent in paying their loans.  From these
-distributions, the data is definitely skewed to the right with the median 
-at 27 days.  Most of the cases are below 50 days.  It's hard to know which
-variables may predict the number of days' delinquent since thus far I have
-considered all the data and not subsetted the data as I did in this R chunk.
-It may also be good in the future to consider the ratio of days' delinquent to
-number of days since the loan originated.  This might be a better indicator
-of the relative success of borrowers paying back their loans.  A borrower
-may be 30 days' delinquent but only 2 months into paying back the loans while 
-another borrower may be 30 days' delinquent but be halfway through paying the 
-back the loans (a matter of years).  The delinquency for the second borrower
-isn't going to be viewed in the same way as that of the first.  This 
-variable is a secondary independent variable to that of loan status so I'm not
-as concerned at gaining insights into what may predict these numbers.
+distributions, the data is definitely skewed to the right with the median at 27 
+days.  Most of the cases are below 50 days.  It's hard to know which variables
+may predict the number of days' delinquent since thus far I have considered all
+the data and not subsetted the data as I did in this R chunk.  It may also be
+good in the future to consider the ratio of days' delinquent to number of days 
+since the loan originated.  This might be a better indicator of the relative
+success of borrowers paying back their loans.  A borrower may be 30 days'
+delinquent but only 2 months into paying back the loans while another borrower 
+may be 30 days' delinquent but be halfway through paying back the loans (a 
+matter of years).  The delinquency for the second borrower isn't going to be 
+viewed in the same way as that of the first.  This variable is a secondary independent variable to that of loan status so I'm not as concerned at gaining insights into what may predict these numbers.
 
-```{r, echo=FALSE, is_homeowner}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, is_homeowner}
 # Plotting bar graph of proportions of borrowers that are and are not homeowners
 # (References 17 and 18)
 
@@ -469,10 +467,12 @@ From the bar chart above showing proportions of borrowers who own a home, we
 can see that there is minimal difference between the conditions.  The proportion
 of borrowers who own a home is slightly greater than 50%.  It's hard to
 determine how well this variable predicts loan payback success rate without
-using bi-variate and multi-variate graphic capabilities in R.  I will facet 
-loan status over each of these conditions to see which condition has a higher level of success and failure.  It would make sense that borrowers owning a home will be more likely to payback their loans than those that do not own a home. 
+using bi-variate and multi-variate graphic capabilities in R.  I will facet loan 
+status over each of these conditions to see which condition has a higher level 
+of success and failure.  It would make sense that borrowers owning a home will 
+be more likely to payback their loans than those that do not own a home. 
 
-```{r, echo=FALSE, subset_date}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, subset_date}
 # This R chunk subsets the prosper data such that only data after July 2009
 # is considered.  This data will actually have a prosper score and rating.
 
@@ -484,7 +484,7 @@ loan status over each of these conditions to see which condition has a higher le
 prosp_2009 <- subset(prosp_sub, !is.na(prosper_score))
 ```
 
-```{r, echo=FALSE, prosp_2009_combine}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, prosp_2009_combine}
 # This R chunk combines some of the prosper scores into one category so that
 # I am not considering 11 categories which seem to be a bit too much.
 
@@ -533,7 +533,7 @@ prosp_2009$prosper_score <- factor(prosp_2009$prosper_score,
                     levels = c("1-3", "4", "5", "6", "7", "8", "9-11")) 
 ```
 
-```{r, echo=FALSE, prosper_score_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, prosper_score_graph}
 # This R chunk creates a bar graph of proportions of each borrowers
 # with the prosper score levels I created in the previous R chunk
 
@@ -561,7 +561,7 @@ all loans and not just those after July 2009 (the bar chart above is only for
 data post July-2009).  I will need to use R's bi-variate graphing capabilities 
 to see if a relationship exists, I suspect it will. 
 
-```{r, echo=FALSE, prosper_rating_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, prosper_rating_graph}
 # This R chunk creates a bar graph of proportions of each borrowers
 # with the possible prosper rating levels
 
