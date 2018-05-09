@@ -616,7 +616,7 @@ grid.arrange(q1, q2, ncol = 1)
 ```
 
 The first plot in the visual directly above is the loan status for the best 
-possible combination of prosper rating and score (AA and 9-11) while the second plot is the loan status for the worst possible combination of prosper rating and score (HR and 1-3). Clearly there is a higher precedance of loans being past 
+possible combination of prosper rating and score (AA and 9-11) while the second plot is the loan status for the worst possible combination of prosper rating and score (HR and 1-3). Clearly there is a higher precedence of loans being past 
 due, defaulted and charged off for the worst combination than the best 
 combination.  There is also a higher percentage of loans which are completed in 
 the best combination versus the worst combination.  This would seem to point to 
