@@ -472,6 +472,23 @@ determine how well this variable predicts loan payback success rate without
 using bi-variate and multi-variate graphic capabilities in R.  I will facet 
 loan status over each of these conditions to see which condition has a higher level of success and failure.  It would make sense that borrowers owning a home will be more likely to payback their loans than those that do not own a home. 
 
+```{r, echo=FALSE, subset_date}
+# This R chunk subsets the prosper data such that only data after July 2009
+# is considered.  This data will actually have a prosper score and rating.
+
+# Several of the loans had NA for prosper scores.  These loans originated
+# in or prior to July 2009.  By subsetting the data to get rid of rows for 
+# which the prosper score is NA, I am effectively only considering loans 
+# which originated after July 2009 (Reference 13).
+
+prosp_2009 <- subset(prosp_sub, !is.na(prosper_score))
+
+# Upon checking the values for prosper score and prosper rating, I did get rid
+# of the NA values.
+table(prosp_2009$prosper_score)
+table(prosp_2009$prosper_rating)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
