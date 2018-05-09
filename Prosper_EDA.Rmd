@@ -479,7 +479,7 @@ loan status over each of these conditions to see which condition has a higher le
 # Several of the loans had NA for prosper scores.  These loans originated
 # in or prior to July 2009.  By subsetting the data to get rid of rows for 
 # which the prosper score is NA, I am effectively only considering loans 
-# which originated after July 2009 (Reference 13).
+# which originated after July 2009 (References 13 and 24).
 
 prosp_2009 <- subset(prosp_sub, !is.na(prosper_score))
 
@@ -549,6 +549,9 @@ table(prosp_2009$prosper_rating)
 
 # Reference 23: https://stackoverflow.com/questions/2667673/select-first-4
 # -rows-of-a-data-frame-in-r
+
+# Reference 24: https://www.rdocumentation.org/packages/base/versions
+# /3.5.0/topics/NA
 
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
