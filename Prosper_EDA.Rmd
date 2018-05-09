@@ -489,6 +489,55 @@ table(prosp_2009$prosper_score)
 table(prosp_2009$prosper_rating)
 ```
 
+```{r, echo=FALSE, prosp_2009_combine}
+# This R chunk combines some of the prosper scores into one category so that
+# I am not considering 11 categories which seem to be a bit too much.
+
+# Create a variable which contains all the possible prosper score low
+# categories.  They will be lumped into one category called '1-3'  
+# (Reference 12). Also create a variable which contains all the possible 
+# prosper score high categories, they will be lumped into one category called
+# '9-11'.
+
+prosper_score_low <- c('1', '2', '3')
+prosper_score_high <- c('9', '10', '11')
+
+# First I need to turn the variable prosper_score into a factor variable. I 
+# will do this in both the prosp_sub and prosp_2009 dataframes (Reference 15).
+
+prosp_sub$prosper_score <- factor(prosp_sub$prosper_score)
+prosp_2009$prosper_score <- factor(prosp_2009$prosper_score)
+
+# Now I need to add two factor levels to the factor variable prosper_score (Reference 15). I will do this for both prosp_2009 and prosp_sub.
+
+prosp_sub$prosper_score <- factor(prosp_sub$prosper_score, 
+                    levels = c(levels(prosp_sub$prosper_score), "1-3", "9-11"))
+
+prosp_2009$prosper_score <- factor(prosp_2009$prosper_score, 
+                    levels = c(levels(prosp_2009$prosper_score), "1-3", "9-11"))
+
+# Now for all categories contained in prosper_score_low and prosper_score_high
+# set them to '1-3' and '9-11', respectively (Reference 16).
+
+prosp_sub[prosp_sub$prosper_score %in% prosper_score_low, 6] <- c("1-3")
+
+prosp_2009[prosp_2009$prosper_score %in% prosper_score_low, 6] <- c("1-3")
+
+prosp_sub[prosp_sub$prosper_score %in% prosper_score_high, 6] <- c("9-11")
+
+prosp_2009[prosp_2009$prosper_score %in% prosper_score_high, 6] <- c("9-11")
+
+# Now get rid of the factors that I don't use. 
+# (Reference 15). Note that I ordered the levels from highest risk (1-3) to
+# lowest risk (9-11).
+
+prosp_sub$prosper_score <- factor(prosp_sub$prosper_score, 
+                    levels = c("1-3", "4", "5", "6", "7", "8", "9-11")) 
+
+prosp_2009$prosper_score <- factor(prosp_2009$prosper_score, 
+                    levels = c("1-3", "4", "5", "6", "7", "8", "9-11")) 
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
