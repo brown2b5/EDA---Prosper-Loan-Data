@@ -562,7 +562,31 @@ associated with the investment (prosper scores of 1 and 11 would have had the lo
 to tell.  It is worth mentioning that around the same proportion of borrowers 
 assigned a rating between 9-11 also either defaulted or were chargedoff with 
 their loans based on the loan status graph previously, but that data considered
-all loans and not just those after July 2009.  I will need to use R's bi-variate graphing capabilities to see if a relationship exists, I suspect it will. 
+all loans and not just those after July 2009 (the bar chart above is only for
+data post July-2009).  I will need to use R's bi-variate graphing capabilities 
+to see if a relationship exists, I suspect it will. 
+
+```{r, echo=FALSE, prosper_rating_graph}
+# This R chunk creates a bar graph of proportions of each borrowers
+# with the possible prosper rating levels
+
+# Change order of levels such that they go from highest risk (worst, HR) to 
+# lowest risk (best, AA) (Reference 15)
+prosp_sub$prosper_rating <- factor(prosp_sub$prosper_rating, 
+                    levels = c("HR", "E", "D", "C", "B", "A", "AA")) 
+
+prosp_2009$prosper_rating <- factor(prosp_2009$prosper_rating, 
+                    levels = c("HR", "E", "D", "C", "B", "A", "AA")) 
+
+# Get counts for each category
+
+summary(prosp_2009$prosper_rating)
+
+
+# Create the bar graph of proportion of borrowers (References 17 and 18)
+ggplot(prosp_2009, aes(prosper_rating)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
+```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
