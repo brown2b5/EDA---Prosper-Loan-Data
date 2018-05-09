@@ -658,6 +658,17 @@ summary(subset(prosp_2009, best_combo)$days_delinquent)
 summary(subset(prosp_2009, worst_combo)$days_delinquent)
 ```
 
+The above two histograms are the distributions of days delinquent under the best (AA and 9-11) and worst (HR and 1-3) possible combination of prosper scores and ratings as I did with the loan status variable.  As I did in the original plots 
+of days delinquent, I limited the data to cases where the days delinquent was greater than 0 and to cases where the loan had not been charged off or 
+defaulted.  Clearly there are fewer cases of days delinquent for the best combination than the worst combination.  Looking at the summary however, the 
+average number of days delinquent is greater for the best case scenario than 
+the worst case scenario.  A couple of things should be kept in mind.  The first 
+is that it may be better to create a variable where the number of days 
+delinquent is divided by the number of days since the origination of the loan.  
+As I mentioned before, someone may be thirty days delinquent on a loan but be really close to finishing paying off the loan.  The second is that the number of borrowers delinquent being greater in the worst combination case may simply be because Prosper assigned more borrowers this combination than they did borrowers the best combination.  It could be that prospers ratings and scores are good at predicting loan status but not good at predicting days delinquent.  Again, I'm 
+not as concerned about predicting this variable but it is something to look at 
+in future analyses. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
