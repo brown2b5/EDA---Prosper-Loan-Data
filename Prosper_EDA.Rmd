@@ -592,6 +592,29 @@ ratings, respectively.  As I mentioned with the prosper score, I will need to
 use R's bi-variate graphing capabilities to determine the relationship between
 prosper score and loan status. 
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, loan_status_comparison}
+# Plotting two bar graphs of loan_status; one for the best possible combination
+# of prosper rating and prosper score (AA, 9-11).  The other for the worst
+# possible combination (HR, 1-3).  This is to see if there may be a relationship
+# between these three variables.
+
+# Set conditions
+best_combo <- (prosp_2009$prosper_score == "9-11" & 
+                 prosp_2009$prosper_rating == "AA")
+worst_combo <- (prosp_2009$prosper_score == "1-3" & 
+                  prosp_2009$prosper_rating == "HR")
+
+# Create the bar graph of proportion of borrowers for best possible combination (References 15 and 16)
+
+q1 <- ggplot(subset(prosp_2009, best_combo), aes(loan_status)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
+
+q2 <- ggplot(subset(prosp_2009, worst_combo), aes(loan_status)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
+
+grid.arrange(q1, q2, ncol = 1)
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
