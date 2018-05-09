@@ -551,6 +551,19 @@ ggplot(prosp_2009, aes(prosper_score)) +
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
 ```
 
+Based on the bar chart shown, the combinations of prosper scores 1-3 have the
+largest proportion of borrowers while the combinations of prosper scores 9-11
+have the second largest proportion of borrowers.  I decided to combine the 
+totals for 1-3 and 9-11 into one category so that I wouldn't be considering 11
+different categories which seemed to be too much.  It should be noted that
+scores of 4 and 6 would have had the highest proportions if I hadn't done this.
+This would be reasonable since most users will have around an average risk
+associated with the investment (prosper scores of 1 and 11 would have had the lowest and second lowest proportions, respectively).  In terms of prosper scores predicting whether a loan will be defaulted, chargedoff or completed, it is hard 
+to tell.  It is worth mentioning that around the same proportion of borrowers 
+assigned a rating between 9-11 also either defaulted or were chargedoff with 
+their loans based on the loan status graph previously, but that data considered
+all loans and not just those after July 2009.  I will need to use R's bi-variate graphing capabilities to see if a relationship exists, I suspect it will. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
