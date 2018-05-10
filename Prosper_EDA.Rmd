@@ -668,7 +668,104 @@ than the worst case scenario.  A couple of things should be kept in mind.  The f
 delinquent is divided by the number of days since the origination of the loan.  
 As I mentioned before, someone may be thirty days' delinquent on a loan but be really close to finishing paying off the loan.  The second is that the number of borrowers' delinquent being greater in the worst combination case may simply be because Prosper assigned more borrowers this combination than they did borrowers the best combination.  It could be that prospers ratings and scores are good at predicting loan status but not good at predicting days' delinquent.  Again, I'm 
 not as concerned about predicting this variable but it is something to look at 
-in future analyses.  
+in future analyses. 
+
+# Summary Observations about Univariate Analysis
+
+This concludes the univariate portion of the analysis.  The following are
+some summaries about what I have observed so far.
+
+## Structure of the dataset and summary of results
+
+My dataset had 81 variables with 113,937 observations.  I only decided
+to consider 9 total variables including loan_status, employment_status,
+credit_score_range_lower, borrower_apr, debt_to_income_ratio, prosper_score,
+prosper_rating, days_delinquent and is_homeowner.
+
+The variables loan_status, employment_status, prosper_score, prosper_rating
+and is_homeowner are all factor variables (note that I turned prosper_score
+into a factor variable from a number variable) with the following levels:
+
+**loan_status:** Defaulted, Chargedoff, Cancelled, Past Due, Current, Completed
+
+**employment_status:** , Employed, Full-time, Not available, Other, Part-time,
+                     Retired, Self-employed
+                     
+**prosper_score:** 1-3, 4, 5, 6, 7, 8, 9-11
+
+**prosper_rating:** AA, A, B, C, D, E, HR
+
+**is_homeowner:** True, False
+
+Most of the borrowers are in a Current status with their loans while around
+15% of total borrowers have either Defaulted or been charged off.  The
+employment status variable is very vague.  Most of the borrowers have a status
+of employed but it is not clear what this means (full-time or part-time?).
+Most of the borrowers are either in the 1-3 or 9-11 range of prosper scores
+but if all the scores are considered separately, most of the borrowers have
+either a 4 or 6 rating.  Most of the borrowers have a loan status of C.  And
+around an equal number of borrowers are homeowners.
+
+### Main features of the Prosper loan data
+The main features of interest in the selected data are loan status, prosper 
+score and prosper rating.  Prosper score is a variable that Prosper assigns to loans to determine the risk they pose to investors (Reference 5).  This score takes into account a number of variables such as debt to income ratio, loan payment performance on prior loans, credit card utilization, number of 
+delinquent accounts and others (Reference 5).  Prosper rating is another 
+variable Prosper uses which is based on the Prosper score and credit score (Reference 7).  Both these are variables Prosper uses to uniquely judge the risk of a potential loan, so I want to see how well they do at associating themselves with borrowers who Default, are charged off or who complete the loan.  I have already done this somewhat in the second to last graph of the univariate 
+analysis.  I looked at the loan status bar chart for the best and worst possible combinations of prosper score and rating.  It was clear that the worst possible combination had higher rates of Defaulted and Chargedoff loans and a lesser rate of completed loans relative to the best combination.
+
+### Supporting features of Prosper loan data that will aid in investigation of main features.
+
+I think the question of whether a borrower is a homeowner will aid in my
+investigation.  I want to see which condition (owning or not owning a home) is
+associated with higher success and failure rates for paying back the loans.  If 
+a borrower owns a home, that means a bank has already approved them for a loan
+after examining their credit history.  This would be a good sign that the 
+borrower should be trusted.  I also think borrower apr, credit score and debt-
+to-income ratio will be beneficial to my investigation.  I may eliminate one of credit score or debt-to-income ratio if I think they are correlated with each other (my guess is that they are after looking at the two distributions).  I 
+will look at this in the bi-variate analysis.  I wanted to see if employment status would support my investigation but the categories seem rather vague and 
+are probably not useful at predicting loan payback success or failure.
+
+### Unusual observations from the Univariate Analysis
+
+There were three main results from the Univariate analysis that I thought
+were unusual.  The first was the shape of the debt-to-income ratio histogram.
+I initially thought that the less that number was, the more successful borrowers
+would be at paying back loans.  But I think that there is a lot of overlap
+between the shape of the credit score histogram and that of the debt-to-income
+ratio.  I have not considered these variables together, but my guess is that the
+reason an individual may have a higher than average debt-to-income ratio is 
+because they have a higher salary and can take on more debt.  Even though the 
+the ratio may be higher, they will have more funds to pay back loans and will be
+more successful at paying back the loans.  I need to confirm this but that is 
+my guess.  The shape of this curve could also be due to borrowers having a large
+student loan.  This would cause the debt-to-income ratio to be higher than 
+average but if borrowers are in a highly paying field (law or medicine), they
+will still be able to successufully pay back the loans.  
+
+The second result that I thought was unusual was the shape of the borrower apr
+histogram.  This too was skewed to the right, but if my guess that the credit
+score and debt-to-income ratio histograms overlap is correct, this curve should
+have been skewed to the left.  The borrowers with higher credit scores should
+qualify for lower interest rates (Reference 10).  Again, I need to graph these variables against each other to truly know what's going on.  
+
+The third result I thought was unusual was when I compared the distribution of
+days' delinquent between the best combination of prosper score and rating and
+the worst combination of prosper score and rating.  I thought the average
+days' delinquent would be greater for the worst combination than the best 
+combination but the relationship was reversed.  I think to truly analyze this
+variable, it needs to be divided by number of days since loan originated.  As
+I said in the analysis, a  borrower who is 30 days delinquent but 2 years into
+paying back the loan will be viewed differently than a borrower who is 20 days
+delinquent and only 3 months into paying back the loan.
+
+## A note about the days' delinquent variable
+This analysis will not consider the days' delinquent variable going forward.
+This variable was an extra independent variable that I wanted to consider but
+upon looking at the histograms for the best and worst possible combinations of
+prosper score and rating, I have decided that more variables would need to be
+added and that this variable would be worth it's own analysis at some point in
+the future.  The only independent variable I will consider is loan status for 
+the remainder of the analysis.  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
@@ -759,3 +856,5 @@ Reference 7: https://www.prosper.com/Downloads/Legal/Prosper_Prospectus_2018-04-
 Reference 8: https://www.investopedia.com/terms/a/apr.asp
 
 Reference 9: https://help.lendingclub.com/hc/en-us/articles/216127747-What-is-the-difference-between-a-loan-that-is-in-default-and-a-loan-that-has-been-charged-off-
+
+Reference 10: https://www.thebalance.com/how-your-credit-score-influences-your-interest-rate-960278
