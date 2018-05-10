@@ -84,7 +84,7 @@ str(prosper_df)
   Since there are 81 variables, it is impossible to examine the relationships between all of them.  So I will pick a subset of the variables.  My main 
 question is how variables of interest relate to the ability or inability of a borrower to pay back the loan amount plus interest.  Because of this, the most important variable I will be looking at is Loan Status.  This is a categorical variable with categories such as Completed, Defaulted, and Past Due for varying number of days among others.  It would make sense that a person's employment 
 status will affect their ability to pay back the loans so I will also look at 
-this variable.  A borrower's credit score is a statistical method to determine 
+this variable.  A borrower's employment duration probably correlates with their ability to keep their job, which would make it easier to pay back the loans so I will look at this variable as well.  I will also look at the income range for borrowers since having a higher income would probably make it easier to pay back loans.  A borrower's credit score is a statistical method to determine 
 the likelihood that they will pay back a loan in a specified amount of time (Reference 4), so I will look at that variable and see how it is related to loan status (specifically the lower range of a person's credit score at the time the listing was created).  It would be expected that a borrower with a low debt to income ratio would have an easier time paying back loans, so this variable will 
 be considered in this analysis.  
   
