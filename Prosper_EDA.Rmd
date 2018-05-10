@@ -30,6 +30,11 @@ install.packages("knitr", dependencies = T,
 install.packages("dplyr", dependencies = T, 
                  repos = "http://cran.us.r-project.org")
 
+# Installing GGally package so that I can graph pairs of variables against
+# each other in a matrix fashion (Reference 25)
+install.packages("GGally", dependencies = T, 
+                 repos = "http://cran.us.r-project.org")
+
 # I set echo, message and warning to all be false so that I wouldn't see the 
 # code in the HTML document or any warning messages (Reference 5)
 
@@ -39,6 +44,7 @@ install.packages("dplyr", dependencies = T,
 library(ggplot2)
 library(knitr)
 library(dplyr)
+library(GGally)
 
 # Get and set working directory (Reference 7)
 # NOTE: For users wishing to contribute, you will need to set the path to that 
@@ -830,6 +836,8 @@ the remainder of the analysis.
 
 # Reference 24: https://www.rdocumentation.org/packages/base/versions
 # /3.5.0/topics/NA
+
+# Reference 25: https://www.rdocumentation.org/packages/GGally/versions/1.3.2
 
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
