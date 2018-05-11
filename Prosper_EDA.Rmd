@@ -119,7 +119,9 @@ are unemployed as negative whatever the month listed is.
 
 # Create a vector of strings representing the variable names from the prosper
 # dataframe I wish to keep (Reference 12).
-selected_variables <- c('LoanStatus', 'EmploymentStatus', 'BorrowerAPR',
+selected_variables <- c('LoanStatus', 'EmploymentStatus',  
+                        'EmploymentStatusDuration', 'IncomeRange', 
+                        'IncomeVerifiable', 'BorrowerAPR',
                         'CreditScoreRangeLower', 'DebtToIncomeRatio',
                         'ProsperScore','ProsperRating..Alpha.',
                         'LoanCurrentDaysDelinquent', 'IsBorrowerHomeowner')
@@ -131,12 +133,16 @@ prosp_sub <- subset(prosper_df, select = selected_variables)
 # Rename the variables (Reference 14)
 
 prosp_sub <- rename(prosp_sub, loan_status = LoanStatus, 
-       employment_status = EmploymentStatus, borrower_apr = BorrowerAPR,
-       credit_score_range_lower = CreditScoreRangeLower,
-       debt_to_income_ratio = DebtToIncomeRatio, prosper_score = ProsperScore,
-       prosper_rating = ProsperRating..Alpha., 
-       days_delinquent = LoanCurrentDaysDelinquent, 
-       is_homeowner = IsBorrowerHomeowner)
+                               employment_status = EmploymentStatus,                                      employment_status_duration = EmploymentStatusDuration,
+                               income_range = IncomeRange,
+                               income_verifiable = IncomeVerifiable,
+                               borrower_apr = BorrowerAPR,      
+                         credit_score_range_lower = CreditScoreRangeLower,
+                               debt_to_income_ratio = DebtToIncomeRatio, 
+                               prosper_score = ProsperScore,
+                               prosper_rating = ProsperRating..Alpha., 
+                               days_delinquent = LoanCurrentDaysDelinquent, 
+                               is_homeowner = IsBorrowerHomeowner)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, loan_status_graph}
