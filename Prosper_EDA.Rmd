@@ -103,10 +103,15 @@ of borrowing the money (Reference 8).  My guess is that the lower this amount
 is, the easier it will be to pay back the loans.  I will look at this variable 
 as well. 
 
-  In summary the independent variables for this project are loan status and 
-number of days the current loan is delinquent.  The dependent variables are employment status, employment duration, income range, credit score range lower, debt to income ratio, prosper score, prosper rating, borrower APR and is 
+  In summary the dependent variables for this project are loan status and 
+number of days the current loan is delinquent.  The independent variables are employment status, employment duration, income range, credit score range lower, debt to income ratio, prosper score, prosper rating, borrower APR and is 
 borrower a homeowner.  Note that for prosper score and prosper rating I will 
-need to subset the data frame to only include loans which actually have a score and rating (those post July 2009). 
+need to subset the data frame to only include loans which actually have a score and rating (those post July 2009).  Note also that for income range, I will
+subset and only consider data for which the income is verifiable (I have
+included this variable as well in the data I will use) and for employment 
+duration, I will not consider statuses of no listing (a blank status), 
+not available, retired and other.  I will set the employment duration of those
+who are unemployed as negative whatever the month listed is. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, subset_dataframe}
 
