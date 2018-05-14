@@ -350,7 +350,6 @@ q3 <- ggplot(prosp_sub, aes(credit_score_range_lower)) +
 
 # Read in grid extra to plot all these histograms on the same graph 
 # (Reference 22)
-library(gridExtra)
 
 grid.arrange(q1, q2, q3, ncol = 1)
 
