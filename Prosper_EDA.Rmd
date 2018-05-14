@@ -310,6 +310,21 @@ transform the data in the bi-variate or multi-variate case.  My guess is that
 the larger ones' employment duration, the more likely they are to pay back 
 loans.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, employment_status_duration400}
+
+# See the first 6 rows of data for those with employment status duration 
+# greater than 400 (Reference 23).
+head(subset(subset(prosp_sub, employment_status %in%
+                 condition), employment_status_duration > 400))
+
+```
+
+After looking at the data for durations above 400 months (and for the specific
+case of 743 years, not shown), I actually do think this data is possible and
+that the information wasn't mis-entered.  Still though, I will perform some
+operation to cut off the highest employment durations in the bi-variate and
+multi-variate cases.
+
 ```{r, echo=FALSE,  message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
 # This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
