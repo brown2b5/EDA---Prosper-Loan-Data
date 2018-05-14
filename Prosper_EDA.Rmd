@@ -232,8 +232,7 @@ summary(prosp_sub$employment_status)
 From the data available we can conclude that the information given isn't very helpful at possibly predicting whether a borrower will be successful in paying 
 back their loans.  This is primarily because the categories are vague.  The 
 highest proportion of borrowers fit into the "Employment" category.  This 
-category is very vague.  It doesn't indicate whether the borrower is a Full-time 
-or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions 
+category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions 
 of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious pointer to a relationship but there isn't (for an obvious pointer to a relationship to exist, the proportions of one category would need 
 to equal that of the Completed and Default/ChargedOff categories).  Even if the proportions were equal, the relationship may not be straight-forward between 
 these two variables.
@@ -281,16 +280,16 @@ summary(subset(prosp_sub, income_verifiable == 'True' &
 ```
 
 From the above bar chart of proportion of borrowers inside each income range
-I considered, the largest porportions are for $25,000-49,999 and $50,000-74,999.
+I considered, the largest proportions are for $25,000-49,999 and $50,000-74,999.
 The proportion was about the same for the higher two categories.  Note that
 I did not consider data which was not verifiable.  I also lumped two categories
 together, borrowers which had an income of $0 and borrowers which had an 
-income of 'Not employed'.  It's hard to say again which of these variables
-may be associated with higher levels of success or failure in paying back the
-loans.  It would be assummed that the higher a borrower's income, the easier
-it will be for them to pay back a loan but this isn't the only variable
-affecting success or failure so I will need to further look at this in the 
-bi-variate and multi-variate case.
+income of 'Not employed'.  It's hard to say which of these categories may be
+associated with higher levels of success or failure in paying back the loans
+It would be assumed that the higher a borrower's income, the easier it will be
+for them to pay back a loan but this isn't the only variable affecting success
+or failure so I will need to further look at this in the bi-variate and multi-
+variate case.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,   employment_status_duration}
 # This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in 
@@ -308,8 +307,6 @@ prosp_sub$employment_status_duration <- ifelse(prosp_sub$employment_status ==
 # Now, set employment condition
 condition <- c("Employed", "Full-time", "Not employed", "Self-employed",
                "Part-time")
-
-  
 
 
 # Plot the initial distribution of employment status duration (Reference 20)
@@ -350,8 +347,7 @@ Based on the second and third graphs, the data is definitely right-skewed.
 This data represents employment status duration, but because of how I have
 set the number of months worked for those unemployed to be 0, I am basically
 considering employment duration.  I did this in part because there were
-outliers for those not employed of multiple years.  I cannot see Prosper letting 
-a borrower have a loan who had not been employed for many years (I originally 
+outliers for those not employed of multiple years.  I cannot see Prosper letting a borrower have a loan who had not been employed for many years (I originally 
 let the employment status duration for those not employed to be negative).  
 There are still outliers in the data here.  From the summary, the maximum
 number of months worked is 745 or around 63 years.  This may actually be 
@@ -425,10 +421,8 @@ however.  The middle plot was bi-modal but changing the binwidth caused this
 to disappear from the data. Another thing I noticed after changing the binwidth 
 is that there appears to be only integer values of credit score in increments of 20. There do not appear to be values that aren't whole or that fall between 
 values of 600, 620, 640 and so on (note that I confirmed this using the table command but didn't include it in the final code). In terms of lower range of 
-credit score predicting the ability of a borrower to pay back their loans, there 
-is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
-I would be interested to see what percentage of the borrowers to the left of the 
-drop off are in each of the loan status categories.  I may look at how this 
+credit score predicting the ability of a borrower to pay back their loans, there is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
+I would be interested to see what percentage of the borrowers to the left of the drop off are in each of the loan status categories.  I may look at how this 
 variable changes with each loan status category using a box plot in the 
 bi-variate analysis.
 
@@ -440,8 +434,7 @@ head(subset(prosp_sub, credit_score_range_lower == 0))
 
 ```
 
-Looking at the first 6 rows of data for those with a lower credit score range of 
-0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense 
+Looking at the first 6 rows of data for those with a lower credit score range of 0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense 
 for borrowers with bad credit scores.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
@@ -625,8 +618,7 @@ From the bar chart above showing proportions of borrowers who own a home, we
 can see that there is minimal difference between the conditions.  The proportion
 of borrowers who own a home is slightly greater than 50%.  It's hard to
 determine how well this variable predicts loan payback success rate without
-using bi-variate and multi-variate graphic capabilities in R.  I will facet loan 
-status over each of these conditions to see which condition has a higher level 
+using bi-variate and multi-variate graphic capabilities in R.  I will facet loan status over each of these conditions to see which condition has a higher level 
 of success and failure.  It would make sense that borrowers owning a home will 
 be more likely to payback their loans than those that do not own a home. 
 
@@ -715,8 +707,7 @@ totals for 1-3 and 9-11 into one category so that I wouldn't be considering 11
 different categories which seemed to be too much.  It should be noted that
 scores of 4 and 6 would have had the highest proportions if I hadn't done this.
 This would be reasonable since most users will have around an average risk
-associated with the investment (prosper scores of 1 and 11 would have had the lowest and second lowest proportions, respectively).  In terms of prosper scores predicting whether a loan will be defaulted, chargedoff or completed, it is hard 
-to tell.  It is worth mentioning that around the same proportion of borrowers 
+associated with the investment (prosper scores of 1 and 11 would have had the lowest and second lowest proportions, respectively).  In terms of prosper scores predicting whether a loan will be defaulted, chargedoff or completed, it is hard to tell.  It is worth mentioning that around the same proportion of borrowers 
 assigned a rating between 9-11 also either defaulted or were chargedoff with 
 their loans based on the loan status graph previously, but that data considered
 all loans and not just those after July 2009 (the bar chart above is only for
