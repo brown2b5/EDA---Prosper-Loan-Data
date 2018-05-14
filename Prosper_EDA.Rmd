@@ -371,7 +371,7 @@ head(subset(subset(prosp_sub, employment_status %in%
 
 After looking at the data for durations above 400 months (and for the specific
 case of 743 years, not shown), I actually do think this data is possible and
-that the information wasn't mis-entered.  Still though, I will perform some
+that the information wasn't miss-entered.  Still though, I will perform some
 operation to cut off the highest employment durations in the bi-variate and
 multi-variate cases.
 
