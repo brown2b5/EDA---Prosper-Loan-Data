@@ -238,6 +238,48 @@ of the analysis, I might get rid of the borrowers fitting in the Other and non-l
 to equal that of the Completed and Default/ChargedOff categories).  Even if the proportions were equal, the relationship may not be straight-forward between 
 these two variables.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, income_range}
+# Plotting bar graph of proportions of borrowers with each level of income.
+# I am only considering the data for which the income is verifiable
+
+
+# After graphing an initial plot and looking at the summary, I realize two
+# things.  The first is that there are two categories, not employed and
+# an income of 0$ which I will lump together.  The second is that there is a
+# category for "Not displayed".  I will not consider this data either in
+# the graph.
+
+# Set the categories to be lumped together equal to a variable called zero
+# (Reference 12)
+zero <- c('$0', 'Not employed')
+
+# Now for all categories contained in zero, set them to '$0'
+# (Reference 16)
+prosp_sub[prosp_sub$income_range %in% zero, 'income_range'] <- c('$0')
+
+# Now get rid of the factors that I don't use. 
+# (Reference 15). Note that I ordered the levels from lowest income to 
+# highest income.
+
+prosp_sub$income_range <- factor(prosp_sub$income_range, 
+                    levels = c("$0", "$1-24,999", "$25,000-49,999", 
+                               "$50,000-74,999", "$75,000-99,999",
+                               "$100,000+"))
+
+# Plot the bar chart of income range only including income that is verifiable
+# and not including income ranges for which we have NA (note that this used
+# to be not displayed) (References 17 and 18)
+ggplot(subset(prosp_sub, income_verifiable == 'True' &
+                income_range != 'NA'), aes(income_range)) +
+                geom_bar(aes(y=..count../sum(..count..))) + 
+                ylab('Proportion of Borrowers')
+
+# Get counts for each category
+
+summary(subset(prosp_sub, income_verifiable == 'True' & 
+                 income_range != 'NA')$income_range)
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,   employment_status_duration}
 # This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth. For the second graph, I also used a
