@@ -375,8 +375,8 @@ credit score predicting the ability of a borrower to pay back their loans, there
 is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
 I would be interested to see what percentage of the borrowers to the left of the 
 drop off are in each of the loan status categories.  I may look at how this 
-variable changes with each loan status category using a faceted group of box 
-plots in a bi-variate analysis.
+variable changes with each loan status category using a box plot in the 
+bi-variate analysis.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, credit_score_range_lower0}
 
