@@ -111,7 +111,7 @@ subset and only consider data for which the income is verifiable (I have
 included this variable as well in the data I will use) and for employment 
 duration, I will not consider statuses of no listing (a blank status), not  
 available, retired and other.  I will set the employment duration of those who
-are unemployed as negative whatever the month listed is. 
+are unemployed as 0. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, subset_dataframe}
 
