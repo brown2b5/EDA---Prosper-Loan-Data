@@ -280,6 +280,18 @@ summary(subset(prosp_sub, income_verifiable == 'True' &
                  income_range != 'NA')$income_range)
 ```
 
+From the above bar chart of proportion of borrowers inside each income range
+I considered, the largest porportions are for $25,000-49,999 and $50,000-74,999.
+The proportion was about the same for the higher two categories.  Note that
+I did not consider data which was not verifiable.  I also lumped two categories
+together, borrowers which had an income of $0 and borrowers which had an 
+income of 'Not employed'.  It's hard to say again which of these variables
+may be associated with higher levels of success or failure in paying back the
+loans.  It would be assummed that the higher a borrower's income, the easier
+it will be for them to pay back a loan but this isn't the only variable
+affecting success or failure so I will need to further look at this in the 
+bi-variate and multi-variate case.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,   employment_status_duration}
 # This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth. For the second graph, I also used a
