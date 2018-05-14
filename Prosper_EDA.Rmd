@@ -292,6 +292,24 @@ summary(subset(prosp_sub, employment_status %in%
                  condition)$employment_status_duration)
 ```
 
+Based on the second and third graphs, the data is definitely right-skewed. 
+This data represents employment status duration, but because of how I have
+set the number of months worked for those unemployed to be 0, I am basically
+considering employment duration.  I did this in part because there were
+outliers for those not employed of multiple years.  I cannot see Prosper letting 
+a borrower have a loan who had not been employed for many years (I originally 
+let the employment status duration for those not employed to be negative).  
+There are still outliers in the data here.  From the summary, the maximum
+number of months worked is 745 or around 63 years.  This may actually be 
+possible, but if I graph this data against loan status or any other variable
+in the bi-variate or multi-variate portions of this project, I will cut off
+this data from consideration.  In the next R chunk, I will see what this data
+looks like for anything above 400 months (33 years).  After transforming the
+data using log10, the data is still left-skewed.  Because of this, I may not
+transform the data in the bi-variate or multi-variate case.  My guess is that
+the larger ones' employment duration, the more likely they are to pay back 
+loans.
+
 ```{r, echo=FALSE,  message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
 # This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
 # on the data and adjusting the binwidth.  I then graph all three of them on
