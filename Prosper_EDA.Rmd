@@ -716,6 +716,7 @@ q1 <- ggplot(subset(prosp_2009, best_combo), aes(loan_status)) +
 q2 <- ggplot(subset(prosp_2009, worst_combo), aes(loan_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
 
+# Plot the charts on a grid (Reference 22)
 grid.arrange(q1, q2, ncol = 1)
 ```
 
@@ -758,6 +759,8 @@ q2 <- ggplot(subset(prosp_2009, worst_combo), aes(days_delinquent)) +
 # Plot the charts on a grid (Reference 22)
 
 grid.arrange(q1, q2, ncol = 1)
+
+# Get summary of data for the best and worst combo
 summary(subset(prosp_2009, best_combo)$days_delinquent)
 summary(subset(prosp_2009, worst_combo)$days_delinquent)
 ```
