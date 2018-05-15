@@ -1005,6 +1005,15 @@ while lower credit score was associated with failure (either defaulted or
 charged off).  It will be interesting to look at these variables and the others
 further in the bi-variate analysis.
 
+```{r echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_categorical_loan_status}
+
+# Plot a grid of each categorical independent variable and loan status to see if there are any relationships between the independent variables and loan status (References 26 and 27).
+ggpairs(subset(prosp_sub, select = c(loan_status, employment_status,
+                                     income_range, income_verifiable,
+                                     prosper_score, prosper_rating,
+                                     is_homeowner)))
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
