@@ -1027,6 +1027,19 @@ ggpairs(subset(prosp_2009, select = c(loan_status,
 
 ```
 
+From the above scatterplot matrix, for loan status, prosper rating and 
+prosper score, there are some expected and unexpected results.  For a loan
+status of completed, prosper score category of 9-11 has the highest percentage
+of borrowers (to be expected as these are the lowest risk loans).  A loan
+status of defaulted has about equal counts across all prosper scores but this
+is difficult to see in the matrix and will need to be further examined in the
+bi-variate analysis.  A prosper score of 1-3, 5 and 6 has highest proportions of
+borrowers with a loan status of chargedoff.  
+
+A surprising result was that a prosper rating of D had the highest proportion
+of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with
+prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
