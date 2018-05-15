@@ -832,19 +832,18 @@ some summaries about what I have observed so far.
 
 ## Structure of the dataset and summary of results
 
-My dataset had 81 variables with 113,937 observations.  I only decided
-to consider 9 total variables including loan_status, employment_status,
-credit_score_range_lower, borrower_apr, debt_to_income_ratio, prosper_score,
-prosper_rating, days_delinquent and is_homeowner.
+My dataset had 81 variables with 113,937 observations.  I only decided to
+consider 11 total variables including loan_status, employment_status,   income_range, employment_status_duration, credit_score_range_lower, borrower_apr debt_to_income_ratio, prosper_score, prosper_rating, days_delinquent and is_homeowner.
 
-The variables loan_status, employment_status, prosper_score, prosper_rating
-and is_homeowner are all factor variables (note that I turned prosper_score
-into a factor variable from a number variable) with the following levels:
+The variables loan_status, employment_status, income_range, prosper_score, prosper_rating and is_homeowner are all factor variables (note that I turned prosper_score into a factor variable from a number variable) with the following levels:
 
 **loan_status:** Defaulted, Chargedoff, Cancelled, Past Due, Current, Completed
 
 **employment_status:** , Employed, Full-time, Not available, Other, Part-time,
-                     Retired, Self-employed
+                       Retired, Self-employed
+                     
+**income_range:** $0, $1-24999, $25000-49999, $50000-74999, $75000-99999, 
+                   $100000+
                      
 **prosper_score:** 1-3, 4, 5, 6, 7, 8, 9-11
 
@@ -856,10 +855,15 @@ Most of the borrowers are in a Current status with their loans while around
 15% of total borrowers have either Defaulted or been charged off.  The
 employment status variable is very vague.  Most of the borrowers have a status
 of employed but it is not clear what this means (full-time or part-time?).
-Most of the borrowers are either in the 1-3 or 9-11 range of prosper scores
-but if all the scores are considered separately, most of the borrowers have
-either a 4 or 6 rating.  Most of the borrowers have a loan status of C.  And
-around an equal number of borrowers are homeowners.
+Around 30% of borrowers have an income in the ranges of $25000-49999 and 
+$50000-74999 (note that these proportions are only for data for which the income is verifiable and known).  Most of the borrowers are either in the 1-3 or 9-11 range of prosper scores but if all the scores are considered separately, most of the borrowers have either a 4 or 6 rating.  Most of the borrowers have a loan status of C.  And around an equal number of borrowers are homeowners.  The
+combination of prosper score and prosper rating appeared to have an effect on
+loan status.
+
+The variables employment_status_duration, credit_score_range_lower,
+debt_to_income_ratio and borrower_apr are all right-skewed and I think there is
+some overlap between them.  I think they are related to each other and I will 
+be examining this question in the bi-variate analysis.
 
 ### Main features of the Prosper loan data
 The main features of interest in the selected data are loan status, prosper 
@@ -875,12 +879,13 @@ investigation.  I want to see which condition (owning or not owning a home) is
 associated with higher success and failure rates for paying back the loans.  If 
 a borrower owns a home, that means a bank has already approved them for a loan
 after examining their credit history.  This would be a good sign that the 
-borrower should be trusted.  I also think borrower apr, credit score and debt-
-to-income ratio will be beneficial to my investigation.  I may eliminate one of credit score or debt-to-income ratio if I think they are correlated with each other (my guess is that they are after looking at the two distributions).  I 
-will look at this in the bi-variate analysis.  I wanted to see if employment status would support my investigation but the categories seem rather vague and 
-are probably not useful at predicting loan payback success or failure.
+borrower should be trusted.  I also think borrower apr, credit score, debt-
+to-income ratio and employment status duration will be beneficial to my investigation.  I think they are all related to each other and I will try to eliminate at least one of them in the bi-variate analysis portion of the investigation.  I wanted to see if employment status would support my investigation but the categories seem rather vague and are probably not useful 
+at predicting loan payback success or failure.  I will also look at how income
+range affects loan status.  I predict that higher incomes will be associated
+with greater loan payback success. 
 
-### Unusual observations from the Univariate Analysis
+### Unusual observations from the Univariate Analysis and ways I adjusted the data
 
 There were three main results from the Univariate analysis that I thought
 were unusual.  The first was the shape of the debt-to-income ratio histogram.
@@ -912,6 +917,36 @@ variable, it needs to be divided by number of days since loan originated.  As
 I said in the analysis, a  borrower who is 30 days delinquent but 2 years into
 paying back the loan will be viewed differently than a borrower who is 20 days
 delinquent and only 3 months into paying back the loan.
+
+I combined some of the categories in loan status, income range and prosper score.  I also only found days' delinquent for cases where the borrower hadn't defaulted or been charged off and for cases where the days' delinquent was greater than 0.  For employment duration, I let borrowers who were not 
+employed have a duration of 0 and I did not consider employment statuses of 
+retired, other, not available and blank.  
+
+I combined all the Past Due categories to Past Due in the loan status variable
+because I'm mainly only interested in the Completed, Chargedoff and Defaulted
+categories for this variable.  I combined these categories to lessen the clutter
+of the bar chart. 
+
+I combined prosper scores 1-3 into one category and prosper scores 9-11 into
+one category.  I did this because I thought 11 categories seemed too much and
+I don't need all of them to gain insight into how prosper score may determine
+loan status.
+
+I only found the days' delinquent histogram for borrowers who had greater than
+0 days' delinquency because if I hadn't, the bin at 0 would have dominated the
+rest of the histogram and I couldn't have made an observations about the data.
+I also only considered cases where the borrower hadn't defaulted or been 
+charged off because these cases will be irrelevant to investors as they consider days' delinquent.  They have already reached a final status and I am predicting these statuses elsewhere.
+
+For income range, I only considered incomes which could be verified because
+that's the income that could be trusted.  I also combined the 0$ and Not
+employed categories since they mean the same thing.  
+
+For employment duration, I let borrowers who were not employed have a duration
+of 0 because the original variable was employment status duration and I 
+wanted to consider how long a borrower had been emloyed.  The same logic holds
+for why I didn't consider borrowers who had retired.  I also did not consider
+employment statuses of blank, not available and other.
 
 ## A note about the days' delinquent variable
 This analysis will not consider the days' delinquent variable going forward.
