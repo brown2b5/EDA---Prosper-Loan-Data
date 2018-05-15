@@ -994,7 +994,7 @@ between the variables (this is confirmed with the pearson correlation
 coefficients given) (Reference 11).  I do however, want to take a closer look at debt_to_income ratio versus credit_score_range_lower. 
 
 In terms of the relationship between loan status and the independent variables,
-there appears to be an expected relationshiop between loan status and 
+there appears to be an expected relationship between loan status and 
 borrower apr/lower range of credit score.  Completed and current loans appear
 to have the lowest median borrower apr even though there is a larger spread
 for completed loans from the box plots.  Past due has the highest median apr
