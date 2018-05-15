@@ -1014,6 +1014,11 @@ ggpairs(subset(prosp_sub, select = c(loan_status, employment_status,
                                      is_homeowner)))
 ```
 
+From the above matrix of variables plotted against each other, it is difficult
+to determine patterns for loan_status against each of the independent variables
+because these are basically faceted bar charts.  I will need to look at these
+relationships individually. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
