@@ -967,7 +967,7 @@ variables.  Finally, I will see if there is a relationship between loan status
 and prosper score/rating.  These matrices will give me an idea about what to 
 expect as I make the bivariate plots in this section.
 
-```{r echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, Bivariate_Plots_GGally_non_categorical_loan_status}
+```{r echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_non_categorical_loan_status}
 
 # I am going to make scatter plot matrices but to make them easier to see
 # and load, I am going to divide them up into four matrices.  The first
@@ -989,8 +989,7 @@ ggpairs(subset(prosp_sub, select = -c(employment_status, income_range,
                                       days_delinquent)))
 ```
 
-From the matrix given, there does not appear to be any strong linear  
-correlations between the variables.  There are no monotonic relationships 
+From the matrix given, there does not appear to be any strong linear correlations between the variables.  There are no monotonic relationships 
 between the variables (this is confirmed with the pearson correlation
 coefficients given) (Reference 11).  I do however, want to take a closer look at debt_to_income ratio versus credit_score_range_lower. 
 
