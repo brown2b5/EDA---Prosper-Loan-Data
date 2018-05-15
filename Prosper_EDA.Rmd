@@ -1019,6 +1019,14 @@ to determine patterns for loan_status against each of the independent variables
 because these are basically faceted bar charts.  I will need to look at these
 relationships individually. 
 
+```{r, GGally_categorical_loan_status_prosper}
+
+# Plot a grid of each non-categorical independent variable and loan_status to see if there are any relationships between the independent variables and loan_status (References 28 and 29).
+ggpairs(subset(prosp_2009, select = c(loan_status,
+                                      prosper_rating, prosper_score)))
+
+```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
