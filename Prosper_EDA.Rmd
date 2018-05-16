@@ -1149,6 +1149,10 @@ by(prosp_income$credit_score_range_lower, prosp_income$income_range,
 From the above box plot and summaries, we have what is to be expected.  The median credit score for borrowers increases as income range increases.  The means (red x) also increase as income range increases.  Because of this, the portion of the debt_to_income_range versus credit score graph in the far left is probably for borrowers with an income range of $0 and $1-24,999 while borrowers with an income range at or greater than $100,000 dollars probably dominate the right side of the scatter plots.  Income reduction is a big reason borrowers go 
 bankrupt so this box plot does not surprise me (Reference 12).
 
+Now I will look at how loan status is related to each of the non-categorical
+variables by looking at box plots of the data.  First I will consider 
+employment duration.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
