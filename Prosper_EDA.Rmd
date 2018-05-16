@@ -1153,6 +1153,50 @@ Now I will look at how loan status is related to each of the non-categorical
 variables by looking at box plots of the data.  First I will consider 
 employment duration.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,employment_duration_vs_loan_status}
+
+# This chunk creates a box plot of employment duration versus loan status
+
+# Get the box plot only for borrowers for which the employment status is either "Employed", "Full-time", "Not employed", "Self-employed" or "Part-time" as I did in the uni-variate case. 
+
+# Set employment condition
+condition <- c("Employed", "Full-time", "Not employed", "Self-employed",
+               "Part-time")
+
+# Find box plot for the given employment condition.  I also zoomed in on
+# the y axis to better see the medians and where they are (References 36 and 37).
+ggplot(subset(prosp_sub, employment_status %in% condition), 
+                aes(x = loan_status, y = employment_status_duration)) +
+                geom_boxplot() + 
+                stat_summary(fun.y=mean, geom="point", color = "red",
+                             shape = 4, size=3) + 
+                coord_cartesian(ylim = c(0,400))
+
+# I'm going to get a summary to go along with the box plot grouped by 
+# loan status, but I'm going to do it by creating a new dataframe 
+# equivalent to the subsetted dataframe I used for the box plot (only 
+# considering employment statuses I stated previously).
+
+prosp_edur <- subset(prosp_sub, employment_status %in% condition) 
+
+# Get summaries of employment duration grouped by loan status
+# (Reference 38)
+by(prosp_edur$employment_status_duration, prosp_edur$loan_status, 
+   summary)
+```
+
+Generally based on the above box plots and summary I get results I expected.
+The lowest employment durations (mean and median) are for Defaulted and 
+Chargedoff borrowers.  Defaulted has the lowest mean employment duration while
+Chargedoff has the lowest median employment duration.  This relationship isn't
+too strong though as the difference in median employment duration between 
+Chargedoff and Completed borrowers is only 2 days.  The difference in means is
+even less.  A statistical test for significance would need to be conducted to
+see if these differences are significant (my guess is that they are not). In
+contrast, the difference in lower range of credit score between borrowers with
+at or greater than $100,000 dollars and those with income range of $1-24,999 is
+41.7.  But a statistical test for significance is still needed. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
