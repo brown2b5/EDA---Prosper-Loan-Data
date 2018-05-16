@@ -1120,7 +1120,7 @@ of credit score versus income range to see if my guess is correct.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,credit_score_vs_income_range}
 
-# This chunk creates a scatter plot of credit score versus income range
+# This chunk creates a box plot of credit score versus income range
 
 # Get the box plot only for borrowers for which the income is verifiable 
 # and for which the income range is not NA (References 38 and 39)
