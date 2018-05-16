@@ -1079,13 +1079,13 @@ prosp_sub.cs <- prosp_sub %>%
   arrange(credit_score_range_lower)
 
 # Graphs q3 and q4 represent the mean and median of the debt to income ratio
-# for each credit score
+# for each credit score as line graphs (Reference 37)
 
  q3 <- ggplot(aes(x = credit_score_range_lower, y = debt_income_mean), 
-       data = prosp_sub.cs) + geom_point() 
+       data = prosp_sub.cs) + geom_line() 
  
  q4 <- ggplot(aes(x = credit_score_range_lower, y = debt_income_median), 
-       data = prosp_sub.cs) + geom_point() 
+       data = prosp_sub.cs) + geom_line() 
  
  # Plot the graphs on the same grid
  grid.arrange(q1, q2, q3, q4, ncol = 1)
@@ -1100,8 +1100,8 @@ cor(prosp_sub$credit_score_range_lower, prosp_sub$debt_to_income_ratio,
 From the above grid of graphs and the pearson correlation coefficient given, it
 is easy to see that there is no correlation between the lower range of credit
 score and debt_to_income_ratio.  The data is certainly not monotonic.  It seems
-from the last three graphs that the data is almost parabolic.  For the second
-graph, I decided to cut off the data at debt_to_income_ratio of 10 and
+from the last three graphs that the data is almost parabolic (except for the two points closer to the lower end of credit score).  For the second graph, I 
+decided to cut off the data at debt_to_income_ratio of 10 and
 credit_score_range_lower of 0.  The last two graphs represent the conditional
 means and medians of debt_to_income_ratio at each of the credit scores since
 the credit scores seem to be in discrete values.  I left the debt_to_income_
@@ -1201,6 +1201,8 @@ variate analysis.
 # Reference 35: https://stackoverflow.com/questions/26665319/removing-na-in-dplyr-pipe
 
 # Reference 36: http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
+
+# Reference 37: http://ggplot2.tidyverse.org/reference/geom_path.html
 
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
