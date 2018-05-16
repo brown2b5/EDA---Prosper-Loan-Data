@@ -1197,6 +1197,8 @@ contrast, the difference in lower range of credit score between borrowers with
 at or greater than $100,000 dollars and those with income range of $1-24,999 is
 41.7.  But a statistical test for significance is still needed. 
 
+Now get box plots of credit score lower range versus loan status.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
