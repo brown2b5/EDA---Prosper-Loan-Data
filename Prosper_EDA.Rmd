@@ -1040,6 +1040,77 @@ A surprising result was that a prosper rating of D had the highest proportion
 of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with
 prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
 
+```{r echo=False, fig.height = 8, fig.width = 8, debt_to_income_ratio_vs_credit_score}
+
+# In this chunk I examine the relationship between debt_to_income_ratio and
+# lower range of credit score.  I do this first by finding an initial,
+# un-changed scatterplot.  I then deal with overplotting issues and outliers.
+# Finally, I find the mean and median of debt_to_income_ratio at each credit
+# score and then graph them all on the same plot.
+
+# Plot initial form of scatterplot for debt_to_income_ratio versus 
+# credit_score_range_lower (Reference 30).
+
+q1 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio), 
+             data = prosp_sub) + geom_point()
+
+# Set values which will be limits for scatterplot without data points at 
+# debt to income ratio of 10 and credit score range lower of 0 using
+# quantile (Reference 31).
+x_lim = c(quantile(prosp_sub$credit_score_range_lower,0.01, na.rm='True'), 800)
+y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
+
+# Graph scatter plot where the data is jittered and with a transparency of
+# 1/20 to correct for overplotting (Reference 32).  I also cut off the data at debt to income ratio of 10 and credit score range lower of 0 (Reference 21). They are outliers even though the data is good.  I set position_jitter with an h of 0 to keep the data in the vertical direction from becoming negative (Reference 33).
+
+q2 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio), 
+       data = prosp_sub) + geom_jitter(alpha = 1/20,                                   position = position_jitter(h = 0)) + 
+       coord_cartesian(xlim = x_lim, ylim = y_lim)
+
+# Now I will create a dataframe of conditional means where I take the mean and median of debt to income ratio for each credit score since the ratios seem
+# grouped about certain credit scores (References 34 and 35)
+
+prosp_sub.cs <- prosp_sub %>%
+  na.omit() %>%
+  group_by(credit_score_range_lower) %>%
+  summarise(debt_income_mean = mean(debt_to_income_ratio),
+            debt_income_median = median(debt_to_income_ratio),
+            n = n()) %>%
+  arrange(credit_score_range_lower)
+
+# Graphs q3 and q4 represent the mean and median of the debt to income ratio
+# for each credit score
+
+ q3 <- ggplot(aes(x = credit_score_range_lower, y = debt_income_mean), 
+       data = prosp_sub.cs) + geom_point() 
+ 
+ q4 <- ggplot(aes(x = credit_score_range_lower, y = debt_income_median), 
+       data = prosp_sub.cs) + geom_point() 
+ 
+ # Plot the graphs on the same grid
+ grid.arrange(q1, q2, q3, q4, ncol = 1)
+
+ # Find pearson correlation coefficient between debt_to_income_ratio and
+ # credit_score_range_lower.  I set use to be "complete.obs" because there is
+ # missing data in the two variables (Reference 36).
+cor(prosp_sub$credit_score_range_lower, prosp_sub$debt_to_income_ratio, 
+    use = "complete.obs")
+```
+
+From the above grid of graphs and the pearson correlation coefficient given, it
+is easy to see that there is no correlation between the lower range of credit
+score and debt_to_income_ratio.  The data is certainly not monotonic.  It seems
+from the last three graphs that the data is almost parabolic.  For the second
+graph, I decided to cut off the data at debt_to_income_ratio of 10 and
+credit_score_range_lower of 0.  The last two graphs represent the conditional
+means and medians of debt_to_income_ratio at each of the credit scores since
+the credit scores seem to be in discrete values.  I left the debt_to_income_
+ratio values at 10 and the credit_score_range_lower values of 0 in these 
+calculations because even though they are outliers, I still think those pieces
+of data are valid based off the univariate analysis.  Since this data is not
+monotonic, I will need to consider both variables as I proceed through the bi-
+variate analysis.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
@@ -1116,6 +1187,20 @@ prosper score, prosper ratings effect on borrowers who had defaulted was difficu
 
 # Reference 29: https://stackoverflow.com/questions/5234117/how-to-drop-
 # columns-by-name-in-a-data-frame
+
+# Reference 30: http://ggplot2.tidyverse.org/reference/geom_point.html
+
+# Reference 31: https://www.rdocumentation.org/packages/stats/versions/3.5.0/topics/quantile
+
+# Reference 32: https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/geom_jitter
+
+# Reference 33: http://ggplot2.tidyverse.org/reference/position_jitter.html
+
+# Reference 34: http://seananderson.ca/2014/09/13/dplyr-intro/
+
+# Reference 35: https://stackoverflow.com/questions/26665319/removing-na-in-dplyr-pipe
+
+# Reference 36: http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
 
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
