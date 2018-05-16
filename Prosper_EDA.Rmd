@@ -1123,7 +1123,7 @@ of credit score versus income range to see if my guess is correct.
 # This chunk creates a scatter plot of credit score versus income range
 
 # Get the box plot only for borrowers for which the income is verifiable 
-# and for which the income range is not NA (References 36 and 37)
+# and for which the income range is not NA (References 38 and 39)
 
 ggplot(subset(prosp_sub, income_verifiable == 'True' &
                 income_range != 'NA'), 
@@ -1141,10 +1141,13 @@ prosp_income <- subset(prosp_sub, income_verifiable == 'True' &
                 income_range != 'NA') 
 
 # Get summaries of credit_score_range_lower grouped by income_range
-# (Reference 38)
+# (Reference 40)
 by(prosp_income$credit_score_range_lower, prosp_income$income_range, 
    summary)
 ```
+
+From the above box plot and summaries, we have what is to be expected.  The median credit score for borrowers increases as income range increases.  The means (red x) also increase as income range increases.  Because of this, the portion of the debt_to_income_range versus credit score graph in the far left is probably for borrowers with an income range of $0 and $1-24,999 while borrowers with an income range at or greater than $100,000 dollars probably dominate the right side of the scatter plots.  Income reduction is a big reason borrowers go 
+bankrupt so this box plot does not surprise me (Reference 12).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
@@ -1239,6 +1242,11 @@ by(prosp_income$credit_score_range_lower, prosp_income$income_range,
 
 # Reference 37: http://ggplot2.tidyverse.org/reference/geom_path.html
 
+# Reference 38: http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html
+
+# Reference 39: https://stackoverflow.com/questions/19876505/boxplot-show-the-value-of-mean/19876655
+
+# Reference 40: https://www.statmethods.net/stats/withby.html
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
@@ -1268,3 +1276,5 @@ Reference 9: https://help.lendingclub.com/hc/en-us/articles/216127747-What-is-th
 Reference 10: https://www.thebalance.com/how-your-credit-score-influences-your-interest-rate-960278
 
 Reference 11: https://statistics.laerd.com/statistical-guides/spearmans-rank-order-correlation-statistical-guide.php
+
+Reference 12: https://www.thesimpledollar.com/six-factors-that-make-you-more-likely-to-go-bankrupt/
