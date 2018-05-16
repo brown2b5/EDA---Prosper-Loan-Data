@@ -1111,6 +1111,13 @@ of data are valid based off the univariate analysis.  Since this data is not
 monotonic, I will need to consider both variables as I proceed through the bi-
 variate analysis.
 
+From the above grid of scatterplots and line graphs, it appears that there are three regions. The first for which credit scores are relatively bad but
+debt-to-income ratios are low.  The second for which debt-to-income ratios have a peak mean and median but with average credit scores.  And the third for which
+debt to income ratios are also low but credit scores are very good.  I am 
+guessing that the two regions on the end are associated with the lowest
+and highest income ranges possible.  I am now going to look at a box plot
+of credit score versus income range to see if my guess is correct.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
