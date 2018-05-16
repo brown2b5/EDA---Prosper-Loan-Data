@@ -967,7 +967,7 @@ variables.  Finally, I will see if there is a relationship between loan status
 and prosper score/rating.  These matrices will give me an idea about what to 
 expect as I make the bivariate plots in this section.
 
-```{r echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_non_categorical_loan_status}
+```{r, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_non_categorical_loan_status}
 
 # I am going to make scatter plot matrices but to make them easier to see
 # and load, I am going to divide them up into four matrices.  The first
@@ -1005,7 +1005,7 @@ while lower credit score was associated with failure (either defaulted or
 charged off).  It will be interesting to look at these variables and the others
 further in the bi-variate analysis.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_categorical_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_categorical_loan_status}
 
 # Plot a grid of each categorical independent variable and loan status to see if there are any relationships between the independent variables and loan status (References 26 and 27).
 ggpairs(subset(prosp_sub, select = c(loan_status, employment_status,
@@ -1019,7 +1019,7 @@ to determine patterns for loan_status against each of the independent variables
 because these are basically faceted bar charts.  I will need to look at these
 relationships individually. 
 
-```{r, GGally_categorical_loan_status_prosper}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, GGally_categorical_loan_status_prosper}
 
 # Plot a grid of each non-categorical independent variable and loan_status to see if there are any relationships between the independent variables and loan_status (References 28 and 29).
 ggpairs(subset(prosp_2009, select = c(loan_status,
@@ -1040,7 +1040,7 @@ A surprising result was that a prosper rating of D had the highest proportion
 of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with
 prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
 
-```{r echo=False, fig.height = 8, fig.width = 8, debt_to_income_ratio_vs_credit_score}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio_vs_credit_score}
 
 # In this chunk I examine the relationship between debt_to_income_ratio and
 # lower range of credit score.  I do this first by finding an initial,
@@ -1111,7 +1111,7 @@ of data are valid based off the univariate analysis.  Since this data is not
 monotonic, I will need to consider both variables as I proceed through the bi-
 variate analysis.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, resources}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
 # Reference 1: http://ggplot2.org/
