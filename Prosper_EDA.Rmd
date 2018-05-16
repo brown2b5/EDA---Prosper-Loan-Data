@@ -1118,6 +1118,34 @@ guessing that the two regions on the end are associated with the lowest
 and highest income ranges possible.  I am now going to look at a box plot
 of credit score versus income range to see if my guess is correct.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,credit_score_vs_income_range}
+
+# This chunk creates a scatter plot of credit score versus income range
+
+# Get the box plot only for borrowers for which the income is verifiable 
+# and for which the income range is not NA (References 36 and 37)
+
+ggplot(subset(prosp_sub, income_verifiable == 'True' &
+                income_range != 'NA'), 
+                aes(x = income_range, y = credit_score_range_lower)) +
+                geom_boxplot() + 
+                stat_summary(fun.y=mean, geom="point", color = "red",
+                             shape = 4, size=3)
+
+# I'm going to get a summary to go along with the box plot grouped by 
+# income range, but I'm going to do it by creating a new dataframe 
+# equivalent to the subsetted dataframe I used for the box plot (only 
+# considering income that is verifiable and without NA's).
+
+prosp_income <- subset(prosp_sub, income_verifiable == 'True' &
+                income_range != 'NA') 
+
+# Get summaries of credit_score_range_lower grouped by income_range
+# (Reference 38)
+by(prosp_income$credit_score_range_lower, prosp_income$income_range, 
+   summary)
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
