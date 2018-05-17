@@ -1293,7 +1293,7 @@ and prosper rating).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, loan_status_employment_status_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
-# by the proportion of each bar under each employment status (References 17 and 18). Usin the subsetted dataframe I created earlier, only considering statues of Employed, Full-time, Not employed, Part-time and Self-employed.
+# by the proportion of each bar under each employment status (References 17 and 18). Using the subsetted dataframe I created earlier, only considering statues of Employed, Full-time, Not employed, Part-time and Self-employed.
 
 ggplot(prosp_edur, aes(loan_status, fill = employment_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
@@ -1307,7 +1307,7 @@ by(prosp_edur$employment_status, prosp_edur$loan_status,
 From the above bar chart and summaries there is the expected result that most of the borrowers with loan status of Completed are Full-time.  The overwhelming majority of borrowers with a Current status are Employed but as I've mentioned
 before, this definition is very vague.  Most of the Defaulted and Chargedoff
 loan statuses have borrowers who are Full-time.  Based on the research I've
-done, employee status isn't so much a predictor of loan payback success as 
+done, employment status isn't so much a predictor of loan payback success as 
 income range is.  The one conclusion I think can be gathered from this is that
 it is good to have a full-time job to pay back a loan, but from the results
 this is obviously not always true and I think income range will be a better
