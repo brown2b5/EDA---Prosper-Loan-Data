@@ -1285,7 +1285,11 @@ loans so it is to be expected that they will have a higher rate of defaulting
 and being chargedoff.  The one exception was that a status of Past Due had the
 largest mean and median borrower apr but several of these borrowers may be close
 to defaulting.  And they should have a higher borrower apr on average than those
-who are current or completed.  
+who are current or completed.
+
+Next, I will look at how loan status is affected by the categorical variables I
+have considered(is_homeowner, employment_status, income range, prosper score,
+and prosper rating).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
