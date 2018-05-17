@@ -1217,7 +1217,7 @@ by(prosp_sub$credit_score_range_lower, prosp_sub$loan_status,
    summary)
 ```
 
-In general this box plot and summaries went as expected.  Not including 
+In general, this box plot and summaries went as expected.  Not including 
 cancelled loans, loans of Defaulted had the lowest mean and median lower range
 of credit score.  Loans of Chargedoff had the second lowest mean and median
 lower range of credit score (again, not including cancelled loans).  Loans
