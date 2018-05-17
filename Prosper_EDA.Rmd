@@ -1316,6 +1316,19 @@ predictor (Reference 12).
 Next, I will look at bar chart of loan status filled by income range to see
 which income ranges are most associated with each loan status.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_income_range_graph}
+# Plotting a bar graph of loan_status; proportions for each category filled
+# by the proportion of each bar under each income range (References 17 and 18). Using the subsetted dataframe I created earlier, only considering income that is verifiable and is not 'NA'.
+
+ggplot(prosp_income, aes(loan_status, fill = income_range)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+
+# Get summaries of loan status grouped by income range
+# (Reference 40)
+by(prosp_income$income_range, prosp_edur$loan_status, 
+   summary)
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
