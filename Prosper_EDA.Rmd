@@ -1313,6 +1313,9 @@ it is good to have a full-time job to pay back a loan, but from the results
 this is obviously not always true and I think income range will be a better
 predictor (Reference 12).
 
+Next, I will look at bar chart of loan status filled by income range to see
+which income ranges are most associated with each loan status.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
