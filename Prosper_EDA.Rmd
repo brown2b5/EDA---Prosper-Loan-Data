@@ -1244,6 +1244,49 @@ by(prosp_sub$debt_to_income_ratio, prosp_sub$loan_status,
    summary)
 ```
 
+With the debt_to_income_ratio versus loan_status box plots, there were some
+expected and surprising results.  The means of debt_to_income_ratio went as
+I expected with the highest mean ratio being for Defaulted loans and the second
+highest mean ratio being for Chargedoff loans.  I had originally thought this 
+might be the case before looking at the credit score and debt to income ratio
+histograms in the univariate case and now with the box plots my thoughts are
+confirmed at least by the means (again, a significance test still needs to be
+performed).  The lowest mean is for Current loans and the second lowest is for
+Completed.  The medians also follow a similar pattern except that the median
+ratio for Defaulted and Chargedoff is less than Current.  Completed loans do have the lowest median debt to income ratio for loan statues outside those that are Cancelled.  An individual with a low debt_to_income_ratio should have an
+easier time paying back loans and the data mostly points to this.
+
+Now I will look at how borrower apr is affected by loan status.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,borrower_apr_vs_loan_status}
+
+# This chunk creates a box plot of borrower apr versus loan status
+
+# Find box plot. I also zoomed in on the y axis to better see the medians and
+# where they are (References 38 and 39).
+
+ggplot(prosp_sub, aes(x = loan_status, y = borrower_apr)) +
+                  geom_boxplot() + 
+                  stat_summary(fun.y=mean, geom="point", color = "red",
+                               shape = 4, size=3) 
+#+
+ #                 coord_cartesian(ylim = c(0,0.5))
+
+# Get summaries of borrower apr grouped by loan status
+# (Reference 40)
+by(prosp_sub$borrower_apr, prosp_sub$loan_status, 
+   summary)
+```
+
+The results of the summary and box plots above follow what I expected.  For
+both the mean and median, the borrower apr increases as the loan status gets
+dire.  Borrowers with a higher apr should have a harder time paying back
+loans so it is to be expected that they will have a higher rate of defaulting
+and being chargedoff.  The one exception was that a status of Past Due had the
+largest mean and median borrower apr but several of these borrowers may be close
+to defaulting.  And they should have a higher borrower apr on average than those
+who are current or completed.  
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
