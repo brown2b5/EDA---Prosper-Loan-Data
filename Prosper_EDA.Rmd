@@ -1164,7 +1164,7 @@ condition <- c("Employed", "Full-time", "Not employed", "Self-employed",
                "Part-time")
 
 # Find box plot for the given employment condition.  I also zoomed in on
-# the y axis to better see the medians and where they are (References 36 and 37).
+# the y axis to better see the medians and where they are (References 38 and 39).
 ggplot(subset(prosp_sub, employment_status %in% condition), 
                 aes(x = loan_status, y = employment_status_duration)) +
                 geom_boxplot() + 
@@ -1180,7 +1180,7 @@ ggplot(subset(prosp_sub, employment_status %in% condition),
 prosp_edur <- subset(prosp_sub, employment_status %in% condition) 
 
 # Get summaries of employment duration grouped by loan status
-# (Reference 38)
+# (Reference 40)
 by(prosp_edur$employment_status_duration, prosp_edur$loan_status, 
    summary)
 ```
@@ -1198,6 +1198,30 @@ at or greater than $100,000 dollars and those with income range of $1-24,999 is
 41.7.  But a statistical test for significance is still needed. 
 
 Now get box plots of credit score lower range versus loan status.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,credit_score_vs_loan_status}
+
+# This chunk creates a box plot of credit score lower range versus loan status
+
+# Find box plot. I also zoomed in on the y axis to better see the medians and
+# where they are (References 38 and 39).
+ggplot(prosp_sub, aes(x = loan_status, y = credit_score_range_lower)) +
+                  geom_boxplot() + 
+                  stat_summary(fun.y=mean, geom="point", color = "red",
+                               shape = 4, size=3) + 
+                  coord_cartesian(ylim = c(500,800))
+
+# Get summaries of credit score lower range grouped by loan status
+# (Reference 40)
+by(prosp_sub$credit_score_range_lower, prosp_sub$loan_status, 
+   summary)
+```
+
+In general this box plot and summaries went as expected.  Not including 
+cancelled loans, loans of Defaulted had the lowest mean and median lower range
+of credit score.  Loans of Chargedoff had the second lowest mean and median
+lower range of credit score (again, not including cancelled loans).  Loans
+of Current had the highest and loans of Completed had the second highest median (tied with Past Due).  Past Due did have the second highest mean credit score but Completed still had the third highest and was greater than the Defaulted and Chargedoff mean credit scores.  This relationship seems to be stronger than employment duration but as with all the differences in means, a statistical test for significance is needed. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
