@@ -1354,6 +1354,10 @@ by(prosp_sub$is_homeowner, prosp_sub$loan_status,
 
 From the bar chart, fill and summary, there were some expected but also some surprising results.  I am surprised that a greater majority of borrowers with a Completed status do not own a home.  Owning a home should point to a good credit history. It's possible that several of the borrowers successfully paying back a loan who are not homeowners are young borrowers with good credit history who simply haven't tried to purchase a home yet.  Something I would be interested to see is how this changes with loan amount (a variable I have not considered in this analysis).  The majority of those under a Current loan status are home owners which would be expected.  The majority of loans under the Defaulted and Chargedoff statuses have borrowers which do not own a home as I expected.  Also, the relative percentages in favor of those who do not own a home is greater for those under the Defaulted and Chargedoff statues than those under the Completed status.
 
+The next two bar charts will look at how prosper score and prosper rating affect
+loan status by looking at a bar chart of loan status and seeing what proportion
+of each bar is given by each prosper score and rating.  
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
