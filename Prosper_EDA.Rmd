@@ -1339,6 +1339,21 @@ range plays a large part in the ability of borrowers to pay back loans with more
 Now I will see the affect being a homeowner has on loan status by filling the
 loan status bar charts with is_homeowner proportions.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_is_homeowner_graph}
+# Plotting a bar graph of loan_status; proportions for each category filled
+# by the proportion of each bar under each is_homeowner category (References 17 and 18).
+
+ggplot(prosp_sub, aes(loan_status, fill = is_homeowner)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+
+# Get summaries of loan status grouped by whether the borrower is a homeowner
+# (Reference 40)
+by(prosp_sub$is_homeowner, prosp_sub$loan_status, 
+   summary)
+```
+
+From the bar chart, fill and summary, there were some expected but also some surprising results.  I am surprised that a greater majority of borrowers with a Completed status do not own a home.  Owning a home should point to a good credit history. It's possible that several of the borrowers successfully paying back a loan who are not homeowners are young borrowers with good credit history who simply haven't tried to purchase a home yet.  Something I would be interested to see is how this changes with loan amount (a variable I have not considered in this analysis).  The majority of those under a Current loan status are home owners which would be expected.  The majority of loans under the Defaulted and Chargedoff statuses have borrowers which do not own a home as I expected.  Also, the relative percentages in favor of those who do not own a home is greater for those under the Defaulted and Chargedoff statues than those under the Completed status.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
