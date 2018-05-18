@@ -1336,6 +1336,9 @@ than for Current and Completed loans.  This should all be expected as having
 more money will make it easier to pay back loans.  It has been shown that income
 range plays a large part in the ability of borrowers to pay back loans with more income being associated with a better ability to pay back loans (Reference 12) so this is not surprising.
 
+Now I will see the affect being a homeowner has on loan status by filling the
+loan status bar charts with is_homeowner proportions.
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
