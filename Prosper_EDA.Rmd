@@ -285,7 +285,7 @@ The proportion was about the same for the higher two categories.  Note that
 I did not consider data which was not verifiable.  I also lumped two categories
 together, borrowers which had an income of $0 and borrowers which had an 
 income of 'Not employed'.  It's hard to say which of these categories may be
-associated with higher levels of success or failure in paying back the loans
+associated with higher levels of success or failure in paying back the loans.
 It would be assumed that the higher a borrower's income, the easier it will be
 for them to pay back a loan but this isn't the only variable affecting success
 or failure so I will need to further look at this in the bi-variate and multi-
@@ -370,10 +370,9 @@ head(subset(subset(prosp_sub, employment_status %in%
 ```
 
 After looking at the data for durations above 400 months (and for the specific
-case of 743 years, not shown), I actually do think this data is possible and
-that the information wasn't miss-entered.  Still though, I will perform some
-operation to cut off the highest employment durations in the bi-variate and
-multi-variate cases.
+case of 743 months, not shown), I actually do think this data is possible and
+that the information wasn't miss-entered.  Because of this, I will keep this
+data when performing calculatins in the bi-variate and multi-variate case.
 
 ```{r, echo=FALSE,  message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
 # This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
@@ -1326,8 +1325,16 @@ ggplot(prosp_income, aes(loan_status, fill = income_range)) +
 # Get summaries of loan status grouped by income range
 # (Reference 40)
 by(prosp_income$income_range, prosp_edur$loan_status, 
-   summary)
+   table())
 ```
+
+From the above bar chart, income ranges of greater than $75,000 make up a
+greater percentage of the bars for loan statues of Completed and Current than
+for loan statuses of Defaulted or Chargedoff.  Income ranges of $0-50,000 also
+make up a greater percentage of all borrowers for Chargedoff and Defaulted loans
+than for Current and Completed loans.  This should all be expected as having
+more money will make it easier to pay back loans.  It has been shown that income
+range plays a large part in the ability of borrowers to pay back loans (Reference 12) so this is not surprising.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
