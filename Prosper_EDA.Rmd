@@ -1328,7 +1328,13 @@ by(prosp_income$income_range, prosp_edur$loan_status,
    summary)
 ```
 
-
+From the above bar chart, income ranges of greater than $75,000 make up a
+greater percentage of the bars for loan statues of Completed and Current than
+for loan statuses of Defaulted or Chargedoff.  Income ranges of $0-49,999 also
+make up a greater percentage of all borrowers for Chargedoff and Defaulted loans
+than for Current and Completed loans.  This should all be expected as having
+more money will make it easier to pay back loans.  It has been shown that income
+range plays a large part in the ability of borrowers to pay back loans with more income being associated with a better ability to pay back loans (Reference 12) so this is not surprising.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
