@@ -372,7 +372,7 @@ head(subset(subset(prosp_sub, employment_status %in%
 After looking at the data for durations above 400 months (and for the specific
 case of 743 months, not shown), I actually do think this data is possible and
 that the information wasn't miss-entered.  Because of this, I will keep this
-data when performing calculatins in the bi-variate and multi-variate case.
+data when performing calculations in the bi-variate and multi-variate case.
 
 ```{r, echo=FALSE,  message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, credit_score_range_lower}
 # This chunk generates three versions of the histogram of lower range of credit scores.  I initially generate a basic histogram but then adjust it, zooming in 
