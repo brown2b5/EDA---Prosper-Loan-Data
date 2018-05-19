@@ -1360,13 +1360,13 @@ of each bar is given by each prosper score and rating.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_prosper_score_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
-# by the proportion of each bar under each prosper score category (References 15 and 16).  I am using the dataframe for data post July 2009.
+# by the proportion of each bar under each prosper score category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
 ggplot(prosp_2009, aes(loan_status, fill = prosper_score)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
 
 # Get summaries of loan status grouped by prosper score
-# (Reference 38)
+# (Reference 40)
 by(prosp_2009$prosper_score, prosp_2009$loan_status, 
    summary)
 ```
@@ -1375,13 +1375,13 @@ From the bar chart and summaries given, prosper scores of 7-11 make up the great
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_prosper_rating_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
-# by the proportion of each bar under each prosper rating category (References 15 and 16).  I am using the dataframe for data post July 2009.
+# by the proportion of each bar under each prosper rating category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
 ggplot(prosp_2009, aes(loan_status, fill = prosper_rating)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
 
 # Get summaries of loan status grouped by prosper rating
-# (Reference 38)
+# (Reference 40)
 by(prosp_2009$prosper_rating, prosp_2009$loan_status, 
    summary)
 ```
