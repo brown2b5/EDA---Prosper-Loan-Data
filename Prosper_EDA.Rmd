@@ -966,7 +966,7 @@ variables.  Finally, I will see if there is a relationship between loan status
 and prosper score/rating.  These matrices will give me an idea about what to 
 expect as I make the bivariate plots in this section.
 
-```{r, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_non_categorical_loan_status}
+```{r, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, Bivariate_Plots_GGally_non_categorical_loan_status}
 
 # I am going to make scatter plot matrices but to make them easier to see
 # and load, I am going to divide them up into four matrices.  The first
@@ -1004,7 +1004,7 @@ while lower credit score was associated with failure (either defaulted or
 charged off).  It will be interesting to look at these variables and the others
 further in the bi-variate analysis.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Bivariate_Plots_GGally_categorical_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, Bivariate_Plots_GGally_categorical_loan_status}
 
 # Plot a grid of each categorical independent variable and loan status to see if there are any relationships between the independent variables and loan status (References 26 and 27).
 ggpairs(subset(prosp_sub, select = c(loan_status, employment_status,
@@ -1018,7 +1018,7 @@ to determine patterns for loan_status against each of the independent variables
 because these are basically faceted bar charts.  I will need to look at these
 relationships individually. 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, GGally_categorical_loan_status_prosper}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, GGally_categorical_loan_status_prosper}
 
 # Plot a grid of each non-categorical independent variable and loan_status to see if there are any relationships between the independent variables and loan_status (References 28 and 29).
 ggpairs(subset(prosp_2009, select = c(loan_status,
@@ -1039,7 +1039,7 @@ A surprising result was that a prosper rating of D had the highest proportion
 of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with
 prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 10, fig.width = 11, debt_to_income_ratio_vs_credit_score}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10, debt_to_income_ratio_vs_credit_score}
 
 # In this chunk I examine the relationship between debt_to_income_ratio and
 # lower range of credit score.  I do this first by finding an initial,
@@ -1117,7 +1117,7 @@ guessing that the two regions on the end are associated with the lowest
 and highest income ranges possible.  I am now going to look at a box plot
 of credit score versus income range to see if my guess is correct.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, credit_score_vs_income_range}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, credit_score_vs_income_range}
 
 # This chunk creates a box plot of credit score versus income range
 
@@ -1152,7 +1152,7 @@ Now I will look at how loan status is related to each of the non-categorical
 variables by looking at box plots of the data.  First I will consider 
 employment duration.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11,employment_duration_vs_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10,employment_duration_vs_loan_status}
 
 # This chunk creates a box plot of employment duration versus loan status
 
@@ -1198,7 +1198,7 @@ at or greater than $100,000 dollars and those with income range of $1-24,999 is
 
 Now get box plots of credit score lower range versus loan status.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11,credit_score_vs_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10,credit_score_vs_loan_status}
 
 # This chunk creates a box plot of credit score lower range versus loan status
 
@@ -1224,7 +1224,7 @@ of Current had the highest and loans of Completed had the second highest median 
 
 Now get box plots of debt to income ratio versus loan status.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11,debt_to_income_ratio_vs_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10,debt_to_income_ratio_vs_loan_status}
 
 # This chunk creates a box plot of debt to income ratio versus loan status
 
@@ -1257,7 +1257,7 @@ easier time paying back loans and the data mostly points to this.
 
 Now I will look at how borrower apr is affected by loan status.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11,borrower_apr_vs_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10,borrower_apr_vs_loan_status}
 
 # This chunk creates a box plot of borrower apr versus loan status
 
@@ -1290,7 +1290,7 @@ Next, I will look at how loan status is affected by the categorical variables I
 have considered(is_homeowner, employment_status, income range, prosper score,
 and prosper rating).
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_employment_status_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_employment_status_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each employment status (References 17 and 18). Using the subsetted dataframe I created earlier, only considering statues of Employed, Full-time, Not employed, Part-time and Self-employed.
 
@@ -1315,7 +1315,7 @@ predictor (Reference 12).
 Next, I will look at bar chart of loan status filled by income range to see
 which income ranges are most associated with each loan status.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_income_range_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_income_range_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each income range (References 17 and 18). Using the subsetted dataframe I created earlier, only considering income that is verifiable and is not 'NA'.
 
@@ -1324,7 +1324,7 @@ ggplot(prosp_income, aes(loan_status, fill = income_range)) +
 
 # Get summaries of loan status grouped by income range
 # (Reference 40)
-by(prosp_income$income_range, prosp_edur$loan_status, 
+by(prosp_income$income_range, prosp_income$loan_status, 
    summary)
 ```
 
@@ -1339,7 +1339,7 @@ range plays a large part in the ability of borrowers to pay back loans with more
 Now I will see the affect being a homeowner has on loan status by filling the
 loan status bar charts with is_homeowner proportions.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_is_homeowner_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_is_homeowner_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each is_homeowner category (References 17 and 18).
 
@@ -1358,7 +1358,7 @@ The next two bar charts will look at how prosper score and prosper rating affect
 loan status by looking at a bar chart of loan status and seeing what proportion
 of each bar is given by each prosper score and rating.  
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_prosper_score_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_prosper_score_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each prosper score category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
@@ -1373,7 +1373,7 @@ by(prosp_2009$prosper_score, prosp_2009$loan_status,
 
 From the bar chart and summaries given, prosper scores of 7-11 make up the greatest proportion for loan statuses of Completed relative to Current, Defaulted and Chargedoff loans.  They also have greater proportions for Current than for Defaulted or Chargedoff loans.  This is not surprising as the highest prosper scores carry the lowest risk and should have the greatest success rate for paying back the loans.  Loans of Completed had the lowest proportion of borrowers from the 1-4 categories while loans of Chargedoff had the highest proportion of 1-4 categories among these four groups.  All this is to be expected (loan status of Current did have a larger proportion of 1-4 categories than Defaulted).  
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_prosper_rating_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_prosper_rating_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each prosper rating category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
