@@ -1371,7 +1371,7 @@ by(prosp_2009$prosper_score, prosp_2009$loan_status,
    summary)
 ```
 
-From the bar chart and summaries given, prosper scores of 7-11 make up the greatest proportion for loan statuses of Completed relative to Current, Defaulted and Chargedoff loans.  They also have greater proportions for Current than for Defaulted or Chargedoff loans.  This is not surprising as the highest prosper scores carry the lowest risk and should have the greatest success rate for paying back the loans.  Loans of Completed had the lowest proportion of borrowers from the 1-4 categories while loans of Chargedoff had the highest proportion of 1-4 categories among these four groups.  All this is to be expected (loan status of Current did have a larger proportion of 1-4 categories than Defaulted).  
+From the bar chart and summaries given, Completed has the greatest proportion of loans assigned a prosper score of 7-11 relative to Current, Defaulted and Chargedoff loans.  This is not surprising as the highest prosper scores carry the lowest risk and should have the greatest success rate for paying back the loans.  Completed had the lowest proportion of loans assigned prosper scores of 1-4 while Chargedoff had the highest proportion of loans assigned scores of 1-4 among these four groups.  All this is to be expected (loan status of Current did have a larger proportion of 1-4 categories than Defaulted). 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_prosper_rating_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
