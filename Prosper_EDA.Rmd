@@ -369,9 +369,10 @@ loans.
 
 # See the first 6 rows of data for those with employment status duration 
 # greater than 400 (Reference 23).
-head(subset(subset(prosp_sub, employment_status %in% condition &
-                 !is.na(employment_status_duration)), 
-                 employment_status_duration > 400))
+
+head(subset(prosp_sub, employment_status %in% condition &
+              !is.na(employment_status_duration) &
+              employment_status_duration > 400))
 
 ```
 
@@ -439,9 +440,10 @@ bi-variate analysis.
 
 # See the first 6 rows of data for those with lower range of credit score of
 # 0 (Reference 21)
-head(subset(subset(prosp_sub,!is.na(credit_score_range_lower)),
-            credit_score_range_lower == 0))
 
+!is.na(credit_score_range_lower)
+head(subset(prosp_sub, !is.na(credit_score_range_lower) &
+            credit_score_range_lower == 0))
 ```
 
 Looking at the first 6 rows of data for those with a lower credit score range of 0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense 
