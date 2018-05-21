@@ -441,7 +441,6 @@ bi-variate analysis.
 # See the first 6 rows of data for those with lower range of credit score of
 # 0 (Reference 21)
 
-!is.na(credit_score_range_lower)
 head(subset(prosp_sub, !is.na(credit_score_range_lower) &
             credit_score_range_lower == 0))
 ```
