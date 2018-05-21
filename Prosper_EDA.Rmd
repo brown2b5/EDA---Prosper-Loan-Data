@@ -192,13 +192,13 @@ prosp_sub$loan_status <- factor(prosp_sub$loan_status,
                     levels = c("Completed", "Current", "Past Due", 
                                "Defaulted", "Chargedoff", "Cancelled"))
 
-# Get counts for each category
-
-summary(prosp_sub$loan_status)
-
 # Create the bar graph of proportion of borrowers (References 17 and 18)
 ggplot(prosp_sub, aes(loan_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')
+
+# Get counts for each category
+
+summary(prosp_sub$loan_status)
 ```
 
 From this plot, the category with the highest proportion of borrowers is clearly
