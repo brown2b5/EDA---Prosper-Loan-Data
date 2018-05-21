@@ -965,6 +965,9 @@ wanted to consider how long a borrower had been emloyed.  The same logic holds
 for why I didn't consider borrowers who had retired.  I also did not consider
 employment statuses of blank, not available and other.
 
+For all the variables, whereever NA's were present, I filtered them out of the
+data.  
+
 ### A note about the days' delinquent variable
 This analysis will not consider the days' delinquent variable going forward.
 This variable was an extra independent variable that I wanted to consider but
