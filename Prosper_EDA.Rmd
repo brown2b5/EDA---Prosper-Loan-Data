@@ -387,30 +387,34 @@ data when performing calculations in the bi-variate and multi-variate case.
 
 
 # Plot the initial distribution of lower ranges of credit scores (Reference 20)
+# while excluding NA values.  
 
 
-q1 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
-             geom_histogram() 
+q1 <- ggplot(subset(prosp_sub, !is.na(credit_score_range_lower)),
+             aes(credit_score_range_lower)) + geom_histogram() 
 
 # Plot histogram while zooming in to the range of most of the data. I pick a max 
 # of 880 because this value is the maximum given in the summary below (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
-q2 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
-        geom_histogram() + coord_cartesian(xlim = c(375,880))
+q2 <- ggplot(subset(prosp_sub, !is.na(credit_score_range_lower)),
+             aes(credit_score_range_lower)) + geom_histogram() +
+             coord_cartesian(xlim = c(375,880))
 
 # Plot histogram while zooming in to the range of most of the data and picking a better binwidth (Reference 20)
 
-q3 <- ggplot(prosp_sub, aes(credit_score_range_lower)) + 
-       geom_histogram(binwidth = 1) + coord_cartesian(xlim = c(375,880))
+q3 <- ggplot(subset(prosp_sub, !is.na(credit_score_range_lower)),
+             aes(credit_score_range_lower)) + geom_histogram(binwidth = 1) +
+             coord_cartesian(xlim = c(375,880))
 
 # Read in grid extra to plot all these histograms on the same graph 
 # (Reference 22)
 
 grid.arrange(q1, q2, q3, ncol = 1)
 
-# Get summary of the low range of credit score
+# Get summary of the low range of credit score while excluding NA values. 
 
-summary(prosp_sub$credit_score_range_lower)
+summary(subset(prosp_sub,!is.na(credit_score_range_lower))$
+          credit_score_range_lower)
 ```
 
 From the three plots of the histograms, each more finely tuned than the next, 
@@ -435,7 +439,8 @@ bi-variate analysis.
 
 # See the first 6 rows of data for those with lower range of credit score of
 # 0 (Reference 21)
-head(subset(prosp_sub, credit_score_range_lower == 0))
+head(subset(subset(prosp_sub,!is.na(credit_score_range_lower)),
+            credit_score_range_lower == 0))
 
 ```
 
