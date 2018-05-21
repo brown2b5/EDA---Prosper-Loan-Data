@@ -937,9 +937,7 @@ I said in the analysis, a  borrower who is 30 days delinquent but 2 years into
 paying back the loan will be viewed differently than a borrower who is 20 days
 delinquent and only 3 months into paying back the loan.
 
-I combined some of the categories in loan status, income range and prosper score.  I also only found days' delinquent for cases where the borrower hadn't defaulted or been charged off and for cases where the days' delinquent was greater than 0.  For employment duration, I let borrowers who were not 
-employed have a duration of 0 and I did not consider employment statuses of 
-retired, other, not available and blank.  
+I combined some of the categories in loan status, income range and prosper score.  I also only found days' delinquent for cases where the borrower hadn't defaulted or been charged off and for cases where the days' delinquent was greater than 0.    
 
 I combined all the Past Due categories to Past Due in the loan status variable
 because I'm mainly only interested in the Completed, Chargedoff and Defaulted
