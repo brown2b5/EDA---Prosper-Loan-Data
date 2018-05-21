@@ -1428,6 +1428,8 @@ For the numerical variables, the strongest relationship I found was for the borr
 For the categorical variables, the strongest relationship I found was for loan status filled by income range bar chart.  For each of the best case scenarios (Completed and Current), borrowers making greater than $50,000 dollars had greater proportions.  For each of the worst case scenarios (Defaulted and Chargedoff), borrowers making less than $50,000 dollars had greater proportions.
 I do plan on examining this variable extensively in the multi-variate case. 
 
+# Multivariate Plots Section
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
