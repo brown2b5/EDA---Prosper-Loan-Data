@@ -1392,11 +1392,41 @@ The results from the bar chart and summary go mostly as expected.  Within a give
 
 ### How features of interest varied with other features in this dataset.
 
+The median employment duration increased from a loan status of Completed to 
+Current but then decreased from Current to Chargedoff.  There was minimal
+difference (1 month) between mean employment duration for Completed and Defaulted loans and a difference of 2 months between Completed and Chargedoff loans.  The difference was also around 2 months for the means.  Because of the minimal difference in employee duration, I will not consider this variable in the multi-variate analysis.  
+
+I expected mean and median credit score range lower to be smaller for the Chargedoff and Defaulted loans than for the Completed loans and that's what I found.  The median increased slightly from Completed to Current loans but then decreased from Current loans to Defaulted loans before increasing from Defaulted to Chargedoff.  Median credit score for Completed loans was 40 points higher than for Defaulted loans and 20 points higher than for Chargedoff loans.  Mean credit score followed the same pattern as median credit score.
+
+I also expected mean and median debt-to-income ratio to be greater for Defaulted and Chargedoff loans than for Completed loans since having a smaller debt-to-income ratio should make it easier to pay back loans.  Both the means and medians were greater for Defaulted and Chargedoff loans than for Completed loans.  Current did have a higher median ratio than Defaulted or Chargedoff but the means for Defaulted and Chargedoff were greater than for Current.  
+
+Excluding past due, there was a consistent increase in the mean and median borrower apr from Completed to Current to Defaulted to Chargedoff loans.  Past due had the highest mean and median borrower apr but several of those loans could be headed for Default or Chargedoff statuses.  A higher borrower apr will make it more difficult to pay back loans which should result in more Defaulted and Chargedoff loan statuses. These results were expected.
+
+Most of the loans with a Completed, Chargedoff and Defaulted status were Full-time.  The overwhelming majority of loans with a Current status were Employed.  The definition of Employed is very vague so I will not consider this variable in the multi-variate analysis.  I think income range is more important than employment status.  
+
+The majority of borrowers in the Completed and Current loan status categories made greater than $50,000 dollars.  The majority of borrowers in the Defaulted and Chargedoff categories made less than $50,000 dollars.  Both these results are not surprising as having more income will make it easier to pay off debt.
+
+For most of the loan status categories, there were around an equal number of borrowers who were homeowners as those who were not homeowners.  The largest difference in percent was for the Chargedoff status where 56% of borrowers were not homeowners.  There were actually more non-homeowners in the Completed loan status category than homeowners which surprised me.  Owning a home means that a bank has already approved a buyer for a mortgage so they should be more credit-worthy than non-homeowners.  Because of the small differences in each category, I will not consider this variable in the multi-variate analysis.
+
+For prosper score, more loans with a status of Complete fall into a prosper 
+score of 7-11 than a prosper score of 1-5.  For statuses of Defaulted and Chargedoff, more loans fall into a prosper score of 1-5 than 7-11.  This is to be expected since a low prosper score (1,2,3, etc...) is associated with higher risk of Defaulting and being charged off.
+
+Current and Completed loans both have higher proportions assigned a rating of AA-B than Defaulted or Chargedoff.  Defaulted and Chargedoff loans both have higher proportions assigned a rating of HR-D than Completed or Current.   The relationship seems strong because 68 and 70 percent of loans fall into these ratings for Defaulted and Chargedoff versus 46 and 29 percent for Completed and Current, respectively. All these results are as expected since the riskiest loans (HR) should have a higher probability of resulting in Defaulted/Chargedoff statuses while the safest loans (AA) should result in a smaller probability of resulting in Defaulted/Chargedoff statuses.  There was a higher percentage of Completed loans with a HR through D rating than with a AA-B rating.  This is because Prosper assigns more ratings of HR-D than AA-B to loans.
+
 ### Interesting relationships between the other features excluding the main features in this dataset.
+
+The first relationship I explored which did not include any of the main features of interest from the dataset was the debt-to-income-ratio versus credit score range lower scatterplots.  I originally thought there would be overlap between these two variables such that perhaps they increased monotonically with each other, but instead I found a relationship that excluding the outliers, almost looks parabolic (pointing down).  There are two regions to the far left and right of this graph for which the debt-to-income-ratio is relatively low but the credit score is low on the left end and high on the right end.  My guess is that on the low end, one will find several loans which have borrowers making less than $50,000 dollars a year and on the high end of credit score, one will find several loans which have borrowers making more than $50,000 dollars a year.  I want to look at this in the multi-variate analysis (this guess seems to be supported by the credit score versus income range box plot but I did not find a debt-to-income-ratio versus income range box plot).  The data appears to peak in the middle around 0.5 debt-to-income-ratio.
+
+The second relationship I explored which excluded the main features of interest was the credit score range lower versus income range box plot.  The medians and means of credit score range lower appeared to increase pretty consistently from an income range of 0$ through an income range of greater than $100,000.  In the multi-variate analysis, I plan to have the same graph of debt-to-income ratio versus credit score range lower scatterplot but have the points be filled by income range to see what this looks like. 
 
 ### The strongest relationship found.
 
+First of all, the weakest relationships were for employment status duration versus loan status and is homeowner versus loan status.  I will not be considering these relationships in the multi-variate case.  I will also not be considering employment status in the multi-variate case because the definitions of the categories are vague.  
 
+For the numerical variables, the strongest relationship I found was for the borrower apr.  This variable increased consistently from a status of Completed to a status of Chargedoff (excluding Past Due).  
+
+For the categorical variables, the strongest relationship I found was for loan status filled by income range bar chart.  For each of the best case scenarios (Completed and Current), borrowers making greater than $50,000 dollars had greater proportions.  For each of the worst case scenarios (Defaulted and Chargedoff), borrowers making less than $50,000 dollars had greater proportions.
+I do plan on examining this variable extensively in the multi-variate case. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
