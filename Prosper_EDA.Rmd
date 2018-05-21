@@ -455,30 +455,32 @@ for borrowers with bad credit scores.
 # one grid.
 
 
-# Plot the initial distribution of debt to income ratios (Reference 20)
+# Plot the initial distribution of debt to income ratios (Reference 20) while excluding NA's.
 
 
-q1 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
-             geom_histogram() 
+q1 <- ggplot(subset(prosp_sub,!is.na(debt_to_income_ratio)),
+             aes(debt_to_income_ratio)) + geom_histogram() 
 
 # Plot histogram while zooming in to the range of most of the data. I pick a max 
 # of 1 since this seems to be where most of the data is (Reference 21). I used coord_cartesian so that I wouldn't shave off any data.
 
-q2 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
-        geom_histogram(binwidth = 0.1) + coord_cartesian(xlim = c(0,1))
+q2 <- ggplot(subset(prosp_sub,!is.na(debt_to_income_ratio)),
+             aes(debt_to_income_ratio)) + geom_histogram(binwidth = 0.1) +
+             coord_cartesian(xlim = c(0,1))
 
 # Plot histogram while zooming in to the range of most of the data and picking a better binwidth (Reference 20)
 
-q3 <- ggplot(prosp_sub, aes(debt_to_income_ratio)) + 
-       geom_histogram(binwidth = 0.005) + coord_cartesian(xlim = c(0,1))
+q3 <- ggplot(subset(prosp_sub,!is.na(debt_to_income_ratio)),
+             aes(debt_to_income_ratio)) + geom_histogram(binwidth = 0.005) +
+             coord_cartesian(xlim = c(0,1))
 
 # Plot all these histograms on the same graph (Reference 22)
 
 grid.arrange(q1, q2, q3, ncol = 1)
 
-# Get summary of the debt to income ratio
+# Get summary of the debt to income ratio while excluding NA's.
 
-summary(prosp_sub$debt_to_income_ratio)
+summary(subset(prosp_sub,!is.na(debt_to_income_ratio))$debt_to_income_ratio)
 ```
 
 A few things stand out about these graphs.  The first is that there appears that there might be outliers close to a ratio of 10.  Again, I will check these out 
@@ -495,7 +497,9 @@ out loans because their income is low and because of this, they are the ones who
 
 # See the first 6 rows of data for those with debt to income ratio greater than
 # 5 (Reference 23)
-head(subset(prosp_sub, debt_to_income_ratio >= 5))
+
+head(subset(prosp_sub, debt_to_income_ratio >= 5 &
+              !is.na(debt_to_income_ratio)))
 ```
 
 After looking at the first few rows for borrowers with a debt to income ratio
