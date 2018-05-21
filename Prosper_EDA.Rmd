@@ -292,13 +292,14 @@ or failure so I will need to further look at this in the bi-variate and multi-
 variate case.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,   employment_status_duration}
-# This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in 
+# This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in
 # on the data and adjusting the binwidth. For the second graph, I also used a
 # log transform of the data to try and correct for a right skew in the initial histogram.  I then graph all three of them on one grid.
 
 # First I've got to place conditions on what data I will consider and I've got
 # to set all durations for those not employed to be 0 (Reference 26)
 
+# Set all durations for those not employed to be 0.
 prosp_sub$employment_status_duration <- ifelse(prosp_sub$employment_status ==
                                                  'Not employed',
                                         0*prosp_sub$employment_status_duration,
@@ -310,8 +311,10 @@ condition <- c("Employed", "Full-time", "Not employed", "Self-employed",
 
 
 # Plot the initial distribution of employment status duration (Reference 20)
+# while excluding NA's.
 
-q1 <- ggplot(subset(prosp_sub, employment_status %in% condition),
+q1 <- ggplot(subset(prosp_sub, employment_status %in% condition &
+                 !is.na(employment_status_duration)),
              aes(employment_status_duration)) + geom_histogram() 
 
 # Plot histogram while taking log10 of employment status duration
@@ -319,7 +322,8 @@ q1 <- ggplot(subset(prosp_sub, employment_status %in% condition),
 # added 1 so that I could find the log10 of durations which are 0.  I pick a max of 3 so that I can see all the data (Reference 21). I used coord_cartesian so 
 # that I wouldn't shave off any data.
 
-q2 <- ggplot(subset(prosp_sub, employment_status %in% condition),
+q2 <- ggplot(subset(prosp_sub, employment_status %in% condition &
+                 !is.na(employment_status_duration)),
              aes(log10(employment_status_duration+1))) + 
              geom_histogram(binwidth=0.1) + coord_cartesian(xlim = c(0,3))
 
@@ -327,7 +331,8 @@ q2 <- ggplot(subset(prosp_sub, employment_status %in% condition),
 # a better binwidth (Reference 20). Note again that I've decided not to 
 # transform the data using log10 after seeing the middle graph. 
 
-q3 <- ggplot(subset(prosp_sub, employment_status %in% condition),
+q3 <- ggplot(subset(prosp_sub, employment_status %in% condition &
+                 !is.na(employment_status_duration)),
              aes(employment_status_duration)) + 
              geom_histogram(binwidth=1) + coord_cartesian(xlim = c(0,400))
 
@@ -337,10 +342,10 @@ library(gridExtra)
 
 grid.arrange(q1, q2, q3, ncol = 1)
 
-# Get summary of employment status duration
+# Get summary of employment status duration while excluding NA's.
 
-summary(subset(prosp_sub, employment_status %in%
-                 condition)$employment_status_duration)
+summary(subset(prosp_sub, employment_status %in% condition &
+                 !is.na(employment_status_duration))$employment_status_duration)
 ```
 
 Based on the second and third graphs, the data is definitely right-skewed. 
@@ -364,8 +369,9 @@ loans.
 
 # See the first 6 rows of data for those with employment status duration 
 # greater than 400 (Reference 23).
-head(subset(subset(prosp_sub, employment_status %in%
-                 condition), employment_status_duration > 400))
+head(subset(subset(prosp_sub, employment_status %in% condition &
+                 !is.na(employment_status_duration)), 
+                 employment_status_duration > 400))
 
 ```
 
