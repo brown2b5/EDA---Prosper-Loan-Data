@@ -1430,6 +1430,8 @@ I do plan on examining this variable extensively in the multi-variate case.
 
 # Multivariate Plots Section
 
+First I will look at the scatterplot of debt-to-income ratio versus lower range of credit score filled by income range so that I can see which incomes are associated with each region of the scatterplot. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
