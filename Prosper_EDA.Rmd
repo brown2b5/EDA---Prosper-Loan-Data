@@ -1257,19 +1257,17 @@ Now get box plots of debt to income ratio versus loan status.
 
 # This chunk creates a box plot of debt to income ratio versus loan status
 
-# Find box plot. I also zoomed in on the y axis to better see the medians and
-# where they are (References 38 and 39).
+# Find box plot for non-NA debt to income ratio. I also zoomed in on the y axis to better see the medians and where they are (References 38 and 39).
 
-ggplot(prosp_sub, aes(x = loan_status, y = debt_to_income_ratio)) +
-                  geom_boxplot() + 
+ggplot(subset(prosp_sub, !is.na(debt_to_income_ratio)), 
+       aes(x = loan_status, y = debt_to_income_ratio)) + geom_boxplot() + 
                   stat_summary(fun.y=mean, geom="point", color = "red",
                                shape = 4, size=3) +
                   coord_cartesian(ylim = c(0,0.5))
 
 # Get summaries of debt to income ratio grouped by loan status
-# (Reference 40)
-by(prosp_sub$debt_to_income_ratio, prosp_sub$loan_status, 
-   summary)
+# (Reference 40) excluding NA's.
+by(subset(prosp_sub, !is.na(debt_to_income_ratio))$debt_to_income_ratio, subset(prosp_sub, !is.na(debt_to_income_ratio))$loan_status, summary)
 ```
 
 With the debt_to_income_ratio versus loan_status box plots, there were some
