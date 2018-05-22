@@ -1073,7 +1073,8 @@ prosper score, prosper ratings effect on borrowers who had defaulted was difficu
 # credit_score_range_lower (Reference 30).
 
 q1 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio), 
-             data = prosp_sub) + geom_point()
+             data = subset(prosp_sub, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + geom_point()
 
 # Set values which will be limits for scatterplot without data points at 
 # debt to income ratio of 10 and credit score range lower of 0 using
@@ -1085,7 +1086,9 @@ y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
 # 1/20 to correct for overplotting (Reference 32).  I also cut off the data at debt to income ratio of 10 and credit score range lower of 0 (Reference 21). They are outliers even though the data is good.  I set position_jitter with an h of 0 to keep the data in the vertical direction from becoming negative (Reference 33).
 
 q2 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio), 
-       data = prosp_sub) + geom_jitter(alpha = 1/20,                                   position = position_jitter(h = 0)) + 
+       data = subset(prosp_sub, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + 
+       geom_jitter(alpha = 1/20, position = position_jitter(h = 0)) + 
        coord_cartesian(xlim = x_lim, ylim = y_lim)
 
 # Now I will create a dataframe of conditional means where I take the mean and median of debt to income ratio for each credit score since the ratios seem
@@ -1144,10 +1147,10 @@ of credit score versus income range to see if my guess is correct.
 # This chunk creates a box plot of credit score versus income range
 
 # Get the box plot only for borrowers for which the income is verifiable 
-# and for which the income range is not NA (References 38 and 39)
+# and for which the income range and credit score is not NA (References 38 and 39)
 
-ggplot(subset(prosp_sub, income_verifiable == 'True' &
-                income_range != 'NA'), 
+ggplot(subset(prosp_sub, income_verifiable == 'True' & !is.na(income_range) &
+                !is.na(credit_score_range_lower)), 
                 aes(x = income_range, y = credit_score_range_lower)) +
                 geom_boxplot() + 
                 stat_summary(fun.y=mean, geom="point", color = "red",
@@ -1155,16 +1158,17 @@ ggplot(subset(prosp_sub, income_verifiable == 'True' &
 
 # I'm going to get a summary to go along with the box plot grouped by 
 # income range, but I'm going to do it by creating a new dataframe 
-# equivalent to the subsetted dataframe I used for the box plot (only 
-# considering income that is verifiable and without NA's).
+# (only considering income that is verifiable and without NA's).
 
 prosp_income <- subset(prosp_sub, income_verifiable == 'True' &
-                income_range != 'NA') 
+                !is.na(income_range)) 
 
 # Get summaries of credit_score_range_lower grouped by income_range
-# (Reference 40)
-by(prosp_income$credit_score_range_lower, prosp_income$income_range, 
-   summary)
+# (Reference 40) excluding NA's for credit score.
+
+by(subset(prosp_income, !is.na(credit_score_range_lower))
+   $credit_score_range_lower, subset(prosp_income,
+   !is.na(credit_score_range_lower))$income_range, summary)
 ```
 
 From the above box plot and summaries, we have what is to be expected.  The median credit score for borrowers increases as income range increases.  The means (red x) also increase as income range increases.  Because of this, the portion of the debt_to_income_range versus credit score graph in the far left is probably for borrowers with an income range of $0 and $1-24,999 while borrowers with an income range at or greater than $100,000 dollars probably dominate the right side of the scatter plots.  Income reduction is a big reason borrowers go 
@@ -1184,9 +1188,9 @@ employment duration.
 condition <- c("Employed", "Full-time", "Not employed", "Self-employed",
                "Part-time")
 
-# Find box plot for the given employment condition.  I also zoomed in on
-# the y axis to better see the medians and where they are (References 38 and 39).
-ggplot(subset(prosp_sub, employment_status %in% condition), 
+# Find box plot for the given employment condition and excluding NA's for employment duration.  I also zoomed in on the y axis to better see the medians and where they are (References 38 and 39).
+ggplot(subset(prosp_sub, employment_status %in% condition &
+                !is.na(employment_status_duration)), 
                 aes(x = loan_status, y = employment_status_duration)) +
                 geom_boxplot() + 
                 stat_summary(fun.y=mean, geom="point", color = "red",
@@ -1201,9 +1205,11 @@ ggplot(subset(prosp_sub, employment_status %in% condition),
 prosp_edur <- subset(prosp_sub, employment_status %in% condition) 
 
 # Get summaries of employment duration grouped by loan status
-# (Reference 40)
-by(prosp_edur$employment_status_duration, prosp_edur$loan_status, 
-   summary)
+# (Reference 40) excluding NA's
+
+by(subset(prosp_edur,
+          !is.na(employment_status_duration))$employment_status_duration, subset(prosp_edur,
+          !is.na(employment_status_duration))$loan_status, summary)
 ```
 
 Generally based on the above box plots and summary I get results I expected.
