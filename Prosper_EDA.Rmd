@@ -1320,6 +1320,13 @@ and prosper rating).
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each employment status (References 17 and 18). Using the subsetted dataframe I created earlier, only considering statues of Employed, Full-time, Not employed, Part-time and Self-employed.
 
+# First I will get rid of the factor levels I do not use in prosp_edur for
+# employment status (Reference 15)
+
+prosp_edur$employment_status <- factor(prosp_edur$employment_status, 
+                    levels = c("Employed", "Full-time", "Not employed",
+                               "Part-time", "Self-employed"))
+
 ggplot(prosp_edur, aes(loan_status, fill = employment_status)) + 
   geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
 
