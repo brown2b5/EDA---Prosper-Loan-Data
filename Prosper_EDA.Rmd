@@ -35,6 +35,16 @@ install.packages("dplyr", dependencies = T,
 install.packages("GGally", dependencies = T, 
                  repos = "http://cran.us.r-project.org")
 
+# Install lemon package to work with legends using ggplot (Reference 42)
+
+install.packages("lemon", dependencies = T, 
+                 repos = "http://cran.us.r-project.org")
+
+# Install RColorBrewer so that I can have a better color scheme in my graphs
+# (Reference 43)
+install.packages("RColorBrewer", dependencies = T, 
+                 repos = "http://cran.us.r-project.org")
+
 # I set echo, message and warning to all be false so that I wouldn't see the 
 # code in the HTML document or any warning messages (Reference 5)
 
@@ -45,6 +55,8 @@ library(ggplot2)
 library(knitr)
 library(dplyr)
 library(GGally)
+library(lemon)
+library(RColorBrewer)
 
 # Get and set working directory (Reference 7)
 # NOTE: For users wishing to contribute, you will need to set the path to that 
