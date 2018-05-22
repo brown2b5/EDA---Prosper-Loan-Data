@@ -1230,9 +1230,10 @@ Now get box plots of credit score lower range versus loan status.
 
 # This chunk creates a box plot of credit score lower range versus loan status
 
-# Find box plot. I also zoomed in on the y axis to better see the medians and
-# where they are (References 38 and 39).
-ggplot(prosp_sub, aes(x = loan_status, y = credit_score_range_lower)) +
+# Find box plot for non-NA credit scores. I also zoomed in on the y axis to better see the medians and where they are (References 38 and 39).
+
+ggplot(subset(prosp_sub, !is.na(credit_score_range_lower)), 
+       aes(x = loan_status, y = credit_score_range_lower)) +
                   geom_boxplot() + 
                   stat_summary(fun.y=mean, geom="point", color = "red",
                                shape = 4, size=3) + 
@@ -1240,8 +1241,8 @@ ggplot(prosp_sub, aes(x = loan_status, y = credit_score_range_lower)) +
 
 # Get summaries of credit score lower range grouped by loan status
 # (Reference 40)
-by(prosp_sub$credit_score_range_lower, prosp_sub$loan_status, 
-   summary)
+by(subset(prosp_sub, !is.na(credit_score_range_lower))$credit_score_range_lower,
+   subset(prosp_sub, !is.na(credit_score_range_lower))$loan_status, summary)
 ```
 
 In general, this box plot and summaries went as expected.  Not including 
