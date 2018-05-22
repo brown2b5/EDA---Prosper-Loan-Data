@@ -1288,20 +1288,19 @@ Now I will look at how borrower apr is affected by loan status.
 
 # This chunk creates a box plot of borrower apr versus loan status
 
-# Find box plot. I also zoomed in on the y axis to better see the medians and
+# Find box plot for non-NA borrower apr's. I also zoomed in on the y axis to better see the medians and
 # where they are (References 38 and 39).
 
-ggplot(prosp_sub, aes(x = loan_status, y = borrower_apr)) +
-                  geom_boxplot() + 
+ggplot(subset(prosp_sub, !is.na(borrower_apr)), 
+       aes(x = loan_status, y = borrower_apr)) + geom_boxplot() + 
                   stat_summary(fun.y=mean, geom="point", color = "red",
-                               shape = 4, size=3) 
-#+
- #                 coord_cartesian(ylim = c(0,0.5))
+                               shape = 4, size=3) +
+                  coord_cartesian(ylim = c(0,0.5))
 
 # Get summaries of borrower apr grouped by loan status
-# (Reference 40)
-by(prosp_sub$borrower_apr, prosp_sub$loan_status, 
-   summary)
+# (Reference 40) excluding NA's.
+by(subset(prosp_sub, !is.na(borrower_apr))$borrower_apr, 
+   subset(prosp_sub, !is.na(borrower_apr))$loan_status, summary)
 ```
 
 The results of the summary and box plots above follow what I expected.  For
