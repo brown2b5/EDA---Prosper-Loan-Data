@@ -1496,6 +1496,43 @@ I do plan on examining this variable extensively in the multi-variate case.
 
 First I will look at the scatterplot of debt-to-income ratio versus lower range of credit score filled by income range so that I can see which incomes are associated with each region of the scatterplot. 
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10,Multivariate_Plots_debt_to_income_ratio_vs_credit_score_income_range}
+
+# In this chunk I examine the relationship between debt_to_income_ratio and
+# lower range of credit score filled by income range.  I do this first by finding # an initial, un-changed scatterplot of debt_to_income_ratio versus lower range # of credit score filled by income range.  I then deal with overplotting issues and outliers while still filling the data with income range.  I do this to see which portion of the graph from the bivariate case is associated most with each income range.  
+
+# Plot initial form of scatterplot for debt_to_income_ratio versus 
+# credit_score_range_lower filled by income range (Reference 30) while excluding # NA's.  Note that I am using the prosp_income dataset because I only want 
+# income that is verfiable and that does not contain NA's.  I am using 
+# scale_color_brewer to have a better color scheme (Reference 43).
+
+q1 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio, 
+                 color = income_range), 
+             data = subset(prosp_income, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + geom_point() +
+             scale_color_brewer(palette = "BrBG")
+
+# Set values which will be limits for scatterplot without data points at 
+# debt to income ratio of 10 and credit score range lower of 0 using
+# quantile (Reference 31).
+x_lim = c(quantile(prosp_sub$credit_score_range_lower,0.01, na.rm='True'), 800)
+y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
+
+# Graph scatter plot where the data is jittered and with a transparency of
+# 1/20 to correct for overplotting (Reference 32).  I also cut off the data at debt to income ratio of 10 and credit score range lower of 0 (Reference 21). They are outliers even though the data is good.  I set position_jitter with an h of 0 to keep the data in the vertical direction from becoming negative (Reference 33).  I am using scale_color_brewer to have a better color scheme (Reference 43).
+
+q2 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio, 
+                 color = income_range), 
+       data = subset(prosp_income, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + 
+        geom_jitter(alpha = 1/20,position = position_jitter(h = 0)) + 
+        coord_cartesian(xlim = x_lim, ylim = y_lim) +
+        scale_color_brewer(palette = "BrBG")
+
+ # Plot the graphs on the same grid (Reference 44)
+ grid_arrange_shared_legend(q1, q2, ncol = 1, nrow = 2, position = 'right')
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
@@ -1596,6 +1633,12 @@ First I will look at the scatterplot of debt-to-income ratio versus lower range 
 # Reference 40: https://www.statmethods.net/stats/withby.html
 
 # Reference 41: http://ggplot2.tidyverse.org/reference/scale_continuous.html
+
+# Reference 42: https://cran.r-project.org/web/packages/lemon/index.html
+
+# Reference 43: http://www.sthda.com/english/wiki/colors-in-r
+
+# Reference 44: https://cran.r-project.org/web/packages/lemon/vignettes/legends.html#shared-legend-across-multiple-plot
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
