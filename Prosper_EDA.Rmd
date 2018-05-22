@@ -269,14 +269,14 @@ prosp_sub$income_range <- factor(prosp_sub$income_range,
 # and not including income ranges for which we have NA (note that this used
 # to be not displayed) (References 17 and 18)
 ggplot(subset(prosp_sub, income_verifiable == 'True' &
-                income_range != 'NA'), aes(income_range)) +
+                !is.na(income_range)), aes(income_range)) +
                 geom_bar(aes(y=..count../sum(..count..))) + 
                 ylab('Proportion of Borrowers')
 
 # Get counts for each category
 
 summary(subset(prosp_sub, income_verifiable == 'True' & 
-                 income_range != 'NA')$income_range)
+                 !is.na(income_range))$income_range)
 ```
 
 From the above bar chart of proportion of borrowers inside each income range
