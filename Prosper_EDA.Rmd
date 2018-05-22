@@ -1343,8 +1343,11 @@ prosp_edur$employment_status <- factor(prosp_edur$employment_status,
                     levels = c("Employed", "Full-time", "Not employed",
                                "Part-time", "Self-employed"))
 
+# I am using scale_fill_brewer to get a better color scheme (Reference 43)
+
 ggplot(prosp_edur, aes(loan_status, fill = employment_status)) + 
-  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers')  +
+  scale_fill_brewer(palette = "BrBG")
 
 # Get summaries of loan status grouped by employment status
 # (Reference 40)
@@ -1368,8 +1371,11 @@ which income ranges are most associated with each loan status.
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each income range (References 17 and 18). Using the subsetted dataframe I created earlier, only considering income that is verifiable and is not 'NA'.
 
+# I am using scale_fill_brewer to get a better color scheme (Reference 43)
+
 ggplot(prosp_income, aes(loan_status, fill = income_range)) + 
-  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') +
+  scale_fill_brewer(palette = "BrBG")
 
 # Get summaries of loan status grouped by income range
 # (Reference 40)
@@ -1392,8 +1398,11 @@ loan status bar charts with is_homeowner proportions.
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each is_homeowner category (References 17 and 18).
 
+# I am using scale_fill_brewer to get a better color scheme (Reference 43)
+
 ggplot(prosp_sub, aes(loan_status, fill = is_homeowner)) + 
-  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') +
+  scale_fill_brewer(palette = "BrBG") 
 
 # Get summaries of loan status grouped by whether the borrower is a homeowner
 # (Reference 40)
@@ -1411,8 +1420,11 @@ of each bar is given by each prosper score and rating.
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each prosper score category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
+# I am using scale_fill_brewer to get a better color scheme (Reference 43)
+
 ggplot(prosp_2009, aes(loan_status, fill = prosper_score)) + 
-  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') +
+  scale_fill_brewer(palette = "BrBG") 
 
 # Get summaries of loan status grouped by prosper score
 # (Reference 40)
@@ -1426,8 +1438,11 @@ From the bar chart and summaries given, Completed has the greatest proportion of
 # Plotting a bar graph of loan_status; proportions for each category filled
 # by the proportion of each bar under each prosper rating category (References 17 and 18).  I am using the dataframe for data post July 2009.
 
+# I am using scale_fill_brewer to get a better color scheme (Reference 43)
+
 ggplot(prosp_2009, aes(loan_status, fill = prosper_rating)) + 
-  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') 
+  geom_bar(aes(y=..count../sum(..count..))) + ylab('Proportion of Borrowers') +
+  scale_fill_brewer(palette = "BrBG") 
 
 # Get summaries of loan status grouped by prosper rating
 # (Reference 40)
