@@ -54,7 +54,8 @@ getwd()
 # I used the paste function because my file name was too long and I needed
 # to shorten it to below 80 characters (Reference 8).
 setwd(paste("C:/Users/brownb/Desktop/Udacity/Data Analyst Nanodegree/",
-            "Term 2/Exploratory Data Analysis/Project 2", sep = ""))
+            "Term 2/Exploratory Data Analysis/EDA - Prosper Loan Data", 
+            sep = ""))
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, Load_the_Data}
