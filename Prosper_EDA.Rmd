@@ -784,6 +784,10 @@ q2 <- ggplot(subset(prosp_2009, worst_combo), aes(loan_status)) +
 
 # Plot the charts on a grid (Reference 22)
 grid.arrange(q1, q2, ncol = 1)
+
+# Get summary of the data for the best and worst combo
+summary(subset(prosp_2009, best_combo)$loan_status)
+summary(subset(prosp_2009, worst_combo)$loan_status)
 ```
 
 The first plot in the visual directly above is the loan status for the best 
