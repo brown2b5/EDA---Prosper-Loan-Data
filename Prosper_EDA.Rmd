@@ -1513,9 +1513,7 @@ q1 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio,
              scale_color_brewer(palette = "BrBG")
 
 # Set values which will be limits for scatterplot without data points at 
-# debt to income ratio of 10 and credit score range lower of 0 using
-# quantile (Reference 31).
-x_lim = c(quantile(prosp_sub$credit_score_range_lower,0.01, na.rm='True'), 800)
+# debt to income ratio of 10 using quantile (Reference 31).
 y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
 
 # Graph scatter plot where the data is jittered and with a transparency of
@@ -1526,7 +1524,7 @@ q2 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio,
        data = subset(prosp_income, !is.na(credit_score_range_lower) &
                              !is.na(debt_to_income_ratio))) + 
         geom_jitter(alpha = 1/20,position = position_jitter(h = 0)) + 
-        coord_cartesian(xlim = x_lim, ylim = y_lim) +
+        coord_cartesian(ylim = y_lim) +
         scale_color_brewer(palette = "BrBG")
 
  # Plot the graphs on the same grid (Reference 44)
