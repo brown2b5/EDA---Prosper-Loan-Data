@@ -1577,6 +1577,8 @@ ggplot(aes(x = credit_score_range_lower, y = borrower_apr,
         guides(colour = guide_legend(override.aes = list(alpha = 1))) 
 ```
 
+From the faceted scatter plots shown (note that each color in the legend represents 10 data points), it appears first of all that there are many more borrowers falling into the Completed and Current status rather than the Defaulted or Chargedoff status.  There is a great deal more borrowers with incomes over $50,000 for both the Completed and Current loan status than for the Defaulted and Chargedoff loan status.   Just like the debt to income ratio versus credit score scatter plot, there appears to be many more borrowers with credit scores beyond 800 for the Current and Completed status than for the Defaulted and Chargedoff loan status.  There also appears to be more borrowers to the left of 700 for both the Defaulted and Chargedof loan status than for the Completed and Current loan status.  In terms of borrower apr, it looks like there are more borrowers below 0.2 than above 0.2 for both Completed and Current loan status while the opposite is true for both Defaulted and Chargedoff loan status (actually from the box plot, there are more borrowers above 0.2 for the current status but there are for more in this range for Defaulted and Chargedoff).  From these scatterplots, it does appear that having a higher income, a lower apr and a high credit score are all indicators that the probability of Defaulting or being Chargedoff on a loan will be minimized. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
