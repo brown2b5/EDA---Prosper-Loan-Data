@@ -1535,6 +1535,29 @@ From the top chart in the visual above, the middle, left and portions of the rig
 
 Next, I will see how the debt to income range versus credit score lower scatterplot changes with loan status by faceting the graph over loan status.  I will also fill the points by income range to see which income range is associated with each loan status.  From the bivariate analysis, higher credit scores seemed to be associated with better loan status and lower debt to income ratio seemed to be associated with better loan status.  A higher income range was also associated with better loan status.  I want to see what the data looks like when I consider all these graphs together.  
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10,debt_to_income_ratio_vs_credit_score_income_range_loan_status}
+
+# In this chunk I examine the relationship between debt_to_income_ratio and
+# lower range of credit score filled by income range and faceted over loan status.  I will only consider the second type of plot from the previous R chunk (with a transparency and jitter while cutting off outliers).  
+
+# Set values which will be limits for scatterplot without data points at 
+# debt to income ratio of 10 using quantile (Reference 31).
+y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
+
+# Construct similar scatter plots to the transparent, jittered scatter plot in the previous R chunk but facet it over loan status (Reference 45). I had to add a guides command so that I could change the transparency of the colors in the legend (Reference 46). Note again that I am only considering incomes with the condition that they are verifiable and are not NA's (prosp_income).
+
+ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio, 
+           color = income_range), 
+       data = subset(prosp_income, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + 
+        geom_jitter(alpha = 1/10, position = position_jitter(h = 0)) + 
+        coord_cartesian(ylim = y_lim) + scale_color_brewer(palette = "BrBG") +
+        facet_wrap(~loan_status, ncol=2) +
+        guides(colour = guide_legend(override.aes = list(alpha = 1))) 
+```
+
+From the faceted scatter plots shown (note that each color in the legend represents 10 data points), it appears that there are far less borrowers with an income greater than $50,000 in the Chargedoff and Defaulted categories than in the Completed and Current categories.  It also looks as if there is around an equal number of borrowers both below and above $50,000 for the Defaulted and Chargedoff categories whereas for the Completed and Current categories, there are more borrowers with over $50,000 dollars in income.  There are far more borrowers with a lower range of credit score above 800 for the Current and Completed loan status than for the Defaulted and Chargedoff loan status.  For the Chargedoff and Defaulted categories, there seems to be more borrowers with a lower range of credit score below 700 than above 700.  Debt to income ratio doesn't appear to play much of a part in determining loan status.  In each of the loan status categories, there appears to be more borrowers below a ratio of 0.5 than above.  In summary, it does appear that having a low credit score and income range makes it more likely that a borrower will end up Defaulting or being charged off with a loan (the probabilities for both, regardless of income/credit score may still be less than 50% as there are more borrowers in general who fall into the Current and Completed status).  It doesn't appear however that debt to income ratio plays a large part in determining loan status.  This is supported by what I found in the univariate case as I thought credit score range lower had a much stronger relationship to loan status than debt to income ratio.  
+
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
@@ -1643,6 +1666,10 @@ Next, I will see how the debt to income range versus credit score lower scatterp
 # Reference 43: http://www.sthda.com/english/wiki/colors-in-r
 
 # Reference 44: https://cran.r-project.org/web/packages/lemon/vignettes/legends.html#shared-legend-across-multiple-plot
+
+# Reference 45: https://plot.ly/ggplot2/facet_wrap/
+
+# Reference 46: http://ggplot2.tidyverse.org/reference/guide_legend.html
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
