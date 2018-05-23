@@ -1560,6 +1560,23 @@ From the faceted scatter plots shown (note that each color in the legend represe
 
 Now I will look at borrower apr versus credit score range lower scatterplots faceted by loan status and filled by income range.  Debt to income ratio didn't have a big affect on loan status but I do think borrower apr will based off the bivariate analysis.  This will be a very similar visual as the one previously.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10,borrower_apr_vs_credit_score_income_range_loan_status}
+
+# In this chunk I examine the relationship between borrower_apr and
+# lower range of credit score filled by income range and faceted over loan status.  These plots will be similar to the previous visual.  
+
+# Construct similar scatter plots to the transparent, jittered scatter plots in the previous R chunk faceted over loan status (Reference 45). I had to add a guides command so that I could change the transparency of the colors in the legend (Reference 46). Note again that I am only considering incomes with the condition that they are verifiable and are not NA's (prosp_income).
+
+ggplot(aes(x = credit_score_range_lower, y = borrower_apr, 
+           color = income_range), 
+       data = subset(prosp_income, !is.na(credit_score_range_lower) &
+                             !is.na(borrower_apr))) + 
+        geom_jitter(alpha = 1/10, position = position_jitter(h = 0)) + 
+        scale_color_brewer(palette = "BrBG") +
+        facet_wrap(~loan_status, ncol=2) +
+        guides(colour = guide_legend(override.aes = list(alpha = 1))) 
+```
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
