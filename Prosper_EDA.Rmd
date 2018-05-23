@@ -1531,6 +1531,12 @@ q2 <- ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio,
  grid_arrange_shared_legend(q1, q2, ncol = 1, nrow = 2, position = 'right')
 ```
 
+From the top chart in the visual above, the middle, left and portions of the right side of the graph appear to be dominated by borrowers from the $1-24,999 income range.  From the bottom graph however, it's evident that this was due to over plotting issues.  After adding a transparency, jittering the points and cutting off the outliers above the 99th percentile, I see that borrowers earning above $50,000 dominate the right side and borrowers below $50,000 dominate the left side.  In the middle, borrowers earning greater than $50,000 make up the majority below a debt to income ratio of about 0.425 and borrowers earning less than $50,000 make up the majority above a debt to income ratio of about 0.425.  I said in the bivariate analysis that there were two portions of the graph on the right and left hand side which had a relatively low debt to income ratio.  And that on the right side there was likely many borrowers with the highest income range possible and on the left side there was likely many borrowers with the lowest income range possible.  This is generally what is seen (if I exclude income range of $0). 
+
+Next, I will see how the debt to income range versus credit score lower scatterplot changes with loan status by faceting the graph over loan status.  I will also fill the points by income range to see which income range is associated with each loan status.  From the bivariate analysis, higher credit scores seemed to be associated with better loan status and lower debt to income ratio seemed to be associated with better loan status.  A higher income range was also associated with better loan status.  I want to see what the data looks like when I consider all these graphs together.  
+
+
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
