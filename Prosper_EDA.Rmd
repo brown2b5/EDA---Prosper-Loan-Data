@@ -1601,9 +1601,20 @@ The first thing to notice about these faceted bar charts is that there are virtu
 ### Features that strengthened each other in terms of looking at the \
 relationship with the feature of interest.
 
+Prosper score and prosper rating strengthened each other in terms of predicting loan status.  Combinations of really good prosper ratings and scores minimized Defaulted and Chargedoff loan status proportions (both within each group and out of the total borrower population) and they maximized within group proportion of Completed loans.  Combinations of really bad prosper ratings and scores didn't necessarily minimize loan status proportions of Completed but they did maximize within group loan status proportions of Chargedoff loan statuses. 
+
+I thought that income range and credit score also strengthened each other in terms of predicting loan status.  From the borrower apr versus credit score scatter plot, there were very few loans in a status of Defaulted or Chargedoff which had credit scores beyond 800 and also had an income above $50,000.  There were also very few borrowers with credit score below 600 and with income range below $50,000 in the Current loan category.  
+
+For debt to income ratio, it did seem that for borrowers making less than $50,000, the within income range proportion of them who were Chargedoff and had a debt to income ratio greater than 0.25 was far greater than that of borrowers making greater than $50,000 (most of the borrowers making greater than $50,000 were in the Current or Completed categories and had ratios less than 0.25).  This was across all credit scores.  The same could be said for borrower apr but the difference in within income range proportions will be smaller between those making less than $50,000 and those making greater than $50,000.  Income range and borrower apr seem to strengthen each other, but not as much as income range and debt to income ratio.    
+
 ### Interesting and surprising interactions between features.
 
+I was initially surprised that so many loans with a risky prosper rating and score were able to be Current or Completed (prosper loans with rating of HR actually had a higher proportion of borrowers out of all borrowers with a Completed loan status), but then I realized this was because Prosper assigns many more loans a rating of HR than ratings such as AA.  I was also surprised that borrower apr didn't appear to be strengthened as much by income range as debt to income ratio.  I figured the opposite would be true based off the bivariate box plots.  
+
+
 ### Potential for models in the future
+
+I did not create any models with the dataset.  In future analyses, I would be interested in what a logistic regression used to predict loan status using income range, credit score, prosper score and prosper rating would look like.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
