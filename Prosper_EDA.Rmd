@@ -1535,7 +1535,7 @@ From the top chart in the visual above, the middle, left and portions of the rig
 
 Next, I will see how the debt to income range versus credit score lower scatterplot changes with loan status by faceting the graph over loan status.  I will also fill the points by income range to see which income range is associated with each loan status.  From the bivariate analysis, higher credit scores seemed to be associated with better loan status and lower debt to income ratio seemed to be associated with better loan status.  A higher income range was also associated with better loan status.  I want to see what the data looks like when I consider all these graphs together.  
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10,debt_to_income_ratio_vs_credit_score_income_range_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 11,debt_to_income_ratio_vs_credit_score_income_range_loan_status}
 
 # In this chunk I examine the relationship between debt_to_income_ratio and
 # lower range of credit score filled by income range and faceted over loan status.  I will only consider the second type of plot from the previous R chunk (with a transparency and jitter while cutting off outliers).  
@@ -1560,7 +1560,7 @@ From the faceted scatter plots shown (note that each color in the legend represe
 
 Now I will look at borrower apr versus credit score range lower scatterplots faceted by loan status and filled by income range.  Debt to income ratio didn't have a big effect on loan status but I do think borrower apr will based off the bivariate analysis.  This will be a very similar visual as the one previously.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10,borrower_apr_vs_credit_score_income_range_loan_status}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 11,borrower_apr_vs_credit_score_income_range_loan_status}
 
 # In this chunk I examine the relationship between borrower_apr and
 # lower range of credit score filled by income range and faceted over loan status.  These plots will be similar to the previous visual.  
@@ -1584,7 +1584,7 @@ faceted over prosper rating.  I will do this to see which combination of
 prosper score and rating produces the best and worst outcomes of loan status.
 I am doing this because the bar chart of the best and worst combination in the univariate analysis and the filled bar charts in the bivariate analysis seemed to indicate that there was a relationship between these variables.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_prosper_score_prosper_rating_graph}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, loan_status_prosper_score_prosper_rating_graph}
 # Plotting a bar graph of loan_status faceted by prosper rating (Referenc 43); proportions for each category filled by the proportion of each bar under each prosper score category (References 15 and 16).  I am using the dataframe for data post July 2009.
 
 # I am using scale_fill_brewer to get a better color scheme (Reference 41)
@@ -1635,21 +1635,17 @@ I did not create any models with the dataset.  In future analyses, I would be in
 
 # Reference 7: http://rfunction.com/archives/1001
 
-# Reference 8: https://stackoverflow.com/questions/6329962/split-code-over-
-# multiple-lines-in-an-r-script
+# Reference 8: https://stackoverflow.com/questions/6329962/split-code-over-multiple-lines-in-an-r-script
 
 # Reference 9: http://rprogramming.net/read-csv-in-r/
 
 # Reference 10: https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html
 
-# Reference 11: https://www.rdocumentation.org/packages/utils/versions/3.4.3/
-# topics/str
+# Reference 11: https://www.rdocumentation.org/packages/utils/versions/3.4.3/topics/str
 
-# Reference 12: https://stackoverflow.com/questions/11488820/why-use-c-to-
-# define-vector
+# Reference 12: https://stackoverflow.com/questions/11488820/why-use-c-to-define-vector
 
-# Reference 13: https://www.rdocumentation.org/packages/base/versions/3.5.0/
-# topics/subset
+# Reference 13: https://www.rdocumentation.org/packages/base/versions/3.5.0/topics/subset
 
 # Reference 14: http://www.sthda.com/english/wiki/renaming-data-frame-columns-
 # in-r
@@ -1664,8 +1660,7 @@ I did not create any models with the dataset.  In future analyses, I would be in
 
 # Reference 18: http://ggplot2.tidyverse.org/reference/geom_bar.html
 
-# Reference 19: http://tallman-world.tumblr.com/post/89964965867/rhow-to-
-# rotate-axis-labels-in-ggplot2
+# Reference 19: http://tallman-world.tumblr.com/post/89964965867/rhow-to-rotate-axis-labels-in-ggplot2
 
 # Reference 20: http://ggplot2.tidyverse.org/reference/geom_histogram.html
 
@@ -1674,8 +1669,7 @@ I did not create any models with the dataset.  In future analyses, I would be in
 # Reference 22: https://www.rdocumentation.org/packages/gridExtra/versions
 # /2.3/topics/arrangeGrob
 
-# Reference 23: https://stackoverflow.com/questions/2667673/select-first-4
-# -rows-of-a-data-frame-in-r
+# Reference 23: https://stackoverflow.com/questions/2667673/select-first-4-rows-of-a-data-frame-in-r
 
 # Reference 24: https://www.rdocumentation.org/packages/base/versions
 # /3.5.0/topics/NA
@@ -1684,14 +1678,11 @@ I did not create any models with the dataset.  In future analyses, I would be in
 
 # Reference 26: https://www.datamentor.io/r-programming/ifelse-function
 
-# Reference 27: https://stackoverflow.com/questions/14708095/log10-
-# transformation-in-r
+# Reference 27: https://stackoverflow.com/questions/14708095/log10-transformation-in-r
 
-# Reference 28: https://www.rdocumentation.org/packages/GGally/versions/1.3.2
-# /topics/ggpairs
+# Reference 28: https://www.rdocumentation.org/packages/GGally/versions/1.3.2/topics/ggpairs
 
-# Reference 29: https://stackoverflow.com/questions/5234117/how-to-drop-
-# columns-by-name-in-a-data-frame
+# Reference 29: https://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
 
 # Reference 30: http://ggplot2.tidyverse.org/reference/geom_point.html
 
