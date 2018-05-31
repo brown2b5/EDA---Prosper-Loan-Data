@@ -8,13 +8,11 @@ includes interest rates, borrower employment status, borrower income, loan
 amount, borrower credit history and many other variables (Reference 3). The 
 purpose of this project is to explore the data to determine which conditions 
 might be associated with whether a borrower will be successful in paying back 
-the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete 
-their loan payments.
+the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete their loan payments.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
 # Loading all of the packages I will use in this project. I will be using 
-# ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html 
-# file to complete (Reference 4).  
+# ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html file to complete (Reference 4).  
 
 # NOTE ABOUT REFERENCES: At the end of this RMD file I have two Resources 
 # sections.  The first is inside of an R chunk and is only for code inside R chunks.  The second is outside the R chunk and is only for analyses and 
@@ -80,8 +78,7 @@ prosper_df <- read.csv('prosperLoanData.csv')
 
 First, I will perform some univariate analyses, plotting bar charts and 
 histograms of various variables of interest to get an idea about how each 
-variable is related to measures such as the number of borrowers who default and 
-the number who successfully pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
+variable is related to measures such as the number of borrowers who default and the number who successfully pay back their loans.  Once we have the univariate plots, we can have an idea about what variables we may want to explore in a multi-variate fashion.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, Univariate_Plots}
 # First, I need to see the dimensions and structure of the data as is. This way
@@ -98,23 +95,9 @@ str(prosper_df)
 question is how variables of interest relate to the ability or inability of a borrower to pay back the loan amount plus interest.  Because of this, the most important variable I will be looking at is Loan Status.  This is a categorical variable with categories such as Completed, Defaulted, and Past Due for varying number of days among others.  It would make sense that a person's employment 
 status will affect their ability to pay back the loans so I will also look at 
 this variable.  A borrower's employment duration probably correlates with their ability to keep their job, which would make it easier to pay back the loans so I will look at this variable as well.  I will also look at the income range for borrowers since having a higher income would probably make it easier to pay back loans.  A borrower's credit score is a statistical method to determine 
-the likelihood that they will pay back a loan in a specified amount of time (Reference 4), so I will look at that variable and see how it is related to loan status (specifically the lower range of a person's credit score at the time the listing was created).  It would be expected that a borrower with a low debt to income ratio would have an easier time paying back loans, so this variable will 
-be considered in this analysis.  
+the likelihood that they will pay back a loan in a specified amount of time (Reference 4), so I will look at that variable and see how it is related to loan status (specifically the lower range of a person's credit score at the time the listing was created).  It would be expected that a borrower with a low debt to income ratio would have an easier time paying back loans, so this variable will be considered in this analysis.  
   
-  Two variables which are only for listings post July 2009 are Prosper Score and Prosper Rating.  A Prosper Score is a number from 1 to 11 determined by Prosper which represents the probability of a loan going "bad" where bad is defined as 
-the loan going 60 or more days past due within 12 months of the loan origination 
-(1 is the highest risk score and 11 is the lowest risk) (Reference 5).  I will 
-see how this variable is related to loan status and also to another variable, 
-the number of days the loan is delinquent (number of days a payment is past due) (Reference 6).  A Prosper Rating is a grade assigned to a loan to determine the estimated annual loss to potential investors (AA to HR with AA having the lowest estimated loss and HR having the highest) (Reference 7).  It would be expected 
-that in general, loans with the best rating (AA) would have the fewest number of borrowers who default on the loan.  One important point to keep in mind during 
-this project is that a Prosper Rating may not be accurate because it is based on 
-a borrower's credit report which may contain inaccurate information (Reference 
-7). Another variable that will be examined is whether or not a borrower is a 
-home owner.  If a borrower is a home owner, I would expect they will have higher credit worthiness and be less susceptible to going into default.  Finally, I 
-will look at Borrower APR.  An APR is an annual charged rate which is the cost 
-of borrowing the money (Reference 8).  My guess is that the lower this amount 
-is, the easier it will be to pay back the loans.  I will look at this variable 
-as well. 
+  Two variables which are only for listings post July 2009 are Prosper Score and Prosper Rating.  A Prosper Score is a number from 1 to 11 determined by Prosper which represents the probability of a loan going "bad" where bad is defined as the loan going 60 or more days past due within 12 months of the loan origination (1 is the highest risk score and 11 is the lowest risk) (Reference 5).  I will see how this variable is related to loan status and also to another variable, the number of days the loan is delinquent (number of days a payment is past due) (Reference 6).  A Prosper Rating is a grade assigned to a loan to determine the estimated annual loss to potential investors (AA to HR with AA having the lowest estimated loss and HR having the highest) (Reference 7).  It would be expected that in general, loans with the best rating (AA) would have the fewest number of borrowers who default on the loan.  One important point to keep in mind during this project is that a Prosper Rating may not be accurate because it is based on a borrower's credit report which may contain inaccurate information (Reference 7). Another variable that will be examined is whether or not a borrower is a home owner.  If a borrower is a home owner, I would expect they will have higher credit worthiness and be less susceptible to going into default.  Finally, I will look at Borrower APR.  An APR is an annual charged rate which is the cost of borrowing the money (Reference 8).  My guess is that the lower this amount is, the easier it will be to pay back the loans.  I will look at this variable as well. 
 
   In summary the dependent variables for this project are loan status and 
 number of days the current loan is delinquent.  The independent variables are employment status, employment duration, income range, credit score range lower, debt to income ratio, prosper score, prosper rating, borrower APR and is 
@@ -214,9 +197,7 @@ ggplot(prosp_sub, aes(loan_status)) +
 summary(prosp_sub$loan_status)
 ```
 
-From this plot, the category with the highest proportion of borrowers is clearly
-the Current loans.  I lumped all the Past Due categories into one Past Due 
-category since I only really care about Completed, Defaulted and Chargedoff
+From this plot, the category with the highest proportion of borrowers is clearly the Current loans.  I lumped all the Past Due categories into one Past Due category since I only really care about Completed, Defaulted and Chargedoff
 loans.  I also lumped the FinalPaymentInProgress category into the Completed
 category since these loans are for all intents and purposes finished.  I did
 some research and Chargedoff loans are Defaulted loans for which there is no
@@ -245,10 +226,7 @@ summary(prosp_sub$employment_status)
 From the data available we can conclude that the information given isn't very helpful at possibly predicting whether a borrower will be successful in paying 
 back their loans.  This is primarily because the categories are vague.  The 
 highest proportion of borrowers fit into the "Employment" category.  This 
-category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions 
-of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious pointer to a relationship but there isn't (for an obvious pointer to a relationship to exist, the proportions of one category would need 
-to equal that of the Completed and Default/ChargedOff categories).  Even if the proportions were equal, the relationship may not be straight-forward between 
-these two variables.
+category is very vague.  It doesn't indicate whether the borrower is a Full-time or Part-time employee (there are actually categories for this).  It also doesn't indicate what their salary is.  There are also the categories of Other and a portion of the borrowers who did not list an employment status.  If I were to decide to examine this data further in the bivariate and multivariate portions of the analysis, I might get rid of the borrowers fitting in the Other and non-labeled categories.  I may construct a plot or two to see if there are relationships, but I think other variables I've chosen to focus on will give a better indication of success.  I picked this variable just to see if there may actually be an obvious pointer to a relationship but there isn't (for an obvious pointer to a relationship to exist, the proportions of one category would need to equal that of the Completed and Default/ChargedOff categories).  Even if the proportions were equal, the relationship may not be straight-forward between these two variables.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, income_range}
 # Plotting bar graph of proportions of borrowers with each level of income.
@@ -293,16 +271,7 @@ summary(subset(prosp_sub, income_verifiable == 'True' &
 ```
 
 From the above bar chart of proportion of borrowers inside each income range
-I considered, the largest proportions are for $25,000-49,999 and $50,000-74,999.
-The proportion was about the same for the higher two categories.  Note that
-I did not consider data which was not verifiable.  I also lumped two categories
-together, borrowers which had an income of $0 and borrowers which had an 
-income of 'Not employed'.  It's hard to say which of these categories may be
-associated with higher levels of success or failure in paying back the loans.
-It would be assumed that the higher a borrower's income, the easier it will be
-for them to pay back a loan but this isn't the only variable affecting success
-or failure so I will need to further look at this in the bi-variate and multi-
-variate case.
+I considered, the largest proportions are for $25,000-49,999 and $50,000-74,999. The proportion was about the same for the higher two categories.  Note that I did not consider data which was not verifiable.  I also lumped two categories together, borrowers which had an income of $0 and borrowers which had an income of 'Not employed'.  It's hard to say which of these categories may be associated with higher levels of success or failure in paying back the loans. It would be assumed that the higher a borrower's income, the easier it will be for them to pay back a loan but this isn't the only variable affecting success or failure so I will need to further look at this in the bi-variate and multi-variate case.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8,   employment_status_duration}
 # This chunk generates three versions of the histogram of employment status duration.  I initially generate a basic histogram but then adjust it, zooming in
@@ -365,17 +334,13 @@ Based on the second and third graphs, the data is definitely right-skewed.
 This data represents employment status duration, but because of how I have
 set the number of months worked for those unemployed to be 0, I am basically
 considering employment duration.  I did this in part because there were
-outliers for those not employed of multiple years.  I cannot see Prosper letting a borrower have a loan who had not been employed for many years (I originally 
-let the employment status duration for those not employed to be negative).  
-There are still outliers in the data here.  From the summary, the maximum
-number of months worked is 745 or around 63 years.  This may actually be 
-possible, but if I graph this data against loan status or any other variable
+outliers for those not employed of multiple years.  I cannot see Prosper letting a borrower have a loan who had not been employed for many years (I originally let the employment status duration for those not employed to be negative).  There are still outliers in the data here.  From the summary, the maximum number of months worked is 745 or around 63 years.  This may actually be possible, but if I graph this data against loan status or any other variable
 in the bi-variate or multi-variate portions of this project, I will cut off
 this data from consideration.  In the next R chunk, I will see what this data
 looks like for anything above 400 months (33 years).  After transforming the
 data using log10, the data is still left-skewed.  Because of this, I may not
 transform the data in the bi-variate or multi-variate case.  My guess is that
-the larger ones' employment duration, the more likely they are to pay back 
+the larger ones' employment duration, the more likely they are to pay back
 loans.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, employment_status_duration400}
@@ -386,7 +351,6 @@ loans.
 head(subset(prosp_sub, employment_status %in% condition &
               !is.na(employment_status_duration) &
               employment_status_duration > 400))
-
 ```
 
 After looking at the data for durations above 400 months (and for the specific
@@ -432,22 +396,16 @@ summary(subset(prosp_sub,!is.na(credit_score_range_lower))$
 ```
 
 From the three plots of the histograms, each more finely tuned than the next, 
-I notice a few things.  The first is that there are some borrowers with a credit
-score of zero.  I am going to see what the rest of the variables looks like
-for some of these borrowers to see if I should discard them or if I should
+I notice a few things.  The first is that there are some borrowers with a credit score of zero.  I am going to see what the rest of the variables looks like for some of these borrowers to see if I should discard them or if I should
 keep them (if it was simply an error in entering the data).  The next is that
 the data is pretty close to being normal.  From the summary given, the mean
 is only 5.6 away from the median out of a range of 40 for the IQR.  Since
 the mean is greater than the median however, it is skewed to the right.  I 
 don't think it's enough to warrant performing a transformation on the data,
 however.  The middle plot was bi-modal but changing the binwidth caused this
-to disappear from the data. Another thing I noticed after changing the binwidth 
-is that there appears to be only integer values of credit score in increments of 20. There do not appear to be values that aren't whole or that fall between 
+to disappear from the data. Another thing I noticed after changing the binwidth is that there appears to be only integer values of credit score in increments of 20. There do not appear to be values that aren't whole or that fall between 
 values of 600, 620, 640 and so on (note that I confirmed this using the table command but didn't include it in the final code). In terms of lower range of 
-credit score predicting the ability of a borrower to pay back their loans, there is a fairly steep drop off from around 640 to 620 in the number of borrowers.  
-I would be interested to see what percentage of the borrowers to the left of the drop off are in each of the loan status categories.  I may look at how this 
-variable changes with each loan status category using a box plot in the 
-bi-variate analysis.
+credit score predicting the ability of a borrower to pay back their loans, there is a fairly steep drop off from around 640 to 620 in the number of borrowers. I would be interested to see what percentage of the borrowers to the left of the drop off are in each of the loan status categories.  I may look at how this variable changes with each loan status category using a box plot in the bi-variate analysis.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, credit_score_range_lower0}
 
@@ -458,8 +416,7 @@ head(subset(prosp_sub, !is.na(credit_score_range_lower) &
             credit_score_range_lower == 0))
 ```
 
-Looking at the first 6 rows of data for those with a lower credit score range of 0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense 
-for borrowers with bad credit scores.
+Looking at the first 6 rows of data for those with a lower credit score range of 0, I actually think the data is good and that is truly the lower range on the credit score.  The employment status and debt to income ratio is unknown for the first six rows of data, so these rows are probably cases where very little information is known about the borrowers so the risk for investors will be high.  The APR seems to be high for the first 6 rows of data so that would make sense for borrowers with bad credit scores.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, debt_to_income_ratio}
 # This chunk generates three versions of the histogram of debt to income ratio.  
@@ -496,9 +453,7 @@ grid.arrange(q1, q2, q3, ncol = 1)
 summary(subset(prosp_sub,!is.na(debt_to_income_ratio))$debt_to_income_ratio)
 ```
 
-A few things stand out about these graphs.  The first is that there appears that there might be outliers close to a ratio of 10.  Again, I will check these out 
-in the next R chunk to see if I should drop the data.  The second is that like 
-the credit score graph, the data is skewed to the right.  This initially 
+A few things stand out about these graphs.  The first is that there appears that there might be outliers close to a ratio of 10.  Again, I will check these out in the next R chunk to see if I should drop the data.  The second is that like the credit score graph, the data is skewed to the right.  This initially 
 surprised me but it didn't after thinking on it some more.  I was initially thinking that the higher a borrower's debt to income ratio is, the less able 
 they will be to pay back their loans.  But it actually may be that borrowers 
 with higher incomes are able to take on much more debt and still be successful 
@@ -564,13 +519,7 @@ is that there may not be a nice relationship between good credit score and
 borrower apr.  Perhaps a borrower has a good credit score but they have lost
 their job which makes them a risky investment.  Or at the other end of the 
 spectrum, perhaps a borrower has a bad credit history but has landed a good job such that prosper assigns a lower than expected interest rate.  And it is not 
-even certain that there is a nice relationship between credit score and debt to income ratio as I guessed earlier.  I will have to graph these variables against each other to determine a discernible relationship.  Another observation 
-pointing to the possibility that there may not be a nice relationship between borrower apr and credit score/debt to income ratio is that the mode on the 
-borrower apr is significantly different from the mean and median.  From the 
-third plot with a fine binwidth, the mode appears to be around 0.36 while the median and mean is around 0.21.  One final observation is that there are 
-borrowers with apr's greater than 0.4.  I'm going to assume that these data 
-points are accurate and are not outliers which have been incorrectly entered 
-since I accepted the data I thought were outliers for debt to income ratio and credit score.  
+even certain that there is a nice relationship between credit score and debt to income ratio as I guessed earlier.  I will have to graph these variables against each other to determine a discernible relationship.  Another observation pointing to the possibility that there may not be a nice relationship between borrower apr and credit score/debt to income ratio is that the mode on the borrower apr is significantly different from the mean and median.  From the third plot with a fine binwidth, the mode appears to be around 0.36 while the median and mean is around 0.21.  One final observation is that there are borrowers with apr's greater than 0.4.  I'm going to assume that these data points are accurate and are not outliers which have been incorrectly entered since I accepted the data I thought were outliers for debt to income ratio and credit score.  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE,fig.height = 8, fig.width = 8, days_delinquent}
 # This chunk generates three versions of the histogram of days delinquent.  I initially generate a basic histogram but then adjust it, zooming in 
@@ -612,22 +561,7 @@ summary(subset(prosp_sub, condition)$days_delinquent)
 
 For the days_delinquent variable, I only considered loans that had not been
 charged off or defaulted since they are in a separate category and will have
-large values.  I also only considered cases for which there was a non-zero value
-for days_delinquent.  Had I considered all the borrowers, a disproportionally 
-large number of them would have been zero days' delinquent and I wouldn't be 
-able to gain any insights on borrowers who hadn't yet defaulted or been charged
-off on their loans who also are delinquent in paying their loans.  From these
-distributions, the data is definitely skewed to the right with the median at 27 
-days.  Most of the cases are below 50 days.  It's hard to know which variables
-may predict the number of days' delinquent since thus far I have considered all
-the data and not subsetted the data as I did in this R chunk.  It may also be
-good in the future to consider the ratio of days' delinquent to number of days 
-since the loan originated.  This might be a better indicator of the relative
-success of borrowers paying back their loans.  A borrower may be 30 days'
-delinquent but only 2 months into paying back the loans while another borrower 
-may be 30 days' delinquent but be halfway through paying back the loans (a 
-matter of years).  The delinquency for the second borrower isn't going to be 
-viewed in the same way as that of the first.  This variable is a secondary independent variable to that of loan status so I'm not as concerned at gaining insights into what may predict these numbers.
+large values.  I also only considered cases for which there was a non-zero value for days_delinquent.  Had I considered all the borrowers, a disproportionally large number of them would have been zero days' delinquent and I wouldn't be able to gain any insights on borrowers who hadn't yet defaulted or been charged off on their loans who also are delinquent in paying their loans.  From these distributions, the data is definitely skewed to the right with the median at 27 days.  Most of the cases are below 50 days.  It's hard to know which variables may predict the number of days' delinquent since thus far I have considered all the data and not subsetted the data as I did in this R chunk.  It may also be good in the future to consider the ratio of days' delinquent to number of days since the loan originated.  This might be a better indicator of the relative success of borrowers paying back their loans.  A borrower may be 30 days' delinquent but only 2 months into paying back the loans while another borrower may be 30 days' delinquent but be halfway through paying back the loans (a matter of years).  The delinquency for the second borrower isn't going to be viewed in the same way as that of the first.  This variable is a secondary independent variable to that of loan status so I'm not as concerned at gaining insights into what may predict these numbers.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, is_homeowner}
 # Plotting bar graph of proportions of borrowers that are and are not homeowners
@@ -643,12 +577,8 @@ summary(prosp_sub$is_homeowner)
 ```
 
 From the bar chart above showing proportions of borrowers who own a home, we 
-can see that there is minimal difference between the conditions.  The proportion
-of borrowers who own a home is slightly greater than 50%.  It's hard to
-determine how well this variable predicts loan payback success rate without
-using bi-variate and multi-variate graphic capabilities in R.  I will facet loan status over each of these conditions to see which condition has a higher level 
-of success and failure.  It would make sense that borrowers owning a home will 
-be more likely to payback their loans than those that do not own a home. 
+can see that there is minimal difference between the conditions.  The proportion of borrowers who own a home is slightly greater than 50%.  It's hard to determine how well this variable predicts loan payback success rate without
+using bi-variate and multi-variate graphic capabilities in R.  I will facet loan status over each of these conditions to see which condition has a higher level of success and failure.  It would make sense that borrowers owning a home will be more likely to payback their loans than those that do not own a home. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, subset_date}
 # This R chunk subsets the prosper data such that only data after July 2009
@@ -735,12 +665,7 @@ totals for 1-3 and 9-11 into one category so that I wouldn't be considering 11
 different categories which seemed to be too much.  It should be noted that
 scores of 4 and 6 would have had the highest proportions if I hadn't done this.
 This would be reasonable since most users will have around an average risk
-associated with the investment (prosper scores of 1 and 11 would have had the lowest and second lowest proportions, respectively).  In terms of prosper scores predicting whether a loan will be defaulted, chargedoff or completed, it is hard to tell.  It is worth mentioning that around the same proportion of borrowers 
-assigned a rating between 9-11 also either defaulted or were chargedoff with 
-their loans based on the loan status graph previously, but that data considered
-all loans and not just those after July 2009 (the bar chart above is only for
-data post July-2009).  I will need to use R's bi-variate graphing capabilities 
-to see if a relationship exists, I suspect it will. 
+associated with the investment (prosper scores of 1 and 11 would have had the lowest and second lowest proportions, respectively).  In terms of prosper scores predicting whether a loan will be defaulted, chargedoff or completed, it is hard to tell.  It is worth mentioning that around the same proportion of borrowers assigned a rating between 9-11 also either defaulted or were chargedoff with their loans based on the loan status graph previously, but that data considered all loans and not just those after July 2009 (the bar chart above is only for data post July-2009).  I will need to use R's bi-variate graphing capabilities to see if a relationship exists, I suspect it will. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, prosper_rating_graph}
 # This R chunk creates a bar graph of proportions of each borrowers
@@ -764,13 +689,7 @@ summary(prosp_2009$prosper_rating)
 ```
 
 From the above bar chart, it appears that the prosper rating with the highest
-proportion of borrowers is that with a rating of C.  As with the prosper scores,
-this is reasonable since this is the average prosper rating.  Most borrowers
-will not have excellent or bad credit but have average credit.  The two ratings
-with the lowest and second lowest proportion of borrowers are the AA and HR
-ratings, respectively.  As I mentioned with the prosper score, I will need to
-use R's bi-variate graphing capabilities to determine the relationship between
-prosper score and loan status. 
+proportion of borrowers is that with a rating of C.  As with the prosper scores, this is reasonable since this is the average prosper rating.  Most borrowers will not have excellent or bad credit but have average credit.  The two ratings with the lowest and second lowest proportion of borrowers are the AA and HR ratings, respectively.  As I mentioned with the prosper score, I will need to use R's bi-variate graphing capabilities to determine the relationship between prosper score and loan status. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, loan_status_comparison}
 # Plotting two bar graphs of loan_status; one for the best possible combination
@@ -803,12 +722,8 @@ summary(subset(prosp_2009, worst_combo)$loan_status)
 ```
 
 The first plot in the visual directly above is the loan status for the best 
-possible combination of prosper rating and score (AA and 9-11) while the second plot is the loan status for the worst possible combination of prosper rating and score (HR and 1-3). Clearly there is a higher precedence of loans being past 
-due, defaulted and charged off for the worst combination than the best 
-combination.  There is also a higher percentage of loans which are completed in 
-the best combination versus the worst combination.  This would seem to point to 
-a relationship between these three variables.  I will be examining this further 
-in the bi-variate and multi-variate portion of my analysis.  
+possible combination of prosper rating and score (AA and 9-11) while the second plot is the loan status for the worst possible combination of prosper rating and score (HR and 1-3). Clearly there is a higher precedence of loans being past due, defaulted and charged off for the worst combination than the best 
+combination.  There is also a higher percentage of loans which are completed in the best combination versus the worst combination.  This would seem to point to a relationship between these three variables.  I will be examining this further in the bi-variate and multi-variate portion of my analysis.  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE,  days_delinquent_comparison}
 # Plotting two histograms of days_delinquent; one for the best possible 
@@ -850,21 +765,18 @@ summary(subset(prosp_2009, worst_combo)$days_delinquent)
 ```
 
 The above two histograms are the distributions of days' delinquent under the 
-best (AA and 9-11) and worst (HR and 1-3) possible combination of prosper scores and ratings as I did with the loan status variable.  As I did in the original plots of days' delinquent, I limited the data to cases where the days' 
-delinquent was greater than 0 and to cases where the loan had not been charged 
+best (AA and 9-11) and worst (HR and 1-3) possible combination of prosper scores and ratings as I did with the loan status variable.  As I did in the original plots of days' delinquent, I limited the data to cases where the days' delinquent was greater than 0 and to cases where the loan had not been charged 
 off or defaulted.  Clearly there are fewer cases of days' delinquent for the  
 best combination than the worst combination.  Looking at the summary however, 
 the average number of days' delinquent is greater for the best case scenario 
 than the worst case scenario.  A couple of things should be kept in mind.  The first is that it may be better to create a variable where the number of days' 
 delinquent is divided by the number of days since the origination of the loan.  
-As I mentioned before, someone may be thirty days' delinquent on a loan but be really close to finishing paying off the loan.  The second is that the number of borrowers' delinquent being greater in the worst combination case may simply be because Prosper assigned more borrowers this combination than they did borrowers the best combination.  It could be that prospers ratings and scores are good at predicting loan status but not good at predicting days' delinquent.  Again, I'm 
-not as concerned about predicting this variable but it is something to look at 
-in future analyses. 
+As I mentioned before, someone may be thirty days' delinquent on a loan but be really close to finishing paying off the loan.  The second is that the number of borrowers' delinquent being greater in the worst combination case may simply be because Prosper assigned more borrowers this combination than they did borrowers the best combination.  It could be that prospers ratings and scores are good at predicting loan status but not good at predicting days' delinquent.  Again, I'm not as concerned about predicting this variable but it is something to look at in future analyses. 
 
 # Summary Observations about Univariate Analysis
 
-This concludes the univariate portion of the analysis.  The following are
-some summaries about what I have observed so far.
+This concludes the univariate portion of the analysis.  The following are some
+summaries about what I have observed so far.
 
 ### Structure of the dataset and summary of results
 
@@ -892,9 +804,7 @@ Most of the borrowers are in a Current status with their loans while around
 employment status variable is very vague.  Most of the borrowers have a status
 of employed but it is not clear what this means (full-time or part-time?).
 Around 30% of borrowers have an income in the ranges of $25000-49999 and 
-$50000-74999 (note that these proportions are only for data for which the income is verifiable and known).  Most of the borrowers are either in the 1-3 or 9-11 range of prosper scores but if all the scores are considered separately, most of the borrowers have either a 4 or 6 rating.  Most of the borrowers have a loan status of C.  And around an equal number of borrowers are homeowners.  The
-combination of prosper score and prosper rating appeared to have an effect on
-loan status.
+$50000-74999 (note that these proportions are only for data for which the income is verifiable and known).  Most of the borrowers are either in the 1-3 or 9-11 range of prosper scores but if all the scores are considered separately, most of the borrowers have either a 4 or 6 rating.  Most of the borrowers have a loan status of C.  And around an equal number of borrowers are homeowners.  The combination of prosper score and prosper rating appeared to have an effect on loan status.
 
 The variables employment_status_duration, credit_score_range_lower,
 debt_to_income_ratio and borrower_apr are all right-skewed and I think there is
@@ -905,15 +815,13 @@ be examining this question in the bi-variate analysis.
 The main features of interest in the selected data are loan status, prosper 
 score and prosper rating.  Prosper score is a variable that Prosper assigns to loans to determine the risk they pose to investors (Reference 5).  This score takes into account a number of variables such as debt to income ratio, loan payment performance on prior loans, credit card utilization, number of 
 delinquent accounts and others (Reference 5).  Prosper rating is another 
-variable Prosper uses which is based on the Prosper score and credit score (Reference 7).  Both these are variables Prosper uses to uniquely judge the risk of a potential loan, so I want to see how well they do at associating themselves with borrowers who Default, are charged off or who complete the loan.  I have already done this somewhat in the second to last graph of the univariate 
-analysis.  I looked at the loan status bar chart for the best and worst possible combinations of prosper score and rating.  It was clear that the worst possible combination had higher rates of Defaulted and Chargedoff loans and a lesser rate of completed loans relative to the best combination.
+variable Prosper uses which is based on the Prosper score and credit score (Reference 7).  Both these are variables Prosper uses to uniquely judge the risk of a potential loan, so I want to see how well they do at associating themselves with borrowers who Default, are charged off or who complete the loan.  I have already done this somewhat in the second to last graph of the univariate analysis.  I looked at the loan status bar chart for the best and worst possible combinations of prosper score and rating.  It was clear that the worst possible combination had higher rates of Defaulted and Chargedoff loans and a lesser rate of completed loans relative to the best combination.
 
 ### Supporting features of Prosper loan data that will aid in investigation of main features.
 
 I think the question of whether a borrower is a homeowner will aid in my
 investigation.  I want to see which condition (owning or not owning a home) is
-associated with higher success and failure rates for paying back the loans.  If 
-a borrower owns a home, that means a bank has already approved them for a loan
+associated with higher success and failure rates for paying back the loans.  If a borrower owns a home, that means a bank has already approved them for a loan
 after examining their credit history.  This would be a good sign that the 
 borrower should be trusted.  I also think borrower apr, credit score, debt-
 to-income ratio and employment status duration will be beneficial to my investigation.  I think they are all related to each other and I will try to eliminate at least one of them in the bi-variate analysis portion of the investigation.  I wanted to see if employment status would support my investigation but the categories seem rather vague and are probably not useful 
@@ -925,18 +833,7 @@ with greater loan payback success.
 
 There were three main results from the Univariate analysis that I thought
 were unusual.  The first was the shape of the debt-to-income ratio histogram.
-I initially thought that the less that number was, the more successful borrowers
-would be at paying back loans.  But I think that there is a lot of overlap
-between the shape of the credit score histogram and that of the debt-to-income
-ratio.  I have not considered these variables together, but my guess is that the
-reason an individual may have a higher than average debt-to-income ratio is 
-because they have a higher salary and can take on more debt.  Even though the 
-the ratio may be higher, they will have more funds to pay back loans and will be
-more successful at paying back the loans.  I need to confirm this but that is 
-my guess.  The shape of this curve could also be due to borrowers having a large
-student loan.  This would cause the debt-to-income ratio to be higher than 
-average but if borrowers are in a highly paying field (law or medicine), they
-will still be able to successufully pay back the loans.  
+I initially thought that the less that number was, the more successful borrowers would be at paying back loans.  But I think that there is a lot of overlap between the shape of the credit score histogram and that of the debt-to-income ratio.  I have not considered these variables together, but my guess is that the reason an individual may have a higher than average debt-to-income ratio is because they have a higher salary and can take on more debt.  Even though the the ratio may be higher, they will have more funds to pay back loans and will be more successful at paying back the loans.  I need to confirm this but that is my guess.  The shape of this curve could also be due to borrowers having a large student loan.  This would cause the debt-to-income ratio to be higher than average but if borrowers are in a highly paying field (law or medicine), they will still be able to successufully pay back the loans.
 
 The second result that I thought was unusual was the shape of the borrower apr
 histogram.  This too was skewed to the right, but if my guess that the credit
@@ -958,8 +855,7 @@ I combined some of the categories in loan status, income range and prosper score
 
 I combined all the Past Due categories to Past Due in the loan status variable
 because I'm mainly only interested in the Completed, Chargedoff and Defaulted
-categories for this variable.  I combined these categories to lessen the clutter
-of the bar chart. 
+categories for this variable.  I combined these categories to lessen the clutter of the bar chart. 
 
 I combined prosper scores 1-3 into one category and prosper scores 9-11 into
 one category.  I did this because I thought 11 categories seemed too much and
@@ -982,7 +878,7 @@ wanted to consider how long a borrower had been emloyed.  The same logic holds
 for why I didn't consider borrowers who had retired.  I also did not consider
 employment statuses of blank, not available and other.
 
-For all the variables, whereever NA's were present, I filtered them out of the
+For all the variables, wherever NA's were present, I filtered them out of the
 data.  
 
 ### A note about the days' delinquent variable
@@ -997,12 +893,7 @@ the remainder of the analysis.
 # Bivariate Plots Section
 
 First, I will look at some matrices of variables plotted against each other
-to see if I can find any relationships between the variables.  I will see if any
-of the independent, non-categorical variables are correlated with themselves and if there is a pattern for each of them with the loan status variable.  I will
-also see if there is a relationship between loan status and the categorical
-variables.  Finally, I will see if there is a relationship between loan status 
-and prosper score/rating.  These matrices will give me an idea about what to 
-expect as I make the bivariate plots in this section.
+to see if I can find any relationships between the variables.  I will see if any of the independent, non-categorical variables are correlated with themselves and if there is a pattern for each of them with the loan status variable.  I will also see if there is a relationship between loan status and the categorical variables.  Finally, I will see if there is a relationship between loan status and prosper score/rating.  These matrices will give me an idea about what to expect as I make the bivariate plots in this section.
 
 ```{r, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, Bivariate_Plots_GGally_non_categorical_loan_status}
 
@@ -1070,12 +961,10 @@ status of completed, prosper score category of 9-11 has the highest percentage
 of borrowers (to be expected as these are the lowest risk loans).  A loan
 status of defaulted has about equal counts across all prosper scores but this
 is difficult to see in the matrix and will need to be further examined in the
-bi-variate analysis.  A prosper score of 1-3, 5 and 6 has highest proportions of
-borrowers with a loan status of chargedoff.  
+bi-variate analysis.  A prosper score of 1-3, 5 and 6 has highest proportions of borrowers with a loan status of chargedoff.  
 
 A surprising result was that a prosper rating of D had the highest proportion
-of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with
-prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
+of borrowers with a completed loan.  The three worst prosper ratings (HR, E, and D) had the highest proportion of borrowers who had been chargedoff.  As with prosper score, prosper ratings effect on borrowers who had defaulted was difficult to see.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 9, fig.width = 10, debt_to_income_ratio_vs_credit_score}
 
@@ -1187,8 +1076,7 @@ by(subset(prosp_income, !is.na(credit_score_range_lower))
    !is.na(credit_score_range_lower))$income_range, summary)
 ```
 
-From the above box plot and summaries, we have what is to be expected.  The median credit score for borrowers increases as income range increases.  The means (red x) also increase as income range increases.  Because of this, the portion of the debt_to_income_range versus credit score graph in the far left is probably for borrowers with an income range of $0 and $1-24,999 while borrowers with an income range at or greater than $100,000 probably dominate the right side of the scatter plots.  Income reduction is a big reason borrowers go 
-bankrupt so this box plot does not surprise me (Reference 12).
+From the above box plot and summaries, we have what is to be expected.  The median credit score for borrowers increases as income range increases.  The means (red x) also increase as income range increases.  Because of this, the portion of the debt_to_income_range versus credit score graph in the far left is probably for borrowers with an income range of $0 and $1-24,999 while borrowers with an income range at or greater than $100,000 probably dominate the right side of the scatter plots.  Income reduction is a big reason borrowers go bankrupt so this box plot does not surprise me (Reference 12).
 
 Now I will look at how loan status is related to each of the non-categorical
 variables by looking at box plots of the data.  First I will consider 
@@ -1324,12 +1212,10 @@ both the mean and median, the borrower apr increases as the loan status gets
 dire.  Borrowers with a higher apr should have a harder time paying back
 loans so it is to be expected that they will have a higher rate of defaulting
 and being chargedoff.  The one exception was that a status of Past Due had the
-largest mean and median borrower apr but several of these borrowers may be close
-to defaulting.  And they should have a higher borrower apr on average than those
-who are current or completed.
+largest mean and median borrower apr but several of these borrowers may be close to defaulting.  And they should have a higher borrower apr on average than those who are current or completed.
 
 Next, I will look at how loan status is affected by the categorical variables I
-have considered(is_homeowner, employment_status, income range, prosper score,
+have considered (is_homeowner, employment_status, income range, prosper score,
 and prosper rating).
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_employment_status_graph}
@@ -1386,10 +1272,7 @@ by(prosp_income$income_range, prosp_income$loan_status,
 From the above bar chart, income ranges of greater than $75,000 make up a
 greater percentage of the bars for loan statues of Completed and Current than
 for loan statuses of Defaulted or Chargedoff.  Income ranges of $0-49,999 also
-make up a greater percentage of all borrowers for Chargedoff and Defaulted loans
-than for Current and Completed loans.  This should all be expected as having
-more money will make it easier to pay back loans.  It has been shown that income
-range plays a large part in the ability of borrowers to pay back loans with more income being associated with a better ability to pay back loans (Reference 12) so this is not surprising.  Note that I am only considering income that is verifiable and has been reported.
+make up a greater percentage of all borrowers for Chargedoff and Defaulted loans than for Current and Completed loans.  This should all be expected as having more money will make it easier to pay back loans.  It has been shown that income range plays a large part in the ability of borrowers to pay back loans with more income being associated with a better ability to pay back loans (Reference 12) so this is not surprising.  Note that I am only considering income that is verifiable and has been reported.
 
 Now I will see the affect being a homeowner has on loan status by filling the
 loan status bar charts with is_homeowner proportions.
@@ -1412,9 +1295,7 @@ by(prosp_sub$is_homeowner, prosp_sub$loan_status,
 
 From the bar chart, fill and summary, there were some expected but also some surprising results.  I am surprised that a greater majority of borrowers with a Completed status do not own a home.  Owning a home should point to a good credit history. It's possible that several of the borrowers successfully paying back a loan who are not homeowners are young borrowers with good credit history who simply haven't tried to purchase a home yet.  Something I would be interested to see is how this changes with loan amount (a variable I have not considered in this analysis).  The majority of those under a Current loan status are home owners which would be expected.  The majority of loans under the Defaulted and Chargedoff statuses have borrowers which do not own a home as I expected.  Also, the relative percentages in favor of those who do not own a home is greater for those under the Defaulted and Chargedoff statues than those under the Completed status.
 
-The next two bar charts will look at how prosper score and prosper rating affect
-loan status by looking at a bar chart of loan status and seeing what proportion
-of each bar is given by each prosper score and rating.  
+The next two bar charts will look at how prosper score and prosper rating affect loan status by looking at a bar chart of loan status and seeing what proportion of each bar is given by each prosper score and rating.  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10, loan_status_prosper_score_graph}
 # Plotting a bar graph of loan_status; proportions for each category filled
@@ -1714,7 +1595,7 @@ The exploration I performed was that of determining which variables are associat
 
 In the bivariate case, I first looked at various scatterplot matrices of variables plotted against each other.  I wanted to see if any of the non-categorical/numerical data could be discarded due to being correlated with each other.  Both from the scatterplot matrices and the debt to income ratio versus credit score range lower scatterplot, I found that this was not the case.  So I considered all the numerical variables against loan status via box plots.  I was surprised that credit score range lower and debt to income ratio did not correlate with each other in a monotonic way.  In general, each of the variables I considered went the way I expected as loan status progressed from best outcome to worst.  I thought the employment duration went as expected but there didn't appear to be a large difference between each of the loan statuses so I did not consider it in the multivariate case.  Mean credit score range lower decreased with worsening loan status.  Mean borrower apr and debt to income ratio increased with worsening loan status.  
 
-In the bivariate case for the categorical variables, I saw that whether a borrower is a homeowner and employment status were not very helpful in predicting loan status.  The proportions of homeowners and non-homeowners were about even for each loan status and the employment status categories were very vague.  I did not consider either of these variables in the multi-variate case.  For the loan status bar chart filled by income range, I did find that having a higher income was associated with less loans being Defaulted/Chargedoff and more loans being in Completed or Current loan status.  For those in the lower income ranges, there was still a greater proportion in the Completed and Current loan statuses, but for a loan status of Defaulted, there was a higher proportion of borrowers in the lower income ranges (less than $50,000).  For prosper score, a greater proportion of borrowers in the Completed and Current loan status had scores of 7 or greater than those with scores of 5 or lower.  The reverse was true for statuses of Defaulted and Chargedoff.  For prosper rating, a greater proportion of borrowers in the Completed loan status had ratings of HR through D but the within ratings ratio of Completed to Defaulted/Chargedoff was greater for AA to B than for HR through D.  The insights I found with income range and prosper score/rating were all to be expected.
+In the bivariate case for the categorical variables, I saw that whether a borrower is a homeowner and employment status were not very helpful in predicting loan status.  The proportions of homeowners and non-homeowners were about even for each loan status and the employment status categories were very vague.  It was kind of surprising to me that being a homeowner did not seem to affect loan payback success as owning a home should correlate with good credit history.  I did not consider either employment status or is borrower a homeowner in the multivariate case.  For the loan status bar chart filled by income range, I did find that having a higher income was associated with less loans being Defaulted/Chargedoff and more loans being in Completed or Current loan status.  For those in the lower income ranges, there was still a greater proportion in the Completed and Current loan statuses, but for a loan status of Defaulted, there was a higher proportion of borrowers in the lower income ranges (less than $50,000).  For prosper score, a greater proportion of borrowers in the Completed and Current loan status had scores of 7 or greater than those with scores of 5 or lower.  The reverse was true for statuses of Defaulted and Chargedoff.  For prosper rating, a greater proportion of borrowers in the Completed loan status had ratings of HR through D but the within ratings ratio of Completed to Defaulted/Chargedoff was greater for AA to B than for HR through D.  The insights I found with income range and prosper score/rating were all to be expected.
 
 In the multivariate analysis, I first looked at debt to income ratio versus credit score range lower filled by income range.  Most of the borrowers with credit scores above 800 had high incomes and low debt to income ratio.  Borrowers with relatively low income ranges were more spread out in terms of both credit score and debt to income ratio.  For credit scores below 550, borrowers had a wide range of debt to income ratio versus borrowers making high incomes and having credit scores greater than 800.  This highlights the importance of income on financial health.  I wanted to look at this graph because I wanted to see why there were two portions of borrowers on both ends of the graph who had relatively low debt to income ratios but diverging credit scores.  My suspicion was that income range was the difference and I was correct.  I next looked at two scatterplots of debt to income ratio versus credit score range lower filled by income range and borrower apr versus credit score range lower filled by income range faceted over loan status.  I did this so that I could see how the independent variables impacted loan status.  In general, having a higher income, higher credit score and better debt to income ratio and borrower apr led to better loan status outcomes and less of a spread in the data.  Finally, I wanted to see how prosper score and prosper rating interacted with each other and to see how they were associated with loan status.  The best combination of prosper score and rating produced the best outcomes (Completed and Current) in terms of within group proportions while the worst combination of prosper score and rating produced the worst outcomes in terms of within group proportions (Defaulted and Chargedoff).
 
