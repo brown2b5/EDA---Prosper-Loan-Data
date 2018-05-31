@@ -1616,6 +1616,20 @@ I was initially surprised that so many loans with a risky prosper rating and sco
 
 I did not create any models with the dataset.  In future analyses, I would be interested in what a logistic regression used to predict loan status using income range, credit score, prosper score and prosper rating would look like.
 
+# Final Plots and Summary
+
+### Plot One
+
+### Description One
+
+### Plot Two
+
+### Description Two
+
+### Plot Three
+
+### Description Three
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
 
