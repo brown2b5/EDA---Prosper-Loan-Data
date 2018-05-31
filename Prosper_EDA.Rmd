@@ -1620,7 +1620,39 @@ I did not create any models with the dataset.  In future analyses, I would be in
 
 ### Plot One
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 5, fig.width = 10,Plot_One}
+
+# This chunk represents a recap of the debt to income ratio versus credit score range lower second plot I presented in the multivariate analysis filled by income range.    
+
+# To recap, this is a modified version of the second scatterplot in the group of 4 plots I made in the bivariate analysis representing debt to income ratio versus credit score range lower.  I have jittered the points and made them transparent while filling them with income range.  I did this so that I could see which portion of the plot is associated with each income range.  
+
+# Set values which will be limits for scatterplot without data points at 
+# debt to income ratio of 10 using quantile (Reference 31).
+y_lim = c(0,quantile(prosp_sub$debt_to_income_ratio,0.99, na.rm='True'))
+
+# Graph scatter plot where the data is jittered and with a transparency of
+# 1/10 to correct for overplotting (Reference 32).  I also cut off the data at debt to income ratio of 10 (Reference 21). They are outliers even though the data is good.  I set position_jitter with an h of 0 to keep the data in the vertical direction from becoming negative (Reference 33).  I am using scale_color_brewer to have a better color scheme (Reference 43).  
+# For this final plot, I added a title, x axis label, y axis label and I centered the plot title (References 47 and 48).  I had to add a guides command so that I could change the transparency of the colors in the legend (Reference 46).  I used theme and theme_dark to change the background so that the colors would stand out better and to change the size of the axis labels (Reference 48 and 50).     
+
+ ggplot(aes(x = credit_score_range_lower, y = debt_to_income_ratio, 
+                 color = income_range), 
+       data = subset(prosp_income, !is.na(credit_score_range_lower) &
+                             !is.na(debt_to_income_ratio))) + 
+        geom_jitter(alpha = 1/10,position = position_jitter(h = 0)) + 
+        coord_cartesian(ylim = y_lim) +
+        scale_color_brewer(name = "Income Range", palette = "BrBG") +
+  ggtitle("Debt to Income Ratio vs Credit Score Range Lower by Income Range") + 
+      xlab("Credit Score Range Lower") + ylab("Debt to Income Ratio") +
+      theme_dark() + theme(plot.title = element_text(hjust=0.5),
+                           panel.grid.major = element_line(color = "white"),
+                           panel.grid.minor = element_line(color = "white"),
+                           text = element_text(size=14)) +
+        guides(colour = guide_legend(override.aes = list(alpha = 1)))  
+```
+
 ### Description One
+
+The above scatterplot represents Debt to Income Ratio versus Credit Score Range Lower filled by Income Range.  There are two primary reasons I included this graph in the final plots.  The first is to clear up a possible misconception that the smaller a borrower's debt to income ratio, the better their credit score will be because it will be easier for them to pay back loans.  From this scatterplot, this is obviously not the case.  There are several borrowers who have relatively low credit scores who also have debt to income ratios below 0.25.  It's also not true that having a relatively high debt to income ratio will automatically result in bad credit scores (see the number of borrowers above a ratio of 0.5 who hover around the 700 credit score mark).  Clearly, more is going on here than just debt to income ratio.  It appears that income range is a far better predictor of credit score at least for income ranges above $50000 (most borrowers with income ranges above $50000 have credit scores beyond 700 and very few exist below 600).  For that below $50000, other factors must come into play as the data is spread across most of the graph (although there appear to be very few borrowers with income less than $50000 and credit scores beyond 800).  The second reason I included this graph was because the original version in the bivariate analysis was what let me know that I needed to consider these two variables separately against loan status and that they weren't correlated enough to discard one of them (debt to income ratio and credit score range lower).    
 
 ### Plot Two
 
@@ -1731,6 +1763,14 @@ I did not create any models with the dataset.  In future analyses, I would be in
 # Reference 45: https://plot.ly/ggplot2/facet_wrap/
 
 # Reference 46: http://ggplot2.tidyverse.org/reference/guide_legend.html
+
+# Reference 47: https://www.statmethods.net/advgraphs/axes.html
+
+# Reference 48: https://stackoverflow.com/questions/40675778/center-plot-title-in-ggplot2
+
+# Reference 49: http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html
+
+# Reference 50:  http://ggplot2.tidyverse.org/reference/ggtheme.html
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
