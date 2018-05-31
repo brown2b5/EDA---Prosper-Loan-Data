@@ -1610,13 +1610,11 @@ In summary, I thought that income, credit score, prosper score and prosper ratin
 
 # Reference 3: https://dplyr.tidyverse.org/
 
-# Reference 4: https://stackoverflow.com/questions/29189663/trying-to-
-# publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
+# Reference 4: https://stackoverflow.com/questions/29189663/trying-to-publish-an-r-notebook-and-keep-getting-the-same-error-error-in-contri
 
 # Reference 5: http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
 
-# Reference 6: https://stackoverflow.com/questions/5595512/what-is-the-
-# difference-between-require-and-library
+# Reference 6: https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
 
 # Reference 7: http://rfunction.com/archives/1001
 
@@ -1632,16 +1630,13 @@ In summary, I thought that income, credit score, prosper score and prosper ratin
 
 # Reference 13: https://www.rdocumentation.org/packages/base/versions/3.5.0/topics/subset
 
-# Reference 14: http://www.sthda.com/english/wiki/renaming-data-frame-columns-
-# in-r
+# Reference 14: http://www.sthda.com/english/wiki/renaming-data-frame-columns-in-r
 
 # Reference 15: https://stats.idre.ucla.edu/r/modules/factor-variables/
 
-# Reference 16: https://stackoverflow.com/questions/32845303/using-logical-
-# operators-with-characters
+# Reference 16: https://stackoverflow.com/questions/32845303/using-logical-operators-with-characters
 
-# Reference 17: https://stackoverflow.com/questions/36604127/creating-a-bar-
-# plot-with-proportions-on-ggplot
+# Reference 17: https://stackoverflow.com/questions/36604127/creating-a-bar-plot-with-proportions-on-ggplot
 
 # Reference 18: http://ggplot2.tidyverse.org/reference/geom_bar.html
 
@@ -1651,13 +1646,11 @@ In summary, I thought that income, credit score, prosper score and prosper ratin
 
 # Reference 21: http://ggplot2.tidyverse.org/reference/coord_cartesian.html
 
-# Reference 22: https://www.rdocumentation.org/packages/gridExtra/versions
-# /2.3/topics/arrangeGrob
+# Reference 22: https://www.rdocumentation.org/packages/gridExtra/versions/2.3/topics/arrangeGrob
 
 # Reference 23: https://stackoverflow.com/questions/2667673/select-first-4-rows-of-a-data-frame-in-r
 
-# Reference 24: https://www.rdocumentation.org/packages/base/versions
-# /3.5.0/topics/NA
+# Reference 24: https://www.rdocumentation.org/packages/base/versions/3.5.0/topics/NA
 
 # Reference 25: https://www.rdocumentation.org/packages/GGally/versions/1.3.2
 
