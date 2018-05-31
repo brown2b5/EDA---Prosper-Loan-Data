@@ -1685,7 +1685,27 @@ In this box plot, we see the expected outcome that borrowers in the Completed ca
 
 ### Plot Three
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 11, Plot_Three}
+# This plot represents a recap of the bar chart of loan status filled by prosper score faceted over each prosper rating.  
+
+# I am using scale_fill_brewer to get a better color scheme (Reference 43).  For this final plot, I added a title, x axis label and y axis label (Reference 47).  I used theme and theme_dark to change the background so that the colors would stand out better and to center the title and change the size of the axis labels (Reference 48 and 50).  I also used theme to set the size of each label for each bar chart.  
+
+ggplot(prosp_2009, aes(loan_status, fill = prosper_score)) + 
+  geom_bar(aes(y=..count../sum(..count..))) + 
+  ylab('Proportion of Total Borrowers') + xlab('Loan Status') + 
+  ggtitle('Proportion of Total Borrowers vs Loan Status') +
+  scale_fill_brewer(name = "Prosper Score", palette = "BrBG") +
+  facet_wrap(~prosper_rating, ncol=2)  +
+  theme_dark() + theme(plot.title = element_text(hjust=0.5), 
+                       panel.grid.major = element_line(color = "white"),
+                        panel.grid.minor = element_line(color = "white"),
+                       strip.text.x = element_text(size = 10),
+                       text = element_text(size=14)) 
+```
+
 ### Description Three
+
+The above visual is a bar chart of proportion of total borrowers in each loan status filled by prosper score and faceted over prosper rating.  I included this plot because prosper score and prosper rating are the unique values prosper uses to assess the risk of a loan to potential investors.  I thought it was important to see how well prosper does at predicting probabilities associated with the loan statuses of interest (Chargedoff, Defaulted, Current and Completed).  I think the results point to prosper achieving their goal of minimizing the probability of a loan having a bad outcome via their rating and scoring system.  The within group proportion of borrowers completing a loan are greatest for those with a prosper rating of AA.  This rating is for the most credit worthy borrowers.  The proportion of borrowers who are Chargedoff increases from a rating of AA to D but then stays constant from D through HR.  The within group proportion of those Chargedoff decreases from a rating of AA through C but then increases from C through HR.  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, resources}
 # Resources - code
@@ -1789,7 +1809,7 @@ In this box plot, we see the expected outcome that borrowers in the Completed ca
 
 # Reference 46: http://ggplot2.tidyverse.org/reference/guide_legend.html
 
-# Reference 47: https://www.statmethods.net/advgraphs/axes.html
+# Reference 47: http://ggplot2.tidyverse.org/reference/labs.html
 
 # Reference 48: https://stackoverflow.com/questions/40675778/center-plot-title-in-ggplot2
 
