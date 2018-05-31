@@ -1656,7 +1656,32 @@ The above scatterplot represents Debt to Income Ratio versus Credit Score Range 
 
 ### Plot Two
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 7, fig.width = 10,Plot_Two}
+
+# This chunk represents a recap of the Credit Score Range Lower versus Loan Status box plot I presented in the bivariate analysis.  This plot shows the median and mean of Credit Score Range Lower for each Loan Status to see how credit scores change for each group of loan status.  
+
+# Find box plot for non-NA credit scores. I also zoomed in on the y axis to better see the medians and where they are (References 38 and 39).  For this final plot, I added a title, x axis label and y axis label (References 47).  I am using scale_fill_brewer to have a better color scheme (Reference 49).  I used theme and theme_dark to change the background so that the colors would stand out better and to center the title and change the size of the axis labels (Reference 48 and 50).  
+ggplot(subset(prosp_sub, !is.na(credit_score_range_lower)), 
+       aes(x = loan_status, y = credit_score_range_lower, fill = loan_status)) +
+                  geom_boxplot() + 
+                  stat_summary(fun.y=mean, geom="point", color = "red",
+                               shape = 4, size=3) + 
+                  coord_cartesian(ylim = c(500,800)) +
+                  ggtitle("Credit Score Range Lower vs Loan Status") + 
+        xlab("Loan Status") + ylab("Credit Score Range Lower") +  
+                  scale_fill_brewer(name = "Loan Status", 
+                                    palette = "Blues", direction=-1) +
+  theme_dark() + theme(plot.title = element_text(hjust=0.5), 
+                       panel.grid.major = element_line(color = "white"),
+                        panel.grid.minor = element_line(color = "white"),
+                        text = element_text(size=14)) 
+```
+
 ### Description Two
+
+The above box plot represents Credit Score Range Lower versus Loan Status.  I chose this box plot because of its importance evident from the two scatterplots faceted over loan status I examined in the multivariate case.  From the first scatterplot (debt to income ratio versus low range of credit score), there were far more borrowers with a lower range of credit score above 800 for the Current and Completed loan status than for the Defaulted and Chargedoff loan status.  For the Chargedoff and Defaulted categories, there seems to be more borrowers with a lower range of credit score below 700 than above 700.  The same was evident in the borrower apr versus lower range of credit score scatterplot.  It also appeared as if credit score strengthened the other variables in terms of determining probability for being in the various loan statuses; the probability of having high borrower apr, low credit score, relatively low income and being chargedoff seemed to be greater than what was present in borrowers with low apr, high credit score and relatively high income. 
+
+In this box plot, we see the expected outcome that borrowers in the Completed category have on average higher credit scores than those in the Defaulted and Chargedoff categories.  The median of those in the Completed category is also greater than that of Defaulted or Chargedoff.  This variable seems important and in the future I would like to see it in a logistic regression analysis to predict the various loan statuses of interest.  
 
 ### Plot Three
 
