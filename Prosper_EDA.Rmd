@@ -10,7 +10,9 @@ purpose of this project is to explore the data to determine which conditions
 might be associated with whether a borrower will be successful in paying back 
 the original loan amount and interest. I expect to see which borrower employment status, credit score, debt to income ratio and other loan variables are most associated with those who default on their loans and who successfully complete their loan payments.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE, packages}
+# I added include=FALSE so that messages indicating the packages were loaded wouldn't appear in the knitted HTML file (Reference 51).
+
 # Loading all of the packages I will use in this project. I will be using 
 # ggplot2 to construct plots (Reference 1), knitr to put the R markdown document into an HTML document (Reference 2) and dplyr to mutate and transform the data (Reference 3).  I had to add a repos section to get the knitting of the html file to complete (Reference 4).  
 
@@ -1587,6 +1589,7 @@ ggplot(prosp_2009, aes(loan_status, fill = prosper_score)) +
 ### Description Three
 
 The above visual is a bar chart of proportion of total borrowers in each loan status filled by prosper score and faceted over prosper rating.  I included this plot because prosper score and prosper rating are the unique values prosper uses to assess the risk of a loan to potential investors.  I thought it was important to see how well prosper does at predicting probabilities associated with the loan statuses of interest (Chargedoff, Defaulted, Current and Completed).  I think the results point to prosper achieving their goal of minimizing the probability of a loan having a bad outcome via their rating and scoring system.  The within group proportion of borrowers completing a loan are greatest for those with a prosper rating of AA.  This rating is for the most credit worthy borrowers.  The proportion of borrowers who are Chargedoff increases from a rating of AA to D but then stays constant from D through HR.  The within group proportion of those Chargedoff decreases from a rating of AA through C but then increases from C through HR.
+
 ------
 
 # Reflection
@@ -1703,6 +1706,8 @@ In summary, I thought that income, credit score, prosper score and prosper ratin
 # Reference 49: http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html
 
 # Reference 50:  http://ggplot2.tidyverse.org/reference/ggtheme.html
+
+# Reference 51: https://stackoverflow.com/questions/13090838/r-markdown-avoiding-package-loading-messages/13090911
 
 # NOTE: This is the Resources list only for the code chunks.  I am placing this list inside of this chunk so that they do not appear when knitting the HTML 
 # file (for users who want to do that at the end). The only resources I want to appear when knitting the HTML file are those referenced inside the file and 
